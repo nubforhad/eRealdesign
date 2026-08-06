@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safe Community Group | Real Estate, Built on Trust</title>
+
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --maroon-light:#8E1B54;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    color:var(--charcoal);
+    background:var(--ivory);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4,.display-font{
+    font-family:'Fraunces',serif;
+    letter-spacing:-0.01em;
+  }
+  .text-maroon{color:var(--maroon)!important;}
+  .bg-maroon{background:var(--maroon)!important;}
+  .text-gold{color:var(--gold)!important;}
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:.72rem;
+    font-weight:800;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--maroon);
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:2px;background:var(--gold);display:inline-block;
+  }
+
+  /* Buttons */
+  .btn-maroon{
+    background:var(--maroon);
+    color:#fff;
+    border:1px solid var(--maroon);
+    padding:.85rem 1.9rem;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.92rem;
+    transition:.25s ease;
+  }
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{
+    background:transparent;
+    color:var(--maroon);
+    border:1.5px solid var(--maroon);
+    padding:.8rem 1.85rem;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.92rem;
+    transition:.25s ease;
+  }
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{
+    background:var(--gold);
+    color:var(--maroon-dark);
+    border:1px solid var(--gold);
+    padding:.85rem 1.9rem;
+    border-radius:999px;
+    font-weight:800;
+    font-size:.92rem;
+    transition:.25s ease;
+  }
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  /* NAVBAR */
+  .navbar{
+    padding:1rem 0;
+    transition:.3s ease;
+    background:rgba(248, 246, 243, 0)9);
+  }
+  .navbar.scrolled{
+    background:rgba(251,247,242,.97);
+    box-shadow:0 6px 24px rgba(0,0,0,.06);
+    backdrop-filter:blur(6px);
+  }
+  .navbar-brand-logo{height:44px;}
+  .nav-link{
+    font-weight:600;
+    font-size:.92rem;
+    color: #fff !important;
+    margin:0 .6rem;
+    position:relative;
+    transition:color .3s ease;
+  }
+  .navbar.scrolled .nav-link{
+    color: var(--charcoal) !important;
+  }
+  .logo-icon path{
+    fill:#fff;
+    transition:fill .3s ease;
+  }
+  .navbar.scrolled .logo-icon path{
+    fill:var(--maroon);
+  }
+  .logo-text{
+    color:#fff;
+    transition:color .3s ease;
+  }
+  .navbar.scrolled .logo-text{
+    color:var(--maroon);
+  }
+  .logo-text-sub{
+    color:rgba(255,255,255,.8);
+    transition:color .3s ease;
+  }
+  .navbar.scrolled .logo-text-sub{
+    color:var(--charcoal);
+  }
+  .nav-toggler-icon{
+    color:#fff;
+    transition:color .3s ease;
+  }
+  .navbar.scrolled .nav-toggler-icon{
+    color:var(--maroon);
+  }
+  .nav-link::after{
+    content:"";
+    position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);
+    transition:.25s ease;
+  }
+  .nav-link:hover::after{width:100%;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:6rem;
+    overflow:hidden;
+  }
+  .hero-slideshow{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+  }
+  .hero-slide{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    transform:scale(1);
+    transition:opacity 1.6s ease-in-out;
+  }
+  .hero-slide.active{
+    opacity:1;
+    animation:heroKenBurns 7s ease-in-out forwards;
+  }
+  @keyframes heroKenBurns{
+    from{transform:scale(1);}
+    to{transform:scale(1.14);}
+  }
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:linear-gradient(120deg, rgba(74,10,42,.88) 0%, rgba(109,15,61,.72) 45%, rgba(34,29,31,.55) 100%);
+    pointer-events:none;
+  }
+  .hero-overlay::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:56px 56px;
+  }
+  .hero .badge-pill{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.35);
+    color:#fff;
+    border-radius:999px;
+    padding:.45rem 1.1rem;
+    font-size:.8rem;
+    font-weight:600;
+    letter-spacing:.03em;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(2.4rem, 5.4vw, 4.6rem);
+    font-weight:600;
+    line-height:1.05;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+  .hero p.lead{
+    color:rgba(255,255,255,.85);
+    font-size:1.15rem;
+    max-width:560px;
+  }
+
+  /* Search Bar */
+  .search-panel{
+    background:#fff;
+    border-radius:var(--radius);
+    padding:1.4rem;
+    box-shadow:0 22px 60px rgba(0,0,0,.25);
+    margin-top:2.6rem;
+  }
+  .search-panel .form-label{
+    font-size:.72rem;
+    font-weight:800;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--grey);
+    margin-bottom:.35rem;
+  }
+  .search-panel select, .search-panel input{
+    border:none;
+    border-bottom:2px solid var(--sage);
+    border-radius:0;
+    padding:.5rem .2rem;
+    font-weight:600;
+    color:var(--charcoal);
+  }
+  .search-panel select:focus, .search-panel input:focus{
+    box-shadow:none;
+    border-color:var(--maroon);
+  }
+
+  /* Trust ring badge */
+  .trust-ring-card{
+    position:absolute;
+    z-index:2;
+    right:6%;
+    bottom:8%;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.3);
+    backdrop-filter:blur(10px);
+    border-radius:var(--radius);
+    padding:1.1rem 1.3rem;
+    color:#fff;
+    display:none;
+  }
+  @media(min-width:1200px){.trust-ring-card{display:flex;align-items:center;gap:1rem;}}
+  .ring{
+    width:64px;height:64px;border-radius:50%;
+    background:conic-gradient(var(--gold) 0% 96%, rgba(255,255,255,.2) 96% 100%);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .ring span{
+    width:52px;height:52px;border-radius:50%;background:var(--maroon-dark);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;
+  }
+
+  /* Stats strip */
+  .stats-strip{
+    background:var(--maroon-dark);
+    color:#fff;
+    padding:2.6rem 0;
+  }
+  .stats-strip h3{
+    font-size:2.4rem;
+    color:var(--gold);
+    margin-bottom:.1rem;
+  }
+  .stats-strip .stat-label{
+    font-size:.82rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.7);
+    font-weight:600;
+  }
+
+  /* Section spacing */
+  section{padding:6rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* Pillars (signature) */
+  .pillar-card{
+    border-radius:var(--radius);
+    padding:2.4rem 2rem;
+    height:100%;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.05);
+    transition:.3s ease;
+    position:relative;
+  }
+  .pillar-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(109,15,61,.12);}
+  .pillar-icon{
+    width:60px;height:60px;border-radius:50%;
+    background:var(--sage);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--maroon);font-size:1.4rem;
+    margin-bottom:1.4rem;
+  }
+  .pillar-index{
+    position:absolute;top:1.8rem;right:2rem;
+    font-family:'Fraunces',serif;font-size:2.4rem;color:var(--sage);font-weight:600;
+  }
+
+  /* Ventures */
+  .venture-card{
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--charcoal);
+    position:relative;
+    height:400px;
+    display:flex;
+    align-items:flex-end;
+    transition:.4s ease;
+  }
+  .venture-card img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:.55;transition:transform .6s ease, opacity .4s ease;
+  }
+  .venture-card:hover img{transform:scale(1.08);opacity:.4;}
+  .venture-card::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(34,29,31,0) 15%, rgba(34,29,31,.92) 100%);
+  }
+  .venture-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(0,0,0,.25);}
+  .venture-content{position:relative;z-index:2;padding:1.8rem;color:#fff;width:100%;}
+  .venture-num{
+    font-family:'Fraunces',serif;font-size:.8rem;letter-spacing:.15em;
+    color:var(--gold);font-weight:700;text-transform:uppercase;
+  }
+  .venture-sub{
+    font-size:.8rem;
+    color:rgba(255,255,255,.72);
+    margin-bottom:1rem;
+  }
+  .venture-social-row{
+    display:flex;
+    gap:.55rem;
+    margin-top:1rem;
+    padding-top:1rem;
+    border-top:1px solid rgba(255,255,255,.18);
+  }
+  .venture-social-btn{
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    font-size:.82rem;
+    transition:.25s ease;
+    flex-shrink:0;
+  }
+  .venture-social-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--maroon-dark);}
+
+  /* Property cards */
+  .property-card{
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+    transition:.3s ease;
+    height:100%;
+  }
+  .property-card:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(109,15,61,.14);}
+  .property-img-wrap{position:relative;height:230px;overflow:hidden;}
+  .property-img-wrap img{width:100%;height:100%;object-fit:cover;transition:.5s ease;}
+  .property-card:hover .property-img-wrap img{transform:scale(1.08);}
+  .property-tag{
+    position:absolute;top:14px;left:14px;
+    background:var(--maroon);color:#fff;font-size:.72rem;font-weight:700;
+    padding:.35rem .8rem;border-radius:999px;letter-spacing:.03em;
+  }
+  .property-fav{
+    position:absolute;top:14px;right:14px;
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(255,255,255,.85);
+    display:flex;align-items:center;justify-content:center;color:var(--maroon);
+  }
+  .property-price{
+    font-family:'Fraunces',serif;font-size:1.35rem;color:var(--maroon);font-weight:600;
+  }
+  .property-meta{font-size:.85rem;color:var(--grey);}
+  .property-meta i{color:var(--gold);margin-right:.3rem;}
+  .filter-pill{
+    border:1.5px solid var(--sage);
+    background:#fff;
+    color:var(--charcoal);
+    border-radius:999px;
+    padding:.55rem 1.4rem;
+    font-weight:700;
+    font-size:.86rem;
+    transition:.2s ease;
+  }
+  .filter-pill.active, .filter-pill:hover{
+    background:var(--maroon);border-color:var(--maroon);color:#fff;
+  }
+
+  /* Community / amenities */
+  .bg-sage-section{background:var(--sage);}
+  .amenity-item{
+    display:flex;align-items:center;gap:1rem;
+    padding:1.1rem 0;
+    border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .amenity-item i{
+    width:44px;height:44px;border-radius:50%;
+    background:#fff;color:var(--maroon);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+
+  /* Process */
+  .process-step{position:relative;padding-left:0;text-align:center;}
+  .process-num{
+    font-family:'Fraunces',serif;
+    font-size:3.2rem;color:var(--sage);font-weight:600;line-height:1;
+  }
+  .process-line{
+    height:2px;background:var(--sage);flex:1;margin-top:34px;
+  }
+
+  /* Testimonials */
+  .testimonial-card{
+    background:#fff;border-radius:var(--radius);
+    padding:2.4rem;box-shadow:0 10px 30px rgba(0,0,0,.05);
+    height:100%;
+  }
+  .testimonial-quote{font-size:1.05rem;line-height:1.7;color:var(--charcoal);}
+  .testimonial-avatar{
+    width:52px;height:52px;border-radius:50%;object-fit:cover;
+  }
+  .stars{color:var(--gold);font-size:.85rem;}
+
+  /* CTA */
+  .cta-section{
+    background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+    border-radius:28px;
+    color:#fff;
+    padding:4rem 3rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-section::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+    border-radius:50%;border:1px solid rgba(255,255,255,.2);
+  }
+  .cta-section input{
+    border-radius:999px;border:none;padding:.9rem 1.4rem;font-weight:600;
+  }
+
+  /* Footer */
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{
+    width:38px;height:38px;border-radius:50%;
+    background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    transition:.2s ease;
+  }
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media (max-width:991px){
+    .hero{padding-top:7.5rem;text-align:center;}
+    .hero p.lead{margin-left:auto;margin-right:auto;}
+    section{padding:4rem 0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="40" height="42" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold logo-text" style="font-family:'Fraunces',serif; font-size:1.25rem;">SAFE <span class="logo-text-sub" style="font-weight:600; font-size:.72rem; letter-spacing:.12em;">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4 nav-toggler-icon"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#properties">Properties</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pillars">Why Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ventures">Ventures</a></li>
+        <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Stories</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="{{ route('login') }}">Log in</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#contact">Book a Visit</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-slideshow">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1974&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1974&auto=format&fit=crop');"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1974&auto=format&fit=crop');"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <span class="badge-pill mb-4 d-inline-block reveal"><i class="fa-solid fa-shield-heart me-2"></i>Bangladesh's Trusted Real Estate Partner</span>
+        <h1 class="mb-4 reveal">A Home is Safe<br>When the <em>Community</em> Is.</h1>
+        <p class="lead mb-4 reveal">Safe Community Group builds and curates verified homes, apartments and gated communities across Dhaka — where every address comes with neighbours you can trust and land you can rely on.</p>
+        <div class="d-flex gap-3 flex-wrap reveal">
+          <a href="#properties" class="btn btn-gold">Explore Properties <i class="fa-solid fa-arrow-right ms-2"></i></a>
+          <a href="#contact" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">Talk to an Advisor</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Panel -->
+    <div class="search-panel reveal">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-3 col-6">
+          <label class="form-label">Location</label>
+          <select class="form-select">
+            <option>Gulshan, Dhaka</option>
+            <option>Bashundhara R/A</option>
+            <option>Uttara</option>
+            <option>Baridhara</option>
+            <option>Dhanmondi</option>
+          </select>
+        </div>
+        <div class="col-md-3 col-6">
+          <label class="form-label">Property Type</label>
+          <select class="form-select">
+            <option>Apartment</option>
+            <option>Duplex</option>
+            <option>Land / Plot</option>
+            <option>Commercial Space</option>
+          </select>
+        </div>
+        <div class="col-md-3 col-6">
+          <label class="form-label">Budget</label>
+          <select class="form-select">
+            <option>৳50L – ৳1Cr</option>
+            <option>৳1Cr – ৳2Cr</option>
+            <option>৳2Cr – ৳4Cr</option>
+            <option>৳4Cr+</option>
+          </select>
+        </div>
+        <div class="col-md-3 col-6">
+          <button class="btn btn-maroon w-100"><i class="fa-solid fa-magnifying-glass me-2"></i>Search Homes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust ring -->
+  <div class="mt-4 trust-ring-card reveal ">
+    <div class="ring"><span>98%</span></div>
+    <div>
+      <div class="fw-bold" style="font-family:'Fraunces',serif;">Community Trust Score</div>
+      <div style="font-size:.8rem;color:rgba(255,255,255,.75);">Based on 4,200+ verified residents</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3">
+        <h3 class="counter" data-target="17">0</h3>
+        <div class="stat-label">Years of Trust</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h3 class="counter" data-target="4200">0</h3>
+        <div class="stat-label">Happy Families</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h3 class="counter" data-target="38">0</h3>
+        <div class="stat-label">Communities Built</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h3 class="counter" data-target="6">0</h3>
+        <div class="stat-label">Cities Covered</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow mb-3">The SAFE Standard</span>
+        <h2 class="display-6 fw-medium">Three Pillars Behind Every Address We Sell</h2>
+      </div>
+      <div class="col-lg-4 reveal">
+        <p class="text-muted mb-0">Every property under our name passes through a verification framework built around what actually keeps a community liveable — not just a building's brochure.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal">
+        <div class="pillar-card">
+          <span class="pillar-index">01</span>
+          <div class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h4 class="h5 fw-bold mb-3">Safety, Verified</h4>
+          <p class="text-muted mb-0">Registered land documents, structural certification and 24/7 gated security checked before any listing goes live.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="pillar-card">
+          <span class="pillar-index">02</span>
+          <div class="pillar-icon"><i class="fa-solid fa-people-roof"></i></div>
+          <h4 class="h5 fw-bold mb-3">Trust, Earned</h4>
+          <p class="text-muted mb-0">Transparent pricing, escrow-backed payments and a resident council in every project we hand over.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="pillar-card">
+          <span class="pillar-index">03</span>
+          <div class="pillar-icon"><i class="fa-solid fa-seedling"></i></div>
+          <h4 class="h5 fw-bold mb-3">Growth, Shared</h4>
+          <p class="text-muted mb-0">Green corridors, schools and civic spaces planned in from day one, so property value grows with the neighbourhood.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTURES -->
+<section id="ventures">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow mb-3">Beyond a Single Address</span>
+        <h2 class="display-6 fw-medium">Our Ventures</h2>
+      </div>
+      <div class="col-lg-4 reveal">
+        <p class="text-muted mb-0">From the ground up to the last handover, every venture under SAFE is built on the same standard of verified land and managed communities.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="venture-card">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=900&auto=format&fit=crop" alt="Residential development">
+          <div class="venture-content">
+            <div class="venture-num mb-2">Venture 01</div>
+            <h5 class="fw-bold mb-0">SAFE Homes Ltd.</h5>
+            <div class="venture-sub">Residential Communities</div>
+            <div class="venture-social-row">
+              <a href="#" class="venture-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="venture-card">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=900&auto=format&fit=crop" alt="Commercial spaces">
+          <div class="venture-content">
+            <div class="venture-num mb-2">Venture 02</div>
+            <h5 class="fw-bold mb-0">SAFE Commercial Ltd.</h5>
+            <div class="venture-sub">Commercial & Retail</div>
+            <div class="venture-social-row">
+              <a href="#" class="venture-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="venture-card">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=900&auto=format&fit=crop" alt="Land development">
+          <div class="venture-content">
+            <div class="venture-num mb-2">Venture 03</div>
+            <h5 class="fw-bold mb-0">SAFE Land Development</h5>
+            <div class="venture-sub">Land Development</div>
+            <div class="venture-social-row">
+              <a href="#" class="venture-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="venture-card">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=900&auto=format&fit=crop" alt="Facilities management">
+          <div class="venture-content">
+            <div class="venture-num mb-2">Venture 04</div>
+            <h5 class="fw-bold mb-0">SAFE Facilities Management</h5>
+            <div class="venture-sub">Facilities Management</div>
+            <div class="venture-social-row">
+              <a href="#" class="venture-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="venture-social-btn" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTIES -->
+<section class="bg-sage-section" id="properties">
+  <div class="container">
+    <div class="row align-items-end mb-4">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow mb-3">Curated Listings</span>
+        <h2 class="display-6 fw-medium">Featured Homes & Communities</h2>
+      </div>
+      <div class="col-lg-5 text-lg-end reveal">
+        <div class="d-flex gap-2 flex-wrap justify-content-lg-end mt-3 mt-lg-0">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="sale">For Sale</button>
+          <button class="filter-pill" data-filter="rent">For Rent</button>
+          <button class="filter-pill" data-filter="land">Land</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4" id="propertyGrid">
+      <div class="col-lg-4 col-md-6 property-item reveal" data-cat="sale">
+        <div class="property-card">
+          <div class="property-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200&auto=format&fit=crop" alt="Modern apartment">
+            <span class="property-tag">For Sale</span>
+            <span class="property-fav"><i class="fa-regular fa-heart"></i></span>
+          </div>
+          <div class="p-4">
+            <div class="property-price mb-1">৳1.85 Cr</div>
+            <h5 class="fw-bold mb-2">Willow Court Residences</h5>
+            <p class="property-meta mb-3"><i class="fa-solid fa-location-dot"></i>Gulshan 2, Dhaka</p>
+            <div class="d-flex gap-3 property-meta">
+              <span><i class="fa-solid fa-bed"></i>4 Beds</span>
+              <span><i class="fa-solid fa-bath"></i>3 Baths</span>
+              <span><i class="fa-solid fa-vector-square"></i>2,150 sqft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 property-item reveal" data-cat="rent">
+        <div class="property-card">
+          <div class="property-img-wrap">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop" alt="Rental apartment">
+            <span class="property-tag" style="background:var(--gold);color:var(--maroon-dark);">For Rent</span>
+            <span class="property-fav"><i class="fa-regular fa-heart"></i></span>
+          </div>
+          <div class="p-4">
+            <div class="property-price mb-1">৳65,000<span class="fs-6 text-muted">/mo</span></div>
+            <h5 class="fw-bold mb-2">Baridhara Garden Flats</h5>
+            <p class="property-meta mb-3"><i class="fa-solid fa-location-dot"></i>Baridhara DOHS</p>
+            <div class="d-flex gap-3 property-meta">
+              <span><i class="fa-solid fa-bed"></i>3 Beds</span>
+              <span><i class="fa-solid fa-bath"></i>2 Baths</span>
+              <span><i class="fa-solid fa-vector-square"></i>1,650 sqft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 property-item reveal" data-cat="land">
+        <div class="property-card">
+          <div class="property-img-wrap">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200&auto=format&fit=crop" alt="Land plot">
+            <span class="property-tag" style="background:var(--charcoal);">Land / Plot</span>
+            <span class="property-fav"><i class="fa-regular fa-heart"></i></span>
+          </div>
+          <div class="p-4">
+            <div class="property-price mb-1">৳92 Lakh</div>
+            <h5 class="fw-bold mb-2">Purbachal Green Plots</h5>
+            <p class="property-meta mb-3"><i class="fa-solid fa-location-dot"></i>Purbachal New Town</p>
+            <div class="d-flex gap-3 property-meta">
+              <span><i class="fa-solid fa-vector-square"></i>3 Katha</span>
+              <span><i class="fa-solid fa-road"></i>60ft Road</span>
+              <span><i class="fa-solid fa-file-shield"></i>Registered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 property-item reveal" data-cat="sale">
+        <div class="property-card">
+          <div class="property-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop" alt="Duplex house">
+            <span class="property-tag">For Sale</span>
+            <span class="property-fav"><i class="fa-regular fa-heart"></i></span>
+          </div>
+          <div class="p-4">
+            <div class="property-price mb-1">৳3.4 Cr</div>
+            <h5 class="fw-bold mb-2">Uttara Skyline Duplex</h5>
+            <p class="property-meta mb-3"><i class="fa-solid fa-location-dot"></i>Sector 11, Uttara</p>
+            <div class="d-flex gap-3 property-meta">
+              <span><i class="fa-solid fa-bed"></i>5 Beds</span>
+              <span><i class="fa-solid fa-bath"></i>4 Baths</span>
+              <span><i class="fa-solid fa-vector-square"></i>3,400 sqft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 property-item reveal" data-cat="rent">
+        <div class="property-card">
+          <div class="property-img-wrap">
+            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200&auto=format&fit=crop" alt="Rental home interior">
+            <span class="property-tag" style="background:var(--gold);color:var(--maroon-dark);">For Rent</span>
+            <span class="property-fav"><i class="fa-regular fa-heart"></i></span>
+          </div>
+          <div class="p-4">
+            <div class="property-price mb-1">৳48,000<span class="fs-6 text-muted">/mo</span></div>
+            <h5 class="fw-bold mb-2">Dhanmondi Lakeview</h5>
+            <p class="property-meta mb-3"><i class="fa-solid fa-location-dot"></i>Road 8/A, Dhanmondi</p>
+            <div class="d-flex gap-3 property-meta">
+              <span><i class="fa-solid fa-bed"></i>2 Beds</span>
+              <span><i class="fa-solid fa-bath"></i>2 Baths</span>
+              <span><i class="fa-solid fa-vector-square"></i>1,180 sqft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 property-item reveal" data-cat="land">
+        <div class="property-card">
+          <div class="property-img-wrap">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="Commercial plot">
+            <span class="property-tag" style="background:var(--charcoal);">Commercial</span>
+            <span class="property-fav"><i class="fa-regular fa-heart"></i></span>
+          </div>
+          <div class="p-4">
+            <div class="property-price mb-1">৳6.2 Cr</div>
+            <h5 class="fw-bold mb-2">Bashundhara Commercial Plaza</h5>
+            <p class="property-meta mb-3"><i class="fa-solid fa-location-dot"></i>Block C, Bashundhara R/A</p>
+            <div class="d-flex gap-3 property-meta">
+              <span><i class="fa-solid fa-building"></i>6 Floors</span>
+              <span><i class="fa-solid fa-vector-square"></i>8,000 sqft</span>
+              <span><i class="fa-solid fa-car"></i>Parking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5 reveal">
+      <a href="#" class="btn btn-outline-maroon">View All 120+ Listings</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY / AMENITIES -->
+<section id="community">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Life Inside a SAFE Community</span>
+        <h2 class="display-6 fw-medium mb-4">More Than Walls — A Neighbourhood That Looks After You</h2>
+        <p class="text-muted mb-4">Every SAFE-branded community is planned around the people who'll actually live there: shared courtyards, guarded entry points, and civic amenities within walking distance.</p>
+        <div class="amenity-item">
+          <i class="fa-solid fa-video"></i>
+          <div><strong>24/7 CCTV & Guarded Gates</strong><div class="text-muted small">Round-the-clock trained security at every entry point.</div></div>
+        </div>
+        <div class="amenity-item">
+          <i class="fa-solid fa-tree"></i>
+          <div><strong>Green Courtyards & Parks</strong><div class="text-muted small">Shared open space designed into every masterplan.</div></div>
+        </div>
+        <div class="amenity-item">
+          <i class="fa-solid fa-school"></i>
+          <div><strong>Schools & Clinics Nearby</strong><div class="text-muted small">Essential civic services within a 10-minute walk.</div></div>
+        </div>
+        <div class="amenity-item" style="border-bottom:none;">
+          <i class="fa-solid fa-bolt"></i>
+          <div><strong>Backup Power & Water Reserve</strong><div class="text-muted small">Uninterrupted utilities, engineered for Dhaka's climate.</div></div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="row g-3">
+          <div class="col-6">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=900&auto=format&fit=crop" class="rounded-4 w-100" style="height:230px;object-fit:cover;" alt="Community park">
+          </div>
+          <div class="col-6">
+            <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=900&auto=format&fit=crop" class="rounded-4 w-100" style="height:230px;object-fit:cover;" alt="Community security">
+          </div>
+          <div class="col-12">
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1600&auto=format&fit=crop" class="rounded-4 w-100" style="height:220px;object-fit:cover;" alt="Residential complex">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="bg-sage-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow justify-content-center mb-3">How It Works</span>
+      <h2 class="display-6 fw-medium">From First Visit to Keys in Hand</h2>
+    </div>
+    <div class="row text-center g-4 g-lg-0 align-items-start">
+      <div class="col-lg-3 col-6 reveal">
+        <div class="process-num mb-2">01</div>
+        <h5 class="fw-bold">Tell Us Your Needs</h5>
+        <p class="text-muted small px-2">Share your budget, location and family size with an advisor.</p>
+      </div>
+      <div class="col-lg-3 col-6 reveal">
+        <div class="process-num mb-2">02</div>
+        <h5 class="fw-bold">Shortlist & Visit</h5>
+        <p class="text-muted small px-2">We arrange guided visits to verified properties that match.</p>
+      </div>
+      <div class="col-lg-3 col-6 reveal">
+        <div class="process-num mb-2">03</div>
+        <h5 class="fw-bold">Secure Documentation</h5>
+        <p class="text-muted small px-2">Our legal team verifies title deeds and handles paperwork.</p>
+      </div>
+      <div class="col-lg-3 col-6 reveal">
+        <div class="process-num mb-2">04</div>
+        <h5 class="fw-bold">Move In, Safely</h5>
+        <p class="text-muted small px-2">Get keys, meet your resident council, and settle in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow justify-content-center mb-3">Resident Stories</span>
+      <h2 class="display-6 fw-medium">Families Who Chose SAFE</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="stars mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testimonial-quote mb-4">"We visited six developers before SAFE. They were the only ones who showed us the actual land registry before we signed anything."</p>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" class="testimonial-avatar" alt="Resident">
+            <div><strong>Nusrat Jahan</strong><div class="text-muted small">Owner, Willow Court</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="stars mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testimonial-quote mb-4">"The resident council actually resolves issues fast. It finally feels like living in a managed community, not just a building."</p>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format&fit=crop" class="testimonial-avatar" alt="Resident">
+            <div><strong>Rafiul Islam</strong><div class="text-muted small">Tenant, Baridhara Garden Flats</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="stars mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <p class="testimonial-quote mb-4">"Bought a plot in Purbachal through them — the whole registration process was handled transparently, no hidden costs at all."</p>
+          <div class="d-flex align-items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?q=80&w=200&auto=format&fit=crop" class="testimonial-avatar" alt="Resident">
+            <div><strong>Farhana Chowdhury</strong><div class="text-muted small">Landowner, Purbachal</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3">Get New Listings Before Anyone Else</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.8);">Join our advisory list and be the first to know when a verified SAFE property matches your search.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0">
+          <form class="d-flex gap-2 flex-column flex-sm-row" onsubmit="return false;">
+            <input type="email" class="form-control" placeholder="Your email address" required>
+            <button class="btn btn-gold text-nowrap">Notify Me</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="bg-sage-section" id="contact">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow mb-3">Get In Touch</span>
+        <h2 class="display-6 fw-medium mb-4">Book a Free Consultation</h2>
+        <p class="text-muted mb-4">Speak with a SAFE advisor about buying, renting or investing — no obligation, no pressure.</p>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="pillar-icon" style="width:48px;height:48px;margin-bottom:0;"><i class="fa-solid fa-phone"></i></div>
+          <div><strong>Call Us</strong><div class="text-muted small">01713 167754 | 01713 878824</div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="pillar-icon" style="width:48px;height:48px;margin-bottom:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div><strong>Email Us</strong><div class="text-muted small">support@safecommunitygroup.com</div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="pillar-icon" style="width:48px;height:48px;margin-bottom:0;"><i class="fa-solid fa-location-dot"></i></div>
+          <div><strong>Visit Our Office</strong><div class="text-muted small">Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</div></div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Full Name</label>
+              <input type="text" class="form-control" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Phone Number</label>
+              <input type="text" class="form-control" placeholder="+880">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">I'm interested in</label>
+              <select class="form-select">
+                <option>Buying a home</option>
+                <option>Renting a home</option>
+                <option>Buying land / plot</option>
+                <option>Investment opportunity</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Message</label>
+              <textarea class="form-control" rows="4" placeholder="Tell us what you're looking for..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-maroon w-100">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#pillars">About Us</a></li>
+          <li><a href="#community">Communities</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Properties</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#properties">For Sale</a></li>
+          <li><a href="#properties">For Rent</a></li>
+          <li><a href="#properties">Land / Plots</a></li>
+          <li><a href="#properties">Commercial</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>support@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Hero background slideshow (zoom then crossfade)
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  let currentHeroSlide = 0;
+  if (heroSlides.length) {
+    setInterval(() => {
+      heroSlides[currentHeroSlide].classList.remove('active');
+      currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+      heroSlides[currentHeroSlide].classList.add('active');
+    }, 6000);
+  }
+
+  // Navbar scroll effect
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('active');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Counter animation
+  const counters = document.querySelectorAll('.counter');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = +el.getAttribute('data-target');
+        let count = 0;
+        const step = Math.max(target / 60, 1);
+        const update = () => {
+          count += step;
+          if (count < target) {
+            el.textContent = Math.ceil(count).toLocaleString();
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = target.toLocaleString() + (target >= 100 ? '+' : '');
+          }
+        };
+        update();
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterIO.observe(c));
+
+  // Property filter
+  const filterBtns = document.querySelectorAll('.filter-pill');
+  const propertyItems = document.querySelectorAll('.property-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      propertyItems.forEach(item => {
+        if (filter === 'all' || item.getAttribute('data-cat') === filter) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
