@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision & Mission | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .eyebrow.light{color:var(--gold);}
+  .eyebrow.center{justify-content:center;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.8rem 1.85rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{background:var(--gold);color:var(--maroon-dark);border:1px solid var(--gold);padding:.85rem 1.9rem;border-radius:999px;font-weight:800;font-size:.92rem;transition:.25s ease;}
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  .page-banner{position:relative;min-height:400px;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:3.5rem;}
+  .page-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(74,10,42,.93) 0%, rgba(109,15,61,.8) 45%, rgba(34,29,31,.65) 100%);}
+  .page-banner h1{color:#fff;font-size:clamp(2.2rem, 4.8vw, 3.6rem);font-weight:600;line-height:1.08;}
+  .page-banner h1 em{font-style:italic;color:var(--gold);}
+  .breadcrumb-custom{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:1.4rem;}
+  .breadcrumb-custom a{color:rgba(255,255,255,.7);text-decoration:none;}
+  .breadcrumb-custom .current{color:var(--gold);}
+
+  section{padding:6rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* ===================== VISION / MISSION DIPTYCH ===================== */
+  .vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--gold);border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 60px rgba(34,29,31,.14);}
+  .vm-panel{padding:3.2rem 2.6rem;position:relative;min-height:420px;display:flex;flex-direction:column;justify-content:center;}
+  .vm-panel.vision{background:var(--charcoal);color:#fff;}
+  .vm-panel.mission{background:var(--maroon);color:#fff;}
+  .vm-compass{
+    width:64px;height:64px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.35);
+    display:flex;align-items:center;justify-content:center;margin-bottom:1.6rem;position:relative;
+  }
+  .vm-compass i{font-size:1.5rem;color:var(--gold);}
+  .vm-eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+  .vm-panel h2{font-size:clamp(1.6rem,2.6vw,2.1rem);font-weight:600;line-height:1.2;margin-bottom:1.2rem;}
+  .vm-panel p{color:rgba(255,255,255,.78);line-height:1.8;font-size:.96rem;margin:0;}
+  .vm-panel .vm-tag{position:absolute;top:2rem;right:2.2rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.05em;}
+
+  @media (max-width:850px){
+    .vm-grid{grid-template-columns:1fr;}
+  }
+
+  /* ===================== PILLARS ===================== */
+  .pillar-card{
+    background:#fff;border-radius:var(--radius);padding:2.2rem 1.8rem;height:100%;
+    border:1px solid rgba(0,0,0,.05);transition:.3s ease;position:relative;overflow:hidden;
+  }
+  .pillar-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(109,15,61,.1);}
+  .pillar-num{
+    position:absolute;top:1.2rem;right:1.4rem;font-family:'JetBrains Mono',monospace;
+    font-size:2.2rem;font-weight:700;color:var(--sage);z-index:0;
+  }
+  .pillar-icon{width:56px;height:56px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;color:var(--maroon);font-size:1.3rem;margin-bottom:1.2rem;position:relative;z-index:1;}
+  .pillar-card h4{position:relative;z-index:1;font-size:1.1rem;font-weight:600;margin-bottom:.6rem;}
+  .pillar-card p{position:relative;z-index:1;font-size:.88rem;color:var(--grey);line-height:1.65;margin:0;}
+
+  /* ===================== ROADMAP (forward-looking horizon timeline) ===================== */
+  .horizon-track{position:relative;padding:2.4rem 0 1rem;}
+  .horizon-line{position:absolute;left:0;right:0;top:50%;height:2px;background:repeating-linear-gradient(to right, var(--gold) 0 8px, transparent 8px 16px);z-index:0;}
+  .horizon-stop{position:relative;z-index:1;text-align:center;}
+  .horizon-marker{
+    width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--maroon);
+    display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;
+    font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--maroon);font-size:.85rem;
+  }
+  .horizon-stop.reached .horizon-marker{background:var(--gold);border-color:var(--gold);color:var(--maroon-dark);}
+  .horizon-title{font-weight:700;font-size:.9rem;margin-bottom:.2rem;}
+  .horizon-desc{font-size:.78rem;color:var(--grey);max-width:170px;margin:0 auto;}
+
+  /* ===================== VALUE CHIPS RECAP ===================== */
+  .chip-row{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;}
+  .val-chip{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:999px;padding:.7rem 1.3rem;display:flex;align-items:center;gap:.55rem;font-size:.85rem;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.04);}
+  .val-chip i{color:var(--maroon);}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);border-radius:28px;color:#fff;padding:3.8rem 3rem;position:relative;overflow:hidden;}
+  .cta-section::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.2);}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media (max-width:991px){
+    section{padding:4rem 0;}
+    .horizon-line{display:none;}
+    .horizon-stop{margin-bottom:1.6rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#vm">Vision & Mission</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a><span>›</span><span class="current">Vision & Mission</span>
+    </div>
+    <h1 class="mb-3 reveal">Where We're Headed,<br>and <em>Why</em></h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.08rem;max-width:620px;">A vision only means something if the everyday work points toward it. Here's the horizon we're building for, and the mission that gets us there project by project.</p>
+  </div>
+</section>
+
+<!-- VISION / MISSION DIPTYCH -->
+<section id="vm">
+  <div class="container">
+    <div class="vm-grid reveal">
+      <div class="vm-panel vision">
+        <span class="vm-tag">01 · Vision</span>
+        <div class="vm-compass"><i class="fa-solid fa-compass"></i></div>
+        <div class="vm-eyebrow">Where We're Headed</div>
+        <h2>A Bangladesh where "developer-built" means dependable.</h2>
+        <p>We want the day to come when no family feels the need to hire a second lawyer just to double-check a developer's word — because the paperwork, the title and the construction were sound from the very first meeting.</p>
+      </div>
+      <div class="vm-panel mission">
+        <span class="vm-tag">02 · Mission</span>
+        <div class="vm-compass"><i class="fa-solid fa-flag"></i></div>
+        <div class="vm-eyebrow">How We Get There</div>
+        <h2>Deliver verified, certified homes buyers never have to gamble on.</h2>
+        <p>Every SAFE project starts with a verified title, moves through escrow-protected payments and audited construction, and ends with a resident council that keeps the board accountable long after the keys are handed over.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION PILLARS -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">How We Deliver the Mission</span>
+      <h2 class="display-6 fw-medium">Four Pillars Behind Every Project</h2>
+      <p class="text-muted mx-auto" style="max-width:600px;">These aren't slogans — they're the checkpoints every SAFE venture has to clear before it reaches a buyer.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="pillar-card">
+          <div class="pillar-num">01</div>
+          <div class="pillar-icon"><i class="fa-solid fa-file-shield"></i></div>
+          <h4>Verify Before We Build</h4>
+          <p>Title, mutation and RAJUK approval confirmed in writing before a plot is marketed or a foundation is poured.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="pillar-card">
+          <div class="pillar-num">02</div>
+          <div class="pillar-icon"><i class="fa-solid fa-vault"></i></div>
+          <h4>Protect Every Payment</h4>
+          <p>Buyer funds sit in a bank-structured escrow account, released only against verified construction milestones.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="pillar-card">
+          <div class="pillar-num">03</div>
+          <div class="pillar-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h4>Audit What We Deliver</h4>
+          <p>An independent CA firm reviews finances and construction quality annually, with results published in full.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="pillar-card">
+          <div class="pillar-num">04</div>
+          <div class="pillar-icon"><i class="fa-solid fa-people-roof"></i></div>
+          <h4>Stay Accountable After</h4>
+          <p>Every handed-over community elects a resident council with a direct, standing channel to the board.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">Looking Ahead</span>
+      <h2 class="display-6 fw-medium">Our Vision on a Timeline</h2>
+      <p class="text-muted mx-auto" style="max-width:600px;">Concrete milestones we're holding ourselves to on the way toward the vision above.</p>
+    </div>
+    <div class="horizon-track reveal">
+      <div class="horizon-line"></div>
+      <div class="row">
+        <div class="col-lg-3 col-6 horizon-stop reached">
+          <div class="horizon-marker">2024</div>
+          <div class="horizon-title">3rd City Entered</div>
+          <div class="horizon-desc">First community broke ground outside Dhaka, in Chattogram.</div>
+        </div>
+        <div class="col-lg-3 col-6 horizon-stop reached">
+          <div class="horizon-marker">2026</div>
+          <div class="horizon-title">Six Concerns United</div>
+          <div class="horizon-desc">Education, healthcare and commerce brought under one governance standard.</div>
+        </div>
+        <div class="col-lg-3 col-6 horizon-stop">
+          <div class="horizon-marker">2028</div>
+          <div class="horizon-title">1,000 Homes Milestone</div>
+          <div class="horizon-desc">Cumulative verified homes delivered across all active communities.</div>
+        </div>
+        <div class="col-lg-3 col-6 horizon-stop">
+          <div class="horizon-marker">2030</div>
+          <div class="horizon-title">National Escrow Standard</div>
+          <div class="horizon-desc">Publish our escrow and audit framework as an open template for the sector.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES RECAP -->
+<section class="section-tight" style="background:var(--ivory);">
+  <div class="container text-center">
+    <span class="eyebrow center mb-3 justify-content-center">Grounded In</span>
+    <h2 class="display-6 fw-medium mb-4">The Values Behind the Vision</h2>
+    <div class="chip-row reveal">
+      <div class="val-chip"><i class="fa-solid fa-file-shield"></i> Verified First</div>
+      <div class="val-chip"><i class="fa-solid fa-scale-balanced"></i> Transparent Dealing</div>
+      <div class="val-chip"><i class="fa-solid fa-people-roof"></i> Community-Led</div>
+      <div class="val-chip"><i class="fa-solid fa-leaf"></i> Responsible Building</div>
+      <div class="val-chip"><i class="fa-solid fa-magnifying-glass-chart"></i> Independently Audited</div>
+      <div class="val-chip"><i class="fa-solid fa-heart"></i> Family Over Margin</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">See the Mission in Motion</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.8);">Visit an active SAFE site and see the verification, escrow and construction standards for yourself.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#contact" class="btn btn-gold me-2">Book a Site Visit</a>
+          <a href="#" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">View Ventures</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-tight" style="background:var(--sage);" id="contact">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Get In Touch</span>
+        <h2 class="display-6 fw-medium mb-4">Questions About Our Direction?</h2>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone"></i></div>
+          <div class="text-muted small">01713 167754 | 01713 878824</div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div class="text-muted small">info@safecommunitygroup.com</div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Full Name</label>
+              <input type="text" class="form-control" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Email</label>
+              <input type="email" class="form-control" placeholder="you@example.com">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Message</label>
+              <textarea class="form-control" rows="4" placeholder="Your question..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-maroon w-100">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Vision & Mission</a></li>
+          <li><a href="#">Our Ventures</a></li>
+          <li><a href="#">Board of Directors</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>info@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
