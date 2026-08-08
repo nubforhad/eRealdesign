@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Profile | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .eyebrow.light{color:var(--gold);}
+  .eyebrow.center{justify-content:center;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.8rem 1.85rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{background:var(--gold);color:var(--maroon-dark);border:1px solid var(--gold);padding:.85rem 1.9rem;border-radius:999px;font-weight:800;font-size:.92rem;transition:.25s ease;}
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .nav-link.active::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  .page-banner{position:relative;min-height:460px;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:4rem;}
+  .page-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(74,10,42,.93) 0%, rgba(109,15,61,.8) 45%, rgba(34,29,31,.65) 100%);}
+  .page-banner-overlay::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:56px 56px;}
+  .page-banner h1{color:#fff;font-size:clamp(2.2rem, 4.8vw, 3.7rem);font-weight:600;line-height:1.08;}
+  .page-banner h1 em{font-style:italic;color:var(--gold);}
+  .breadcrumb-custom{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:1.4rem;}
+  .breadcrumb-custom a{color:rgba(255,255,255,.7);text-decoration:none;}
+  .breadcrumb-custom .current{color:var(--gold);}
+
+  section{padding:6rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* ============== COMPANY AT A GLANCE ============== */
+  .glance-card{
+    background:#fff;border-radius:var(--radius);padding:1.8rem 1.6rem;height:100%;
+    border:1px solid rgba(0,0,0,.05);transition:.3s ease;position:relative;overflow:hidden;
+  }
+  .glance-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(109,15,61,.1);}
+  .glance-card .gc-icon{width:46px;height:46px;border-radius:12px;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1rem;}
+  .glance-card .gc-value{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:700;color:var(--maroon-dark);line-height:1.1;margin-bottom:.2rem;}
+  .glance-card .gc-label{font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--grey);font-weight:700;}
+
+  /* ============== LEGAL IDENTITY LEDGER ============== */
+  .ledger{
+    background:#fff;border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 12px 34px rgba(34,29,31,.08);border:1px solid rgba(0,0,0,.04);
+  }
+  .ledger-row{display:grid;grid-template-columns:48px 1.1fr 1.4fr;align-items:center;gap:1rem;padding:1.05rem 1.6rem;border-bottom:1px dashed rgba(0,0,0,.07);transition:.2s ease;}
+  .ledger-row:last-child{border-bottom:none;}
+  .ledger-row:hover{background:var(--sage);}
+  .ledger-row .lr-num{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold);font-size:.85rem;}
+  .ledger-row .lr-key{font-weight:700;font-size:.92rem;color:var(--charcoal);}
+  .ledger-row .lr-val{font-family:'JetBrains Mono',monospace;font-size:.88rem;color:var(--maroon);font-weight:600;text-align:right;word-break:break-word;}
+
+  /* ============== GROUP CONCERNS ============== */
+  .concern-card{
+    background:#fff;border-radius:var(--radius);padding:2.2rem 1.8rem;height:100%;
+    border:1px solid rgba(0,0,0,.05);transition:.35s ease;position:relative;overflow:hidden;
+  }
+  .concern-card::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--maroon);transform:scaleX(0);transform-origin:left;transition:.35s ease;}
+  .concern-card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(109,15,61,.13);}
+  .concern-card:hover::before{transform:scaleX(1);}
+  .concern-icon{width:62px;height:62px;border-radius:14px;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.3rem;}
+  .concern-card h4{font-size:1.2rem;margin-bottom:.4rem;}
+  .concern-card .concern-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--gold);letter-spacing:.12em;font-weight:700;text-transform:uppercase;display:block;margin-bottom:.8rem;}
+  .concern-card p{font-size:.88rem;color:var(--grey);line-height:1.65;margin-bottom:1rem;}
+  .concern-meta{font-size:.78rem;color:var(--maroon);font-weight:700;border-top:1px solid rgba(0,0,0,.07);padding-top:.9rem;margin-top:auto;}
+  .concern-meta i{color:var(--gold);margin-right:.4rem;}
+
+  /* ============== BOARD / LEADERSHIP ============== */
+  .leader-card{background:#fff;border-radius:var(--radius);overflow:hidden;height:100%;box-shadow:0 10px 28px rgba(0,0,0,.06);transition:.3s ease;}
+  .leader-card:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(109,15,61,.15);}
+  .leader-photo{height:280px;overflow:hidden;position:relative;}
+  .leader-photo img{width:100%;height:100%;object-fit:cover;transition:.5s ease;}
+  .leader-card:hover .leader-photo img{transform:scale(1.05);}
+  .leader-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(74,10,42,.55) 0%, transparent 50%);}
+  .leader-info{padding:1.4rem 1.5rem;}
+  .leader-name{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;margin-bottom:.2rem;}
+  .leader-role{font-size:.82rem;color:var(--maroon);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.7rem;}
+  .leader-bio{font-size:.83rem;color:var(--grey);line-height:1.6;}
+  .leader-badge{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.92);color:var(--maroon);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;padding:.3rem .7rem;border-radius:999px;z-index:2;}
+
+  /* ============== ORG CHART ============== */
+  .org-wrap{background:#fff;border-radius:var(--radius);padding:3rem 2rem;box-shadow:0 12px 34px rgba(34,29,31,.08);}
+  .org-top{display:flex;justify-content:center;margin-bottom:2rem;}
+  .org-node{background:var(--maroon);color:#fff;border-radius:12px;padding:1rem 1.6rem;text-align:center;min-width:180px;box-shadow:0 10px 24px rgba(109,15,61,.25);}
+  .org-node .on-role{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .org-node .on-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-top:.15rem;}
+  .org-connector{height:32px;width:2px;background:var(--gold);margin:0 auto;}
+  .org-row{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+  .org-row .org-node{background:var(--charcoal);min-width:150px;padding:.85rem 1.1rem;}
+  .org-row .org-node .on-name{font-size:.92rem;}
+  .org-row .org-node .on-role{font-size:.65rem;}
+  .org-line-h{height:2px;background:var(--gold);flex:1;align-self:center;}
+
+  /* ============== FOOTPRINT ============== */
+  .footprint-row{display:flex;align-items:flex-start;gap:1.4rem;padding:1.5rem 0;border-bottom:1px solid rgba(0,0,0,.07);}
+  .footprint-row:last-child{border-bottom:none;}
+  .footprint-pin{width:46px;height:46px;border-radius:50%;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .footprint-city{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin-bottom:.2rem;}
+  .footprint-detail{font-size:.85rem;color:var(--grey);line-height:1.6;}
+  .footprint-status{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;}
+
+  /* ============== FINANCIAL SNAPSHOT ============== */
+  .fin-card{background:#fff;border-radius:var(--radius);padding:1.8rem 1.6rem;height:100%;border:1px solid rgba(0,0,0,.05);}
+  .fin-year{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--gold);font-weight:700;letter-spacing:.1em;}
+  .fin-value{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--maroon-dark);margin:.3rem 0 .15rem;}
+  .fin-label{font-size:.82rem;color:var(--grey);font-weight:600;}
+  .fin-trend{font-size:.74rem;color:#2c7a3d;font-weight:700;margin-top:.4rem;}
+  .fin-trend.down{color:#a83232;}
+
+  /* ============== CSR ============== */
+  .csr-card{border-radius:var(--radius);overflow:hidden;height:100%;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.06);}
+  .csr-img{height:200px;overflow:hidden;}
+  .csr-img img{width:100%;height:100%;object-fit:cover;transition:.5s ease;}
+  .csr-card:hover .csr-img img{transform:scale(1.06);}
+  .csr-body{padding:1.5rem 1.6rem;}
+  .csr-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--maroon);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;}
+  .csr-body h4{font-size:1.1rem;margin-bottom:.5rem;}
+  .csr-body p{font-size:.85rem;color:var(--grey);line-height:1.6;margin:0;}
+
+  /* ============== AWARDS TIMELINE ============== */
+  .awards-list{position:relative;padding-left:2.2rem;}
+  .awards-list::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:repeating-linear-gradient(to bottom, var(--gold) 0 6px, transparent 6px 12px);}
+  .award-item{position:relative;padding-bottom:1.8rem;}
+  .award-item:last-child{padding-bottom:0;}
+  .award-dot{position:absolute;left:-2.2rem;top:2px;width:20px;height:20px;border-radius:50%;background:var(--ivory);border:3px solid var(--maroon);}
+  .award-item.stamped .award-dot{background:var(--gold);border-color:var(--gold);}
+  .award-year{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--maroon);font-size:.95rem;}
+  .award-title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin:.15rem 0 .2rem;}
+  .award-desc{font-size:.85rem;color:var(--grey);line-height:1.55;}
+
+  /* ============== GOVERNANCE ============== */
+  .gov-card{background:#fff;border-radius:var(--radius);padding:2rem;height:100%;border:1px solid rgba(0,0,0,.05);transition:.3s ease;}
+  .gov-card:hover{box-shadow:0 16px 38px rgba(109,15,61,.1);}
+  .gov-icon{width:50px;height:50px;border-radius:12px;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem;}
+  .gov-card h4{font-size:1.05rem;margin-bottom:.5rem;}
+  .gov-card p{font-size:.85rem;color:var(--grey);line-height:1.6;margin:0;}
+
+  /* ============== STATS ============== */
+  .stats-strip{background:var(--maroon-dark);color:#fff;}
+  .stats-strip h3{font-family:'Fraunces',serif;font-size:2.6rem;color:var(--gold);margin-bottom:.15rem;}
+  .stats-strip .lbl{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;}
+
+  /* ============== CERTIFICATIONS ============== */
+  .cert-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center;}
+  .cert-chip{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:999px;padding:.7rem 1.4rem;display:flex;align-items:center;gap:.6rem;font-size:.85rem;font-weight:700;color:var(--charcoal);box-shadow:0 4px 14px rgba(0,0,0,.04);}
+  .cert-chip i{color:var(--maroon);}
+
+  /* ============== PARTNERS ============== */
+  .partner-logo{background:#fff;border-radius:12px;padding:1.4rem;display:flex;align-items:center;justify-content:center;height:90px;font-family:'Fraunces',serif;font-weight:700;color:var(--grey);font-size:1rem;border:1px solid rgba(0,0,0,.05);transition:.25s ease;text-align:center;}
+  .partner-logo:hover{color:var(--maroon);border-color:var(--maroon);transform:translateY(-3px);}
+
+  /* ============== CTA ============== */
+  .cta-section{background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);border-radius:28px;color:#fff;padding:4rem 3rem;position:relative;overflow:hidden;}
+  .cta-section::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.2);}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media (max-width:991px){
+    section{padding:4rem 0;}
+    .ledger-row{grid-template-columns:32px 1fr;gap:.6rem 1rem;}
+    .ledger-row .lr-val{grid-column:2;text-align:left;}
+    .leader-photo{height:240px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Business Profile</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Ventures</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a><span>›</span><span class="current">Business Profile</span>
+    </div>
+    <h1 class="mb-3 reveal">A Corporate Dossier,<br>Built on <em>Documented</em> Trust</h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.1rem;max-width:680px;">A consolidated view of SAFE Community Group's legal identity, group concerns, leadership, governance framework and operational footprint — verified, audited and on the public record.</p>
+    <div class="d-flex gap-3 flex-wrap mt-4 reveal">
+      <a href="#glance" class="btn btn-gold">Company at a Glance <i class="fa-solid fa-arrow-down ms-2"></i></a>
+      <a href="#brochure" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">Download Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY AT A GLANCE -->
+<section id="glance">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3">Company at a Glance</span>
+      <h2 class="display-6 fw-medium">SAFE Community Group in Numbers</h2>
+      <p class="text-muted mx-auto" style="max-width:620px;">A quick reference to the group's scale, scope and corporate standing.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg-2 reveal"><div class="glance-card"><div class="gc-icon"><i class="fa-solid fa-calendar-days"></i></div><div class="gc-value">2008</div><div class="gc-label">Year Founded</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal"><div class="glance-card"><div class="gc-icon"><i class="fa-solid fa-building"></i></div><div class="gc-value">6</div><div class="gc-label">Group Concerns</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal"><div class="glance-card"><div class="gc-icon"><i class="fa-solid fa-house-chimney"></i></div><div class="gc-value">600+</div><div class="gc-label">Homes Delivered</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal"><div class="glance-card"><div class="gc-icon"><i class="fa-solid fa-people-group"></i></div><div class="gc-value">240+</div><div class="gc-label">Employees</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal"><div class="glance-card"><div class="gc-icon"><i class="fa-solid fa-location-dot"></i></div><div class="gc-value">2</div><div class="gc-label">Cities Active</div></div></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal"><div class="glance-card"><div class="gc-icon"><i class="fa-solid fa-coins"></i></div><div class="gc-value">৳412 Cr</div><div class="gc-label">Group Turnover (FY25)</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CORPORATE OVERVIEW -->
+<section class="section-tight" style="background:var(--ivory);">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Corporate Overview</span>
+        <h2 class="display-6 fw-medium mb-4">One Group, Six Concerns, a Single Standard</h2>
+        <p class="story-lead" style="font-family:'Fraunces',serif;font-style:italic;font-size:1.2rem;line-height:1.55;color:var(--maroon-dark);margin-bottom:1.2rem;">"Our business isn't measured in square feet sold — it's measured in families who never had to call a lawyer."</p>
+        <div class="story-body">
+          <p class="text-muted">SAFE Community Group is a diversified Bangladeshi enterprise headquartered in Demra, Dhaka, with operating concerns across real estate development, education, healthcare, retail commerce, media and community welfare. Founded in 2008 as a single-plot land venture, the group has grown into a six-concern holding structured around a single governance principle: every transaction must be verifiable, every title must be clean, and every promise must be in writing.</p>
+          <p class="text-muted">The parent entity oversees capital allocation, audit, legal and brand standards across all concerns, while each subsidiary operates with its own management team, P&L responsibility and quarterly board reporting. An independent director and an external CA firm provide oversight on top of operational management.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="position-relative" style="padding-bottom:2rem;">
+          <div class="story-media" style="border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 60px rgba(34,29,31,.14);height:380px;">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop" style="width:100%;height:100%;object-fit:cover;" alt="SAFE corporate office">
+            <div class="story-badge" style="position:absolute;top:1.5rem;left:1.5rem;background:rgba(255,255,255,.95);border-radius:999px;padding:.6rem 1.2rem;display:flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:800;color:var(--maroon);box-shadow:0 8px 20px rgba(0,0,0,.12);"><i class="fa-solid fa-circle-check"></i> Audited & On Record</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL IDENTITY -->
+<section>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow mb-3">Legal Identity</span>
+        <h2 class="display-6 fw-medium mb-3">Registered, Disclosed, Verifiable</h2>
+        <p class="text-muted mb-4">Every figure below is sourced from the group's RJSC filings, tax records and bank-verified registrations. Documents are available to qualified buyers, partners and auditors on request.</p>
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex align-items-center gap-3"><div style="width:44px;height:44px;border-radius:50%;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-stamp"></i></div><div><strong>RJSC Registered</strong><div class="text-muted small">Joint Stock Companies & Firms</div></div></div>
+          <div class="d-flex align-items-center gap-3"><div style="width:44px;height:44px;border-radius:50%;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-file-invoice-dollar"></i></div><div><strong>VAT & AIT Compliant</strong><div class="text-muted small">Bangladesh Bank authorised escrow</div></div></div>
+          <div class="d-flex align-items-center gap-3"><div style="width:44px;height:44px;border-radius:50%;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-landmark"></i></div><div><strong>ICAB Member Auditor</strong><div class="text-muted small">Annual independent audit</div></div></div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="ledger">
+          <div class="ledger-row"><div class="lr-num">01</div><div class="lr-key">Legal Entity Name</div><div class="lr-val">SAFE COMMUNITY GROUP</div></div>
+          <div class="ledger-row"><div class="lr-num">02</div><div class="lr-key">Incorporation Type</div><div class="lr-val">Private Limited Company</div></div>
+          <div class="ledger-row"><div class="lr-num">03</div><div class="lr-key">RJSC Registration No.</div><div class="lr-val">C-128547/2008</div></div>
+          <div class="ledger-row"><div class="lr-num">04</div><div class="lr-key">Date of Incorporation</div><div class="lr-val">14 April 2008</div></div>
+          <div class="ledger-row"><div class="lr-num">05</div><div class="lr-key">Trade Licence No.</div><div class="lr-val">TL-04-7821-2025</div></div>
+          <div class="ledger-row"><div class="lr-num">06</div><div class="lr-key">BIN (VAT)</div><div class="lr-val">0009847326512</div></div>
+          <div class="ledger-row"><div class="lr-num">07</div><div class="lr-key">TIN</div><div class="lr-val">847365982174</div></div>
+          <div class="ledger-row"><div class="lr-num">08</div><div class="lr-key">Authorised Capital</div><div class="lr-val">৳50,00,00,000 (BDT 50 Cr)</div></div>
+          <div class="ledger-row"><div class="lr-num">09</div><div class="lr-key">Paid-up Capital</div><div class="lr-val">৳18,40,00,000 (BDT 18.4 Cr)</div></div>
+          <div class="ledger-row"><div class="lr-num">10</div><div class="lr-key">Bankers</div><div class="lr-val">City Bank Ltd. / BRAC Bank Ltd.</div></div>
+          <div class="ledger-row"><div class="lr-num">11</div><div class="lr-key">External Auditor</div><div class="lr-val">Hoda Vasi Chowdhury & Co.</div></div>
+          <div class="ledger-row"><div class="lr-num">12</div><div class="lr-key">Corporate Tax Circle</div><div class="lr-val">Tax Zone-04, Dhaka</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROUP CONCERNS -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3">Our Concerns</span>
+      <h2 class="display-6 fw-medium">Six Businesses, One Governance</h2>
+      <p class="text-muted mx-auto" style="max-width:640px;">Each concern operates with dedicated leadership and its own P&L, while complying with the group's central standards on audit, transparency and customer disclosure.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="concern-card d-flex flex-column">
+          <div class="concern-icon"><i class="fa-solid fa-city"></i></div>
+          <span class="concern-tag">Concern 01 · Real Estate</span>
+          <h4>SAFE Developers Ltd.</h4>
+          <p>Residential apartment communities and verified land projects across Dhaka and Chattogram. The group's founding concern and core revenue driver.</p>
+          <div class="concern-meta"><i class="fa-solid fa-location-dot"></i> Demra · Chattogram &nbsp;|&nbsp; <i class="fa-solid fa-building"></i> 9 active projects</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="concern-card d-flex flex-column">
+          <div class="concern-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span class="concern-tag">Concern 02 · Education</span>
+          <h4>SAFE Al-Amin Madrasha</h4>
+          <p>Free primary and secondary Islamic education for residents of SAFE communities and surrounding neighbourhoods, with a girls' wing since 2023.</p>
+          <div class="concern-meta"><i class="fa-solid fa-users"></i> 480 students &nbsp;|&nbsp; <i class="fa-solid fa-calendar"></i> Since 2022</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="concern-card d-flex flex-column">
+          <div class="concern-icon"><i class="fa-solid fa-stethoscope"></i></div>
+          <span class="concern-tag">Concern 03 · Healthcare</span>
+          <h4>SAFE Pharma & Diagnostics</h4>
+          <p>Community-anchored pharmacy outlets and a diagnostic centre operating within SAFE residential projects, with subsidised pricing for residents.</p>
+          <div class="concern-meta"><i class="fa-solid fa-prescription-bottle-medical"></i> 3 outlets &nbsp;|&nbsp; <i class="fa-solid fa-flask"></i> 1 diagnostic lab</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="concern-card d-flex flex-column">
+          <div class="concern-icon"><i class="fa-solid fa-store"></i></div>
+          <span class="concern-tag">Concern 04 · Commerce</span>
+          <h4>SAFE Mart & Retail</h4>
+          <p>Neighbourhood retail and grocery outlets serving SAFE communities, sourcing daily essentials with traceable supply chains and fixed margin caps.</p>
+          <div class="concern-meta"><i class="fa-solid fa-cart-shopping"></i> 5 outlets &nbsp;|&nbsp; <i class="fa-solid fa-truck"></i> Centralised supply</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="concern-card d-flex flex-column">
+          <div class="concern-icon"><i class="fa-solid fa-bullhorn"></i></div>
+          <span class="concern-tag">Concern 05 · Media</span>
+          <h4>SAFE Community Press</h4>
+          <p>Quarterly resident magazine, project documentation and corporate communications arm producing verified project disclosures and resident handbooks.</p>
+          <div class="concern-meta"><i class="fa-solid fa-newspaper"></i> 4 issues/yr &nbsp;|&nbsp; <i class="fa-solid fa-pen-nib"></i> Bilingual editorial</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="concern-card d-flex flex-column">
+          <div class="concern-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <span class="concern-tag">Concern 06 · Welfare</span>
+          <h4>SAFE Welfare Foundation</h4>
+          <p>CSR arm funding madrasha operations, resident hardship grants, emergency medical support and seasonal relief drives in Demra and Matuail.</p>
+          <div class="concern-meta"><i class="fa-solid fa-gift"></i> ৳1.2 Cr disbursed FY25 &nbsp;|&nbsp; <i class="fa-solid fa-handshake-angle"></i> 600+ beneficiaries</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOARD OF DIRECTORS -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3">Leadership</span>
+      <h2 class="display-6 fw-medium">Board of Directors</h2>
+      <p class="text-muted mx-auto" style="max-width:620px;">The board sets strategy, approves capital allocation across concerns and reviews audit findings every quarter.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="leader-card">
+          <div class="leader-photo position-relative">
+            <span class="leader-badge">CHAIR</span>
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&auto=format&fit=crop" alt="Chairman">
+          </div>
+          <div class="leader-info">
+            <div class="leader-name">Alhaj Md. Safayet Hossain</div>
+            <div class="leader-role">Chairman & Founder</div>
+            <p class="leader-bio">Founded SAFE in 2008 after 18 years in land administration. Sets group direction and chairs the disclosure committee.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="leader-card">
+          <div class="leader-photo position-relative">
+            <span class="leader-badge">MD</span>
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop" alt="Managing Director">
+          </div>
+          <div class="leader-info">
+            <div class="leader-name">Engr. Tasnia Rahman</div>
+            <div class="leader-role">Managing Director</div>
+            <p class="leader-bio">BUET civil engineer, MBA from IBA. Oversees day-to-day operations across all six concerns and project execution.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="leader-card">
+          <div class="leader-photo position-relative">
+            <span class="leader-badge">DIRECTOR</span>
+            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=600&auto=format&fit=crop" alt="Director Finance">
+          </div>
+          <div class="leader-info">
+            <div class="leader-name">A.K.M. Rashedul Islam</div>
+            <div class="leader-role">Director, Finance & Audit</div>
+            <p class="leader-bio">FCA with 22 years in corporate audit. Owns the group's escrow framework and external auditor liaison.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="leader-card">
+          <div class="leader-photo position-relative">
+            <span class="leader-badge">INDEP.</span>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop" alt="Independent Director">
+          </div>
+          <div class="leader-info">
+            <div class="leader-name">Dr. Mahmudul Karim</div>
+            <div class="leader-role">Independent Director</div>
+            <p class="leader-bio">Professor of Law, University of Dhaka. Provides independent oversight on governance and resident dispute resolution since 2016.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORG STRUCTURE -->
+<section class="section-tight" style="background:var(--ivory);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3">Organogram</span>
+      <h2 class="display-6 fw-medium">Group Organizational Structure</h2>
+    </div>
+    <div class="org-wrap reveal">
+      <div class="org-top">
+        <div class="org-node"><div class="on-role">Board of Directors</div><div class="on-name">SAFE Community Group Ltd.</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-row mb-3">
+        <div class="org-node"><div class="on-role">MD's Office</div><div class="on-name">Managing Director</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-row mb-3" style="gap:0;">
+        <div class="org-node" style="background:var(--maroon);"><div class="on-role">Finance</div><div class="on-name">CFO Office</div></div>
+        <div class="org-line-h"></div>
+        <div class="org-node" style="background:var(--maroon);"><div class="on-role">Legal</div><div class="on-name">Company Secretary</div></div>
+        <div class="org-line-h"></div>
+        <div class="org-node" style="background:var(--maroon);"><div class="on-role">Audit</div><div class="on-name">Internal Audit</div></div>
+        <div class="org-line-h"></div>
+        <div class="org-node" style="background:var(--maroon);"><div class="on-role">Disclosure</div><div class="on-name">Compliance Cell</div></div>
+      </div>
+      <div class="org-connector"></div>
+      <div class="org-row">
+        <div class="org-node"><div class="on-role">Concern 01</div><div class="on-name">Developers</div></div>
+        <div class="org-node"><div class="on-role">Concern 02</div><div class="on-name">Education</div></div>
+        <div class="org-node"><div class="on-role">Concern 03</div><div class="on-name">Healthcare</div></div>
+        <div class="org-node"><div class="on-role">Concern 04</div><div class="on-name">Commerce</div></div>
+        <div class="org-node"><div class="on-role">Concern 05</div><div class="on-name">Media</div></div>
+        <div class="org-node"><div class="on-role">Concern 06</div><div class="on-name">Welfare</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONAL FOOTPRINT -->
+<section>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow mb-3">Operational Footprint</span>
+        <h2 class="display-6 fw-medium mb-3">Where SAFE Operates</h2>
+        <p class="text-muted mb-4">The group's active operational footprint spans two cities, with head office functions centralised in Dhaka and a regional office in Chattogram supporting SAFE Harbourview and upcoming projects.</p>
+        <div class="d-flex align-items-center gap-3 p-3 rounded-3" style="background:var(--sage);">
+          <i class="fa-solid fa-headset fs-4" style="color:var(--maroon);"></i>
+          <div><strong>Centralised Resident Support</strong><div class="text-muted small">Single hotline across all concerns — 01713 167754</div></div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="footprint-row">
+            <div class="footprint-pin"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="footprint-city">Dhaka (Head Office)</div>
+                <span class="footprint-status">Primary Hub</span>
+              </div>
+              <p class="footprint-detail">Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362. Houses board, finance, audit, legal and developer operations.</p>
+            </div>
+          </div>
+          <div class="footprint-row">
+            <div class="footprint-pin"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="footprint-city">Chattogram (Regional Office)</div>
+                <span class="footprint-status">Active</span>
+              </div>
+              <p class="footprint-detail">Agrabad Commercial Area, Chattogram. Supports SAFE Harbourview project execution and buyer relations in the port city.</p>
+            </div>
+          </div>
+          <div class="footprint-row">
+            <div class="footprint-pin"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="footprint-city">Demra — Site Office</div>
+                <span class="footprint-status">Active</span>
+              </div>
+              <p class="footprint-detail">On-site office at SAFE Ivory Heights community, hosting resident council meetings and maintenance coordination.</p>
+            </div>
+          </div>
+          <div class="footprint-row">
+            <div class="footprint-pin"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="footprint-city">Sylhet — Planned (2027)</div>
+                <span class="footprint-status">Pipeline</span>
+              </div>
+              <p class="footprint-detail">Land identification underway for the group's third-city expansion under SAFE Developers Ltd.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCIAL SNAPSHOT -->
+<div class="stats-strip section-tight">
+  <div class="container">
+    <div class="text-center mb-4 reveal">
+      <span class="eyebrow light center mb-2">Financial Snapshot</span>
+      <h2 class="display-6 fw-medium" style="color:#fff;">Audited Financial Highlights</h2>
+    </div>
+    <div class="row g-3 mt-3">
+      <div class="col-6 col-lg-3 reveal"><div class="fin-card"><div class="fin-year">FY 2024-25</div><div class="fin-value">৳412 Cr</div><div class="fin-label">Group Turnover</div><div class="fin-trend"><i class="fa-solid fa-arrow-up"></i> 18.4% YoY</div></div></div>
+      <div class="col-6 col-lg-3 reveal"><div class="fin-card"><div class="fin-year">FY 2024-25</div><div class="fin-value">৳67 Cr</div><div class="fin-label">Net Profit After Tax</div><div class="fin-trend"><i class="fa-solid fa-arrow-up"></i> 12.1% YoY</div></div></div>
+      <div class="col-6 col-lg-3 reveal"><div class="fin-card"><div class="fin-year">FY 2024-25</div><div class="fin-value">৳1,247 Cr</div><div class="fin-label">Total Assets</div><div class="fin-trend"><i class="fa-solid fa-arrow-up"></i> 9.8% YoY</div></div></div>
+      <div class="col-6 col-lg-3 reveal"><div class="fin-card"><div class="fin-year">FY 2024-25</div><div class="fin-value">14.2%</div><div class="fin-label">Return on Equity</div><div class="fin-trend"><i class="fa-solid fa-arrow-up"></i> 0.6 pts YoY</div></div></div>
+    </div>
+    <p class="text-center mt-4 reveal" style="color:rgba(255,255,255,.55);font-size:.8rem;">All figures audited by Hoda Vasi Chowdhury & Co. (ICAB member firm). Detailed statements available under NDA.</p>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<section class="section-tight" style="background:var(--ivory);">
+  <div class="container text-center">
+    <span class="eyebrow center mb-3 justify-content-center">Compliance & Memberships</span>
+    <h2 class="display-6 fw-medium mb-4">Certified, Registered, Audited</h2>
+    <div class="cert-row reveal">
+      <div class="cert-chip"><i class="fa-solid fa-building-shield"></i> RAJUK Approved</div>
+      <div class="cert-chip"><i class="fa-solid fa-file-contract"></i> RERA Registered</div>
+      <div class="cert-chip"><i class="fa-solid fa-landmark"></i> Bangladesh Bank Escrow</div>
+      <div class="cert-chip"><i class="fa-solid fa-file-invoice-dollar"></i> ICAB Audited</div>
+      <div class="cert-chip"><i class="fa-solid fa-shield-halved"></i> ISO 9001 (Construction QA)</div>
+      <div class="cert-chip"><i class="fa-solid fa-hard-hat"></i> REHAB Member</div>
+      <div class="cert-chip"><i class="fa-solid fa-industry"></i> BIDA Registered</div>
+      <div class="cert-chip"><i class="fa-solid fa-leaf"></i> BGMEA Green Compliance</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIC PARTNERS -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3">Ecosystem</span>
+      <h2 class="display-6 fw-medium">Strategic Partners & Bankers</h2>
+    </div>
+    <div class="row g-3 reveal">
+      <div class="col-6 col-md-4 col-lg-2"><div class="partner-logo">City Bank</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="partner-logo">BRAC Bank</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="partner-logo">TATA Housing</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="partner-logo">Holcim Bangladesh</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="partner-logo">BSRM Steel</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="partner-logo">Pran-RFL Group</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CSR -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3">Community Investment</span>
+      <h2 class="display-6 fw-medium">CSR Through SAFE Welfare Foundation</h2>
+      <p class="text-muted mx-auto" style="max-width:620px;">A minimum 3% of group net profit is committed annually to community welfare through the foundation.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="csr-card">
+          <div class="csr-img"><img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?q=80&w=800&auto=format&fit=crop" alt="Education support"></div>
+          <div class="csr-body">
+            <div class="csr-tag">Education</div>
+            <h4>Free Schooling for 480 Students</h4>
+            <p>SAFE Al-Amin Madrasha provides fully free primary and secondary education, including books, uniforms and a daily meal.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="csr-card">
+          <div class="csr-img"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800&auto=format&fit=crop" alt="Healthcare"></div>
+          <div class="csr-body">
+            <div class="csr-tag">Healthcare</div>
+            <h4>Subsidised Medicine & Diagnostics</h4>
+            <p>SAFE Pharma offers residents and locals a 30% subsidy on essential medicines and free monthly health camps.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="csr-card">
+          <div class="csr-img"><img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop" alt="Relief"></div>
+          <div class="csr-body">
+            <div class="csr-tag">Relief & Welfare</div>
+            <h4>Seasonal Drives & Hardship Grants</h4>
+            <p>Winter clothing, Ramadan food packs and emergency medical grants distributed across Demra and Matuail wards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS & RECOGNITION -->
+<section>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <span class="eyebrow mb-3">Awards & Recognition</span>
+        <h2 class="display-6 fw-medium mb-3">Recognition on the Record</h2>
+        <p class="text-muted">Industry and institutional recognition received by SAFE Community Group and its concerns, listed with awarding body and year.</p>
+      </div>
+      <div class="col-lg-8 reveal">
+        <div class="awards-list">
+          <div class="award-item stamped">
+            <div class="award-dot"></div>
+            <div class="award-year">2024</div>
+            <div class="award-title">REHAB Excellence in Transparency Award</div>
+            <div class="award-desc">Recognised for the group's escrow-first payment framework and public disclosure of project financials.</div>
+          </div>
+          <div class="award-item">
+            <div class="award-dot"></div>
+            <div class="award-year">2023</div>
+            <div class="award-title">ICAB Best Presented Annual Report (Real Estate)</div>
+            <div class="award-desc">Awarded for clarity in governance disclosure and independent director reporting.</div>
+          </div>
+          <div class="award-item stamped">
+            <div class="award-dot"></div>
+            <div class="award-year">2022</div>
+            <div class="award-title">Bangladesh Safety Council — Construction QA Certificate</div>
+            <div class="award-desc">All SAFE Developers projects certified for structural safety review and third-party QA.</div>
+          </div>
+          <div class="award-item">
+            <div class="award-dot"></div>
+            <div class="award-year">2021</div>
+            <div class="award-title">Dhaka South CSR Honour</div>
+            <div class="award-desc">Recognised for SAFE Welfare Foundation's relief work during the pandemic in Ward 76 & 77.</div>
+          </div>
+          <div class="award-item stamped">
+            <div class="award-dot"></div>
+            <div class="award-year">2019</div>
+            <div class="award-title">ISO 9001:2015 Certification</div>
+            <div class="award-desc">Quality management system certified across real estate construction processes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORPORATE GOVERNANCE -->
+<section style="background:var(--ivory);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3">Governance Framework</span>
+      <h2 class="display-6 fw-medium">How SAFE Stays Accountable</h2>
+      <p class="text-muted mx-auto" style="max-width:620px;">Four governance pillars ensure every concern operates under the same disclosure and audit discipline.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="gov-card">
+          <div class="gov-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4>Board Charter</h4>
+          <p>Written charter defines board composition, quorum, conflict-of-interest rules and the role of the independent director.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="gov-card">
+          <div class="gov-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+          <h4>Annual External Audit</h4>
+          <p>ICAB-member firm audits each concern individually and the group on consolidation, with results published annually.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="gov-card">
+          <div class="gov-icon"><i class="fa-solid fa-vault"></i></div>
+          <h4>Escrow Discipline</h4>
+          <p>All buyer funds flow through bank-structured escrow accounts releasing only against verified construction milestones.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="gov-card">
+          <div class="gov-icon"><i class="fa-solid fa-comments"></i></div>
+          <h4>Resident Council Channel</h4>
+          <p>Each handed-over community elects a council with a standing quarterly meeting with the Managing Director.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD BROCHURE CTA -->
+<section class="section-tight" id="brochure">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">Download the Full Business Profile</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.8);">A 24-page PDF dossier with audited financials, legal documents, project list and board bios — available to qualified partners, banks and institutional buyers.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#" class="btn btn-gold me-2"><i class="fa-solid fa-file-pdf me-2"></i>Download Dossier</a>
+          <a href="#contact" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">Request Hard Copy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-tight" style="background:var(--sage);" id="contact">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow mb-3">Get In Touch</span>
+        <h2 class="display-6 fw-medium mb-4" style="font-family:'Fraunces',serif;">Corporate Office</h2>
+        <p class="text-muted mb-4">For partnerships, audits, media or institutional enquiries, please reach the corporate office directly.</p>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone"></i></div>
+          <div><strong>Call Us</strong><div class="text-muted small">01713 167754 | 01713 878824</div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div><strong>Email Us</strong><div class="text-muted small">info@safecommunitygroup.com</div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-location-dot"></i></div>
+          <div><strong>Head Office</strong><div class="text-muted small">Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362</div></div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label fw-semibold small">Organisation Name</label><input type="text" class="form-control" placeholder="Your organisation"></div>
+            <div class="col-md-6"><label class="form-label fw-semibold small">Contact Person</label><input type="text" class="form-control" placeholder="Your name"></div>
+            <div class="col-md-6"><label class="form-label fw-semibold small">Designation</label><input type="text" class="form-control" placeholder="Title"></div>
+            <div class="col-md-6"><label class="form-label fw-semibold small">Phone</label><input type="text" class="form-control" placeholder="+880"></div>
+            <div class="col-md-6"><label class="form-label fw-semibold small">Email</label><input type="email" class="form-control" placeholder="you@org.com"></div>
+            <div class="col-md-6"><label class="form-label fw-semibold small">Enquiry Type</label>
+              <select class="form-select">
+                <option>Partnership / Vendor</option>
+                <option>Bank / Financial</option>
+                <option>Audit / Compliance</option>
+                <option>Media / Press</option>
+                <option>Investment</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-12"><label class="form-label fw-semibold small">Message</label><textarea class="form-control" rows="4" placeholder="Tell us what you're looking for..."></textarea></div>
+            <div class="col-12"><button class="btn btn-maroon w-100">Submit Enquiry <i class="fa-solid fa-paper-plane ms-2"></i></button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">A diversified Bangladeshi enterprise with six concerns across real estate, education, healthcare, commerce, media and welfare — built on documented trust since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Business Profile</a></li>
+          <li><a href="#">Board of Directors</a></li>
+          <li><a href="#">Group Concerns</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>info@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
