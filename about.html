@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .eyebrow.light{color:var(--gold);}
+  .eyebrow.center{justify-content:center;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.8rem 1.85rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{background:var(--gold);color:var(--maroon-dark);border:1px solid var(--gold);padding:.85rem 1.9rem;border-radius:999px;font-weight:800;font-size:.92rem;transition:.25s ease;}
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  .page-banner{position:relative;min-height:440px;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:4rem;}
+  .page-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(74,10,42,.93) 0%, rgba(109,15,61,.8) 45%, rgba(34,29,31,.65) 100%);}
+  .page-banner-overlay::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:56px 56px;}
+  .page-banner h1{color:#fff;font-size:clamp(2.2rem, 4.8vw, 3.7rem);font-weight:600;line-height:1.08;}
+  .page-banner h1 em{font-style:italic;color:var(--gold);}
+  .breadcrumb-custom{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:1.4rem;}
+  .breadcrumb-custom a{color:rgba(255,255,255,.7);text-decoration:none;}
+  .breadcrumb-custom .current{color:var(--gold);}
+
+  section{padding:6rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* ===================== OUR STORY ===================== */
+  .story-media{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 60px rgba(34,29,31,.14);}
+  .story-media img{width:100%;height:100%;object-fit:cover;display:block;}
+  .story-media-small{position:absolute;bottom:-2rem;right:-2rem;width:52%;border-radius:12px;overflow:hidden;border:6px solid var(--ivory);box-shadow:0 16px 40px rgba(34,29,31,.2);}
+  .story-media-small img{width:100%;height:100%;object-fit:cover;display:block;}
+  .story-badge{
+    position:absolute;top:1.5rem;left:1.5rem;background:rgba(255,255,255,.95);
+    border-radius:999px;padding:.6rem 1.2rem;display:flex;align-items:center;gap:.5rem;
+    font-size:.78rem;font-weight:800;color:var(--maroon);box-shadow:0 8px 20px rgba(0,0,0,.12);
+  }
+  .story-lead{font-family:'Fraunces',serif;font-style:italic;font-size:1.25rem;line-height:1.6;color:var(--maroon-dark);margin-bottom:1.2rem;}
+  .story-body p{color:var(--grey);line-height:1.8;font-size:.98rem;}
+
+  /* ===================== MISSION / VISION ===================== */
+  .mv-card{
+    border-radius:var(--radius);
+    padding:2.6rem 2.2rem;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+  }
+  .mv-card.mission{background:var(--charcoal);color:#fff;}
+  .mv-card.vision{background:var(--maroon);color:#fff;}
+  .mv-card.promise{background:var(--sage);color:var(--charcoal);}
+  .mv-icon{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--gold);margin-bottom:1.4rem;}
+  .promise .mv-icon{background:rgba(109,15,61,.1);color:var(--maroon);}
+  .mv-card h4{font-size:1.35rem;margin-bottom:.8rem;}
+  .mv-card p{font-size:.92rem;line-height:1.7;opacity:.85;margin:0;}
+
+  /* ===================== TIMELINE — verified ledger style ===================== */
+  .timeline{position:relative;padding-left:2.2rem;}
+  .timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:repeating-linear-gradient(to bottom, var(--gold) 0 6px, transparent 6px 12px);}
+  .timeline-item{position:relative;padding-bottom:2.6rem;}
+  .timeline-item:last-child{padding-bottom:0;}
+  .timeline-dot{
+    position:absolute;left:-2.2rem;top:2px;width:20px;height:20px;border-radius:50%;
+    background:var(--ivory);border:3px solid var(--maroon);
+  }
+  .timeline-item.stamped .timeline-dot{background:var(--gold);border-color:var(--gold);}
+  .timeline-year{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--maroon);font-size:1rem;margin-bottom:.25rem;}
+  .timeline-title{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;margin-bottom:.35rem;}
+  .timeline-desc{font-size:.9rem;color:var(--grey);line-height:1.6;max-width:520px;}
+
+  /* ===================== VALUES ===================== */
+  .value-card{
+    background:#fff;border-radius:var(--radius);padding:2.2rem 1.8rem;height:100%;
+    border:1px solid rgba(0,0,0,.05);transition:.3s ease;text-align:center;
+  }
+  .value-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(109,15,61,.1);}
+  .value-icon{width:64px;height:64px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;color:var(--maroon);font-size:1.4rem;margin:0 auto 1.2rem;}
+
+  /* ===================== WHY CHOOSE / DIFFERENTIATORS ===================== */
+  .diff-row{display:flex;gap:1.4rem;padding:1.6rem 0;border-bottom:1px solid rgba(0,0,0,.07);}
+  .diff-row:last-child{border-bottom:none;}
+  .diff-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.4rem;color:var(--gold);flex-shrink:0;width:44px;}
+  .diff-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin-bottom:.3rem;}
+  .diff-desc{font-size:.88rem;color:var(--grey);line-height:1.6;margin:0;}
+
+  .why-media{border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 50px rgba(34,29,31,.14);height:100%;min-height:420px;}
+  .why-media img{width:100%;height:100%;object-fit:cover;}
+
+  /* ===================== STATS ===================== */
+  .stats-strip{background:var(--maroon-dark);color:#fff;}
+  .stats-strip h3{font-family:'Fraunces',serif;font-size:2.6rem;color:var(--gold);margin-bottom:.15rem;}
+  .stats-strip .lbl{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;}
+
+  /* ===================== CERTIFICATIONS ===================== */
+  .cert-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center;}
+  .cert-chip{
+    background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:999px;
+    padding:.7rem 1.4rem;display:flex;align-items:center;gap:.6rem;
+    font-size:.85rem;font-weight:700;color:var(--charcoal);box-shadow:0 4px 14px rgba(0,0,0,.04);
+  }
+  .cert-chip i{color:var(--maroon);}
+
+  /* ===================== TESTIMONIALS ===================== */
+  .testi-card{background:#fff;border-radius:var(--radius);padding:2.2rem;height:100%;box-shadow:0 8px 24px rgba(0,0,0,.05);position:relative;}
+  .testi-quote-icon{font-family:'Fraunces',serif;font-size:3rem;color:var(--gold);opacity:.3;line-height:1;margin-bottom:.4rem;}
+  .testi-text{font-size:.92rem;color:var(--charcoal);line-height:1.7;margin-bottom:1.4rem;font-style:italic;}
+  .testi-person{display:flex;align-items:center;gap:.8rem;}
+  .testi-avatar{width:46px;height:46px;border-radius:50%;object-fit:cover;}
+  .testi-name{font-weight:700;font-size:.9rem;}
+  .testi-role{font-size:.76rem;color:var(--grey);}
+
+  /* ===================== CTA ===================== */
+  .cta-section{background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);border-radius:28px;color:#fff;padding:4rem 3rem;position:relative;overflow:hidden;}
+  .cta-section::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.2);}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media (max-width:991px){
+    section{padding:4rem 0;}
+    .story-media-small{position:static;width:100%;margin-top:1rem;border-width:0;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#story">Our Story</a></li>
+        <li class="nav-item"><a class="nav-link" href="#values">Values</a></li>
+        <li class="nav-item"><a class="nav-link" href="#why">Why SAFE</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a><span>›</span><span class="current">About Us</span>
+    </div>
+    <h1 class="mb-3 reveal">Trust, Built the<br>Same Way We <em>Build</em></h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.1rem;max-width:640px;">SAFE Community Group has spent seventeen years proving that verified land, certified construction and honest paperwork aren't a slower way to build homes — they're the only way that lasts.</p>
+    <div class="d-flex gap-3 flex-wrap mt-4 reveal">
+      <a href="#story" class="btn btn-gold">Read Our Story <i class="fa-solid fa-arrow-down ms-2"></i></a>
+      <a href="#contact" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">Talk to Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section id="story">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <div class="position-relative" style="padding-bottom:2rem;">
+          <div class="story-media" style="height:420px;">
+            <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1200&auto=format&fit=crop" alt="SAFE community">
+            <div class="story-badge"><i class="fa-solid fa-award"></i> Since 2008</div>
+          </div>
+          <div class="story-media-small" style="height:180px;">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop" alt="Construction detail">
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Our Story</span>
+        <h2 class="display-6 fw-medium mb-4">Started With One Verified Plot</h2>
+        <p class="story-lead">"We didn't set out to be the biggest developer in Dhaka. We set out to be the one families didn't have to double-check."</p>
+        <div class="story-body">
+          <p>In 2008, SAFE Community Group began with a single plot of land in Demra — fully verified, fully mutated, and fully disclosed to its first buyers before a single brick was laid. That decision to lead with paperwork, not promises, became the standard for everything that followed.</p>
+          <p>Today the group has grown into six concerns spanning real estate, education, healthcare and commerce, but the founding test hasn't moved: would we hand this key to our own family? If the answer isn't an unqualified yes, the project doesn't go to market.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / VISION / PROMISE -->
+<section class="section-tight" style="background:var(--ivory);">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 reveal">
+        <div class="mv-card mission">
+          <div class="mv-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <h4>Our Mission</h4>
+          <p>To deliver verified, certified homes and community infrastructure that homebuyers can trust without needing a lawyer to double-check us.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="mv-card vision">
+          <div class="mv-icon"><i class="fa-solid fa-eye"></i></div>
+          <h4>Our Vision</h4>
+          <p>A Bangladesh where "developer-built" is synonymous with dependable — where no family has to gamble on a title or a foundation.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="mv-card promise">
+          <div class="mv-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h4>Our Promise</h4>
+          <p>Escrow-protected payments, RAJUK-verified titles, structural certification and a resident council with a direct line to the board.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <span class="eyebrow mb-3">Our Journey</span>
+        <h2 class="display-6 fw-medium mb-3">Seventeen Years, Documented</h2>
+        <p class="text-muted">Every milestone below is a matter of public record — RAJUK filings, handover certificates and audited financials, not marketing copy.</p>
+      </div>
+      <div class="col-lg-8 reveal">
+        <div class="timeline">
+          <div class="timeline-item stamped">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2008</div>
+            <div class="timeline-title">First Verified Plot Acquired</div>
+            <div class="timeline-desc">SAFE Community Group registers its first land parcel in Demra with clear title and full mutation before any sale.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2012</div>
+            <div class="timeline-title">First Community Handed Over</div>
+            <div class="timeline-desc">SAFE Ivory Heights delivers its first 56 units, with an elected resident council formed within the first year.</div>
+          </div>
+          <div class="timeline-item stamped">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2016</div>
+            <div class="timeline-title">Independent Board Oversight Introduced</div>
+            <div class="timeline-desc">The board formally appoints its first independent director with no operational stake in the company.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2019</div>
+            <div class="timeline-title">Escrow Payment System Launched</div>
+            <div class="timeline-desc">All buyer payments move to a bank-structured escrow system, closing the door on off-record deals.</div>
+          </div>
+          <div class="timeline-item stamped">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2022</div>
+            <div class="timeline-title">Group Expands Beyond Real Estate</div>
+            <div class="timeline-desc">SAFE Al-Amin Madrasha and SAFE Pharma open their first sites within existing SAFE communities.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2024</div>
+            <div class="timeline-title">First Chattogram Community</div>
+            <div class="timeline-desc">SAFE Harbourview breaks ground, marking the group's first venture outside Dhaka.</div>
+          </div>
+          <div class="timeline-item stamped">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2026</div>
+            <div class="timeline-title">Six Concerns, One Standard</div>
+            <div class="timeline-desc">The SAFE Group now operates across real estate, education, healthcare, commerce, media and community welfare.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values" style="background:var(--sage);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3">What We Stand On</span>
+      <h2 class="display-6 fw-medium">Our Core Values</h2>
+      <p class="text-muted mx-auto" style="max-width:600px;">Six principles the board holds every project, and every concern under the SAFE name, to.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-file-shield"></i></div>
+          <h4 class="h5 fw-bold mb-2">Verified First</h4>
+          <p class="text-muted mb-0 small">No land is marketed before its title, mutation and RAJUK approval are confirmed in writing.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4 class="h5 fw-bold mb-2">Transparent Dealing</h4>
+          <p class="text-muted mb-0 small">Every resolution, price change and payment schedule is documented and shared, not verbal.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-people-roof"></i></div>
+          <h4 class="h5 fw-bold mb-2">Community-Led</h4>
+          <p class="text-muted mb-0 small">Resident councils aren't a courtesy — they have a standing channel to raise issues with the board.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-leaf"></i></div>
+          <h4 class="h5 fw-bold mb-2">Responsible Building</h4>
+          <p class="text-muted mb-0 small">Green corridors, walkability and civic amenity space are reviewed into every masterplan, not added after.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h4 class="h5 fw-bold mb-2">Independently Audited</h4>
+          <p class="text-muted mb-0 small">An outside CA firm reviews financials and construction quality every year, results published in full.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-heart"></i></div>
+          <h4 class="h5 fw-bold mb-2">Family Over Margin</h4>
+          <p class="text-muted mb-0 small">If a shortcut would raise profit but lower trust, the board's answer has stayed the same since 2008: no.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE SAFE -->
+<section id="why">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Why Families Choose Us</span>
+        <h2 class="display-6 fw-medium mb-4">Four Reasons Buyers Stay With SAFE</h2>
+
+        <div class="diff-row">
+          <div class="diff-num">01</div>
+          <div>
+            <div class="diff-title">Title You Can Verify Yourself</div>
+            <p class="diff-desc">Every plot's Khatian, mutation and RAJUK approval is shared with buyers before booking — not after signing.</p>
+          </div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-num">02</div>
+          <div>
+            <div class="diff-title">Money Held in Escrow</div>
+            <p class="diff-desc">Payments sit in a bank-structured escrow account and release against verified construction milestones.</p>
+          </div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-num">03</div>
+          <div>
+            <div class="diff-title">A Council, Not Just a Handover</div>
+            <p class="diff-desc">Residents elect a council with a formal advisory channel to the board — concerns don't disappear after keys are handed over.</p>
+          </div>
+        </div>
+        <div class="diff-row">
+          <div class="diff-num">04</div>
+          <div>
+            <div class="diff-title">One Standard, Six Concerns</div>
+            <p class="diff-desc">The same governance that oversees land deals applies to the group's madrasha, pharmacy and retail arms too.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="why-media">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="SAFE building quality">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip section-tight">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3"><h3>17+</h3><div class="lbl">Years of Trust</div></div>
+      <div class="col-6 col-md-3"><h3>600+</h3><div class="lbl">Homes Delivered</div></div>
+      <div class="col-6 col-md-3"><h3>6</h3><div class="lbl">Group Concerns</div></div>
+      <div class="col-6 col-md-3"><h3>0</h3><div class="lbl">Title Disputes on Record</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<section class="section-tight" style="background:var(--ivory);">
+  <div class="container text-center">
+    <span class="eyebrow center mb-3 justify-content-center">Compliance</span>
+    <h2 class="display-6 fw-medium mb-4">Certified & Regulated By</h2>
+    <div class="cert-row reveal">
+      <div class="cert-chip"><i class="fa-solid fa-building-shield"></i> RAJUK Approved</div>
+      <div class="cert-chip"><i class="fa-solid fa-file-contract"></i> RERA Registered</div>
+      <div class="cert-chip"><i class="fa-solid fa-landmark"></i> Bangladesh Bank Escrow</div>
+      <div class="cert-chip"><i class="fa-solid fa-file-invoice-dollar"></i> ICAB Audited</div>
+      <div class="cert-chip"><i class="fa-solid fa-shield-halved"></i> ISO 9001 (Construction QA)</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">In Their Words</span>
+      <h2 class="display-6 fw-medium">What Residents Say</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 reveal">
+        <div class="testi-card">
+          <div class="testi-quote-icon">"</div>
+          <p class="testi-text">We checked the title ourselves before booking — everything SAFE told us matched the RAJUK record exactly. That's rare.</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a9d0d00961?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Resident">
+            <div><div class="testi-name">Nasrin Akter</div><div class="testi-role">Resident, SAFE Ivory Heights</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="testi-card">
+          <div class="testi-quote-icon">"</div>
+          <p class="testi-text">The resident council actually gets heard by the board. We raised a maintenance issue and it was resolved within the month.</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1607747302264-9fa3e06db571?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Resident">
+            <div><div class="testi-name">Kamal Uddin</div><div class="testi-role">Resident Council, SAFE Willow Court</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="testi-card">
+          <div class="testi-quote-icon">"</div>
+          <p class="testi-text">Escrow gave us peace of mind — our money was never just sitting in someone's personal account.</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1551836022-de5496e1b357?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Resident">
+            <div><div class="testi-name">Farhana Islam</div><div class="testi-role">Buyer, SAFE Rosewood Enclave</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">Ready to See a SAFE Community?</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.8);">Book a site visit and we'll walk you through the title documents before we walk you through the show flat.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#contact" class="btn btn-gold me-2">Book a Site Visit</a>
+          <a href="#" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">View Ventures</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-tight" style="background:var(--sage);" id="contact">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow mb-3">Get In Touch</span>
+        <h2 class="display-6 fw-medium mb-4" style="font-family:'Fraunces',serif;">Contact SAFE Community Group</h2>
+        <p class="text-muted mb-4">Have a question about a project, our governance or our group companies? Reach the office directly.</p>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone"></i></div>
+          <div><strong>Call Us</strong><div class="text-muted small">01713 167754 | 01713 878824</div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div><strong>Email Us</strong><div class="text-muted small">info@safecommunitygroup.com</div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-location-dot"></i></div>
+          <div><strong>Visit Our Office</strong><div class="text-muted small">Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362</div></div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Full Name</label>
+              <input type="text" class="form-control" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Phone</label>
+              <input type="text" class="form-control" placeholder="+880">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Email</label>
+              <input type="email" class="form-control" placeholder="you@example.com">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Interested In</label>
+              <select class="form-select">
+                <option>A Current Venture</option>
+                <option>Board / Governance</option>
+                <option>Group Companies</option>
+                <option>Careers</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Message</label>
+              <textarea class="form-control" rows="4" placeholder="Tell us what you're looking for..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-maroon w-100">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Ventures</a></li>
+          <li><a href="#">Board of Directors</a></li>
+          <li><a href="#">Group Companies</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>info@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
