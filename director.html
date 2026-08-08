@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board of Directors | Safe Community Group</title>
+
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --maroon-light:#8E1B54;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    color:var(--charcoal);
+    background:var(--ivory);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4,.display-font{
+    font-family:'Fraunces',serif;
+    letter-spacing:-0.01em;
+  }
+  .text-maroon{color:var(--maroon)!important;}
+  .bg-maroon{background:var(--maroon)!important;}
+  .text-gold{color:var(--gold)!important;}
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:.72rem;
+    font-weight:800;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--maroon);
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:2px;background:var(--gold);display:inline-block;
+  }
+
+  /* Buttons */
+  .btn-maroon{
+    background:var(--maroon);
+    color:#fff;
+    border:1px solid var(--maroon);
+    padding:.85rem 1.9rem;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.92rem;
+    transition:.25s ease;
+  }
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{
+    background:transparent;
+    color:var(--maroon);
+    border:1.5px solid var(--maroon);
+    padding:.8rem 1.85rem;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.92rem;
+    transition:.25s ease;
+  }
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{
+    background:var(--gold);
+    color:var(--maroon-dark);
+    border:1px solid var(--gold);
+    padding:.85rem 1.9rem;
+    border-radius:999px;
+    font-weight:800;
+    font-size:.92rem;
+    transition:.25s ease;
+  }
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  /* NAVBAR */
+  .navbar{
+    padding:1rem 0;
+    transition:.3s ease;
+    background:rgba(251,247,242,.97);
+    box-shadow:0 6px 24px rgba(0,0,0,.06);
+    backdrop-filter:blur(6px);
+  }
+  .navbar-brand-logo{height:44px;}
+  .nav-link{
+    font-weight:600;
+    font-size:.92rem;
+    color: var(--charcoal) !important;
+    margin:0 .6rem;
+    position:relative;
+    transition:color .3s ease;
+  }
+  .logo-icon path{
+    fill:var(--maroon);
+  }
+  .logo-text{
+    color:var(--maroon);
+  }
+  .logo-text-sub{
+    color:var(--charcoal);
+  }
+  .nav-toggler-icon{
+    color:var(--maroon);
+  }
+  .nav-link::after{
+    content:"";
+    position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);
+    transition:.25s ease;
+  }
+  .nav-link:hover::after{width:100%;}
+
+  /* PAGE BANNER */
+  .page-banner{
+    position:relative;
+    min-height:420px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    padding-top:6rem;
+    padding-bottom:4rem;
+  }
+  .page-banner-bg{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    z-index:0;
+  }
+  .page-banner-overlay{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:linear-gradient(120deg, rgba(74,10,42,.92) 0%, rgba(109,15,61,.78) 45%, rgba(34,29,31,.6) 100%);
+    pointer-events:none;
+  }
+  .page-banner-overlay::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size:56px 56px;
+  }
+  .page-banner h1{
+    color:#fff;
+    font-size:clamp(2.2rem, 4.8vw, 3.8rem);
+    font-weight:600;
+    line-height:1.08;
+  }
+  .page-banner h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+  .page-banner .breadcrumb-custom{
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    font-size:.85rem;
+    font-weight:600;
+    color:rgba(255,255,255,.65);
+    margin-bottom:1.5rem;
+  }
+  .page-banner .breadcrumb-custom a{
+    color:rgba(255,255,255,.7);
+    text-decoration:none;
+    transition:color .2s;
+  }
+  .page-banner .breadcrumb-custom a:hover{color:var(--gold);}
+  .page-banner .breadcrumb-custom .sep{color:rgba(255,255,255,.35);}
+  .page-banner .breadcrumb-custom .current{color:var(--gold);}
+
+  /* Section spacing */
+  section{padding:6rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* DIRECTOR CARDS — Signature Style */
+  .director-card{
+    background:#fff;
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+    transition:.4s ease;
+    position:relative;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+  }
+  .director-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 24px 50px rgba(109,15,61,.14);
+  }
+
+  /* Photo area */
+  .director-photo-wrap{
+    position:relative;
+    height:320px;
+    overflow:hidden;
+    background:var(--sage);
+  }
+  .director-photo-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .6s ease, filter .4s ease;
+    filter:grayscale(20%);
+  }
+  .director-card:hover .director-photo-wrap img{
+    transform:scale(1.06);
+    filter:grayscale(0%);
+  }
+  .director-photo-wrap::after{
+    content:"";
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:60%;
+    background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    pointer-events:none;
+  }
+
+  /* Role badge on photo */
+  .director-role-badge{
+    position:absolute;
+    top:16px;
+    left:16px;
+    z-index:2;
+    background:var(--maroon);
+    color:#fff;
+    font-size:.68rem;
+    font-weight:800;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:.4rem .9rem;
+    border-radius:999px;
+  }
+  .director-role-badge.founder{
+    background:var(--gold);
+    color:var(--maroon-dark);
+  }
+
+  /* Quote icon watermark */
+  .director-quote-icon{
+    position:absolute;
+    bottom:20px;
+    right:20px;
+    z-index:2;
+    font-size:2.8rem;
+    color:var(--maroon);
+    opacity:.12;
+    font-family:'Fraunces',serif;
+    line-height:1;
+    transition:opacity .3s ease;
+  }
+  .director-card:hover .director-quote-icon{opacity:.22;}
+
+  /* Content area */
+  .director-content{
+    padding:1.6rem 2rem 2rem;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+  .director-name{
+    font-family:'Fraunces',serif;
+    font-size:1.35rem;
+    font-weight:600;
+    color:var(--charcoal);
+    margin-bottom:.2rem;
+    line-height:1.2;
+  }
+  .director-designation{
+    font-size:.82rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--maroon);
+    margin-bottom:.8rem;
+  }
+  .director-bio{
+    font-size:.92rem;
+    color:var(--grey);
+    line-height:1.65;
+    margin-bottom:1.2rem;
+    flex:1;
+  }
+
+  /* Expertise tags */
+  .director-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.45rem;
+    margin-bottom:1.2rem;
+  }
+  .director-tag{
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.04em;
+    padding:.3rem .7rem;
+    border-radius:999px;
+    background:var(--sage);
+    color:var(--charcoal);
+  }
+
+  /* Social row */
+  .director-social-row{
+    display:flex;
+    gap:.55rem;
+    padding-top:1rem;
+    border-top:1px solid rgba(0,0,0,.07);
+    margin-top:auto;
+  }
+  .director-social-btn{
+    width:34px;height:34px;border-radius:50%;
+    background:var(--sage);border:1px solid rgba(0,0,0,.06);
+    display:flex;align-items:center;justify-content:center;color:var(--maroon);
+    font-size:.82rem;
+    transition:.25s ease;
+    flex-shrink:0;
+    text-decoration:none;
+  }
+  .director-social-btn:hover{background:var(--maroon);border-color:var(--maroon);color:#fff;}
+
+  /* CHAIRMAN HIGHLIGHT CARD */
+  .chairman-card{
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--charcoal);
+    position:relative;
+    min-height:480px;
+    display:flex;
+    align-items:stretch;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
+  }
+  .chairman-photo-side{
+    flex:0 0 45%;
+    position:relative;
+    overflow:hidden;
+  }
+  .chairman-photo-side img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .6s ease;
+  }
+  .chairman-card:hover .chairman-photo-side img{transform:scale(1.04);}
+  .chairman-photo-side::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg, rgba(34,29,31,0) 60%, rgba(34,29,31,1) 100%);
+  }
+  .chairman-content-side{
+    flex:1;
+    padding:3.5rem 3rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:#fff;
+    position:relative;
+    z-index:2;
+  }
+  .chairman-content-side .eyebrow{
+    color:var(--gold);
+  }
+  .chairman-content-side .eyebrow::before{
+    background:var(--gold);
+  }
+  .chairman-content-side h2{
+    color:#fff;
+    font-size:clamp(1.8rem, 3vw, 2.6rem);
+    font-weight:600;
+    line-height:1.1;
+  }
+  .chairman-content-side .designation-text{
+    font-size:.82rem;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:1.5rem;
+  }
+  .chairman-content-side .bio-text{
+    color:rgba(255,255,255,.78);
+    font-size:1rem;
+    line-height:1.75;
+  }
+  .chairman-content-side .bio-text p{margin-bottom:1rem;}
+  .chairman-social-row{
+    display:flex;gap:.55rem;margin-top:1.5rem;
+  }
+  .chairman-social-btn{
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    font-size:.9rem;transition:.25s ease;flex-shrink:0;text-decoration:none;
+  }
+  .chairman-social-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--maroon-dark);}
+
+  /* Quote watermark in chairman */
+  .chairman-watermark{
+    position:absolute;
+    right:2rem;bottom:1.5rem;
+    font-size:8rem;
+    color:rgba(255,255,255,.04);
+    font-family:'Fraunces',serif;
+    line-height:1;
+    pointer-events:none;
+  }
+
+  /* GOVERNANCE / VALUES section */
+  .governance-card{
+    background:#fff;
+    border-radius:var(--radius);
+    padding:2.2rem 1.8rem;
+    text-align:center;
+    height:100%;
+    border:1px solid rgba(0,0,0,.05);
+    transition:.3s ease;
+  }
+  .governance-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 45px rgba(109,15,61,.1);
+  }
+  .governance-icon{
+    width:68px;height:68px;border-radius:50%;
+    background:var(--sage);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--maroon);font-size:1.5rem;
+    margin:0 auto 1.4rem;
+  }
+
+  /* ADVISORY section */
+  .advisor-card{
+    background:#fff;
+    border-radius:var(--radius);
+    padding:2rem;
+    display:flex;
+    align-items:center;
+    gap:1.4rem;
+    box-shadow:0 6px 20px rgba(0,0,0,.04);
+    transition:.3s ease;
+    height:100%;
+  }
+  .advisor-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 40px rgba(109,15,61,.1);
+  }
+  .advisor-avatar{
+    width:80px;height:80px;border-radius:50%;object-fit:cover;flex-shrink:0;
+    border:3px solid var(--sage);
+  }
+  .advisor-name{
+    font-family:'Fraunces',serif;
+    font-size:1.1rem;
+    font-weight:600;
+    margin-bottom:.15rem;
+  }
+  .advisor-role{
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--maroon);
+    margin-bottom:.4rem;
+  }
+  .advisor-desc{
+    font-size:.85rem;
+    color:var(--grey);
+    line-height:1.55;
+  }
+
+  /* CTA */
+  .cta-section{
+    background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+    border-radius:28px;
+    color:#fff;
+    padding:4rem 3rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-section::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+    border-radius:50%;border:1px solid rgba(255,255,255,.2);
+  }
+
+  /* Footer */
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{
+    width:38px;height:38px;border-radius:50%;
+    background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;color:#fff;
+    transition:.2s ease;
+  }
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  /* Decorative divider */
+  .maroon-divider{
+    width:60px;height:3px;background:var(--maroon);border-radius:2px;
+  }
+
+  @media (max-width:991px){
+    section{padding:4rem 0;}
+    .chairman-card{flex-direction:column;min-height:auto;}
+    .chairman-photo-side{flex:0 0 auto;height:340px;}
+    .chairman-photo-side::after{
+      background:linear-gradient(180deg, rgba(34,29,31,0) 40%, rgba(34,29,31,1) 100%);
+    }
+    .chairman-content-side{padding:2.5rem 2rem;}
+    .director-photo-wrap{height:260px;}
+  }
+  @media (max-width:575px){
+    .advisor-card{flex-direction:column;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="40" height="42" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold logo-text" style="font-family:'Fraunces',serif; font-size:1.25rem;">SAFE <span class="logo-text-sub" style="font-weight:600; font-size:.72rem; letter-spacing:.12em;">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4 nav-toggler-icon"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#directors">Board</a></li>
+        <li class="nav-item"><a class="nav-link" href="#governance">Governance</a></li>
+        <li class="nav-item"><a class="nav-link" href="#advisors">Advisors</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1557804502-662d85f4e09d?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right fa-xs"></i></span>
+      <a href="#">About</a>
+      <span class="sep"><i class="fa-solid fa-chevron-right fa-xs"></i></span>
+      <span class="current">Board of Directors</span>
+    </div>
+    <h1 class="mb-3 reveal">The People Behind<br>the <em>Promise</em></h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.1rem;max-width:600px;">Our board brings together decades of experience in real estate, law, finance and community development — united by one standard: every SAFE address must earn trust before it earns profit.</p>
+    <div class="d-flex gap-3 flex-wrap mt-4 reveal">
+      <a href="#directors" class="btn btn-gold">Meet the Board <i class="fa-solid fa-arrow-right ms-2"></i></a>
+      <a href="#governance" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">Our Governance</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHAIRMAN / FOUNDER HIGHLIGHT -->
+<section id="directors" style="padding-top:5rem;">
+  <div class="container">
+    <div class="mb-5 reveal">
+      <span class="eyebrow mb-3">Leadership</span>
+      <h2 class="display-6 fw-medium">Chairman </h2>
+    </div>
+    <div class="chairman-card reveal">
+      <div class="chairman-photo-side">
+        <img src="https://images.unsplash.com/photo-1560250097-0ffb9fb91ff8?q=80&w=900&auto=format&fit=crop" alt="Chairman portrait">
+      </div>
+      <div class="chairman-content-side">
+        <span class="eyebrow mb-3">Chairman's Message</span>
+        <h2>Mahmudul Hasan</h2>
+        <div class="designation-text">Chairman </div>
+        <div class="bio-text">
+          <p>Seventeen years ago, I started SAFE with one conviction: the families of Dhaka deserve a home where the land is verified, the walls are certified, and the neighbourhood looks after its own. That conviction hasn't changed.</p>
+          <p>Every project we hand over carries my personal assurance — not because I oversee every brick, but because the system we've built ensures that no shortcuts survive. Our board holds me to that promise, and I hold every team member to the same.</p>
+        </div>
+        <div class="director-tags">
+          <span class="director-tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);">Real Estate</span>
+          <span class="director-tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);">Community Development</span>
+          <span class="director-tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);">Land Verification</span>
+        </div>
+        <div class="chairman-social-row">
+          <a href="#" class="chairman-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="chairman-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="chairman-social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <div class="chairman-watermark">"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOARD OF DIRECTORS GRID -->
+<section>
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow mb-3">The Board</span>
+        <h2 class="display-6 fw-medium">Board of Directors</h2>
+      </div>
+      <div class="col-lg-4 reveal">
+        <p class="text-muted mb-0">Each director brings domain expertise that strengthens the SAFE standard — from legal compliance to financial governance and community planning.</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Director 1 — Managing Director -->
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="director-card">
+          <div class="director-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658ab094ee?q=80&w=900&auto=format&fit=crop" alt="Director photo">
+            <span class="director-role-badge founder">Founder</span>
+            <div class="director-quote-icon">"</div>
+          </div>
+          <div class="director-content">
+            <div class="director-name">Abu Salman Muhammad Ammar</div>
+            <div class="director-designation">Managing Director</div>
+            <p class="director-bio">Oversees day-to-day operations across all SAFE ventures with 20+ years in real estate development and project delivery across Dhaka and Chattogram.</p>
+            <div class="director-tags">
+              <span class="director-tag">Operations</span>
+              <span class="director-tag">Project Delivery</span>
+              <span class="director-tag">Strategy</span>
+            </div>
+            <div class="director-social-row">
+              <a href="#" class="director-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" class="director-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="director-social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Director 2 — Director Finance -->
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="director-card">
+          <div class="director-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1573497019940-2c4b8f8a1f53?q=80&w=900&auto=format&fit=crop" alt="Director photo">
+            <span class="director-role-badge">Director</span>
+            <div class="director-quote-icon">"</div>
+          </div>
+          <div class="director-content">
+            <div class="director-name">Md. Muslim Ahasan</div>
+            <div class="director-designation">Director, Finance & Accounts</div>
+            <p class="director-bio">Chartered accountant with 15 years in real estate finance. Ensures transparent fund allocation, escrow compliance and audit readiness for every SAFE project.</p>
+            <div class="director-tags">
+              <span class="director-tag">Finance</span>
+              <span class="director-tag">Audit</span>
+              <span class="director-tag">Compliance</span>
+            </div>
+            <div class="director-social-row">
+              <a href="#" class="director-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" class="director-social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Director 3 — Director Legal -->
+      <!-- <div class="col-lg-4 col-md-6 reveal">
+        <div class="director-card">
+          <div class="director-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1507003214450-2b4179be4ca0?q=80&w=900&auto=format&fit=crop" alt="Director photo">
+            <span class="director-role-badge">Director</span>
+            <div class="director-quote-icon">"</div>
+          </div>
+          <div class="director-content">
+            <div class="director-name">Adv. Rafiul Alam</div>
+            <div class="director-designation">Director, Legal & Compliance</div>
+            <p class="director-bio">Practising advocate at the High Court with specialisation in land law and RAJUK compliance. Leads title verification for every SAFE property listing.</p>
+            <div class="director-tags">
+              <span class="director-tag">Land Law</span>
+              <span class="director-tag">RAJUK</span>
+              <span class="director-tag">Title Verification</span>
+            </div>
+            <div class="director-social-row">
+              <a href="#" class="director-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" class="director-social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Director 4 — Director Marketing -->
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="director-card">
+          <div class="director-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a9d0d00961?q=80&w=900&auto=format&fit=crop" alt="Director photo">
+            <span class="director-role-badge">Director</span>
+            <div class="director-quote-icon">"</div>
+          </div>
+          <div class="director-content">
+            <div class="director-name">Delowar Hossain</div>
+            <div class="director-designation">Director, Marketing & Communications</div>
+            <p class="director-bio">Brands strategist with 12 years in real estate marketing. Built the SAFE brand identity and drives community engagement across digital and offline channels.</p>
+            <div class="director-tags">
+              <span class="director-tag">Branding</span>
+              <span class="director-tag">Digital</span>
+              <span class="director-tag">Community</span>
+            </div>
+            <div class="director-social-row">
+              <a href="#" class="director-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" class="director-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="director-social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Director 5 — Director Engineering -->
+      <!-- <div class="col-lg-4 col-md-6 reveal">
+        <div class="director-card">
+          <div class="director-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1519085102972-e4f9295253b4?q=80&w=900&auto=format&fit=crop" alt="Director photo">
+            <span class="director-role-badge">Director</span>
+            <div class="director-quote-icon">"</div>
+          </div>
+          <div class="director-content">
+            <div class="director-name">Engr. Tanvir Ahmed</div>
+            <div class="director-designation">Director, Engineering & Construction</div>
+            <p class="director-bio">Civil engineer (BUET) with 18 years in structural design and green building. Ensures every SAFE project meets structural certification before handover.</p>
+            <div class="director-tags">
+              <span class="director-tag">Structural</span>
+              <span class="director-tag">Green Building</span>
+              <span class="director-tag">BUET</span>
+            </div>
+            <div class="director-social-row">
+              <a href="#" class="director-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" class="director-social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Director 6 — Independent Director -->
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="director-card">
+          <div class="director-photo-wrap">
+            <img src="https://images.unsplash.com/photo-1607747302264-9fa3e06db571?q=80&w=900&auto=format&fit=crop" alt="Director photo">
+            <span class="director-role-badge" style="background:var(--charcoal);">Independent</span>
+            <div class="director-quote-icon">"</div>
+          </div>
+          <div class="director-content">
+            <div class="director-name">Ramjan Ali</div>
+            <div class="director-designation">Independent Director</div>
+            <p class="director-bio">Urban planning researcher and former university faculty. Brings independent oversight to board decisions and champions resident welfare policies.</p>
+            <div class="director-tags">
+              <span class="director-tag">Urban Planning</span>
+              <span class="director-tag">Resident Welfare</span>
+              <span class="director-tag">Research</span>
+            </div>
+            <div class="director-social-row">
+              <a href="#" class="director-social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" class="director-social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE VALUES -->
+<section class="bg-sage-section" id="governance" style="background:var(--sage);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow justify-content-center mb-3">How We Govern</span>
+      <h2 class="display-6 fw-medium">Board Governance & Values</h2>
+      <p class="text-muted mx-auto" style="max-width:600px;">The SAFE board operates under a governance framework designed to protect homebuyers at every decision point — from land acquisition to community handover.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 reveal">
+        <div class="governance-card">
+          <div class="governance-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4 class="h5 fw-bold mb-3">Transparent Decision-Making</h4>
+          <p class="text-muted mb-0">All board resolutions are documented and shared with resident councils within 30 days. No off-record property deals.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="governance-card">
+          <div class="governance-icon"><i class="fa-solid fa-user-shield"></i></div>
+          <h4 class="h5 fw-bold mb-3">Independent Oversight</h4>
+          <p class="text-muted mb-0">At least one independent director with no operational stake reviews every major project approval and financial audit.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="governance-card">
+          <div class="governance-icon"><i class="fa-solid fa-file-shield"></i></div>
+          <h4 class="h5 fw-bold mb-3">Buyer-First Compliance</h4>
+          <p class="text-muted mb-0">Escrow-protected payments, RAJUK-verified titles and structural certification are non-negotiable board-mandated standards.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="governance-card">
+          <div class="governance-icon"><i class="fa-solid fa-people-group"></i></div>
+          <h4 class="h5 fw-bold mb-3">Resident Council Integration</h4>
+          <p class="text-muted mb-0">Every handed-over community elects a resident council that has a formal advisory channel to the board.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="governance-card">
+          <div class="governance-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h4 class="h5 fw-bold mb-3">Annual Third-Party Audit</h4>
+          <p class="text-muted mb-0">Financials and project quality are audited yearly by an independent CA firm, with results published to all stakeholders.</p>
+        </div>
+      </div>
+      <div class="col-md-4 reveal">
+        <div class="governance-card">
+          <div class="governance-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h4 class="h5 fw-bold mb-3">Ethical Land Acquisition</h4>
+          <p class="text-muted mb-0">No project begins on disputed land. Every plot is verified for clear title, proper mutation and government approval before acquisition.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISORY PANEL -->
+<section id="advisors">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow mb-3">External Expertise</span>
+        <h2 class="display-6 fw-medium">Advisory Panel</h2>
+      </div>
+      <div class="col-lg-4 reveal">
+        <p class="text-muted mb-0">Seasoned professionals from law, banking and urban development who advise the board on specialised matters — without voting rights.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-6 reveal">
+        <div class="advisor-card">
+          <img src="https://images.unsplash.com/photo-1551836022-de5496e1b357?q=80&w=200&auto=format&fit=crop" class="advisor-avatar" alt="Advisor">
+          <div>
+            <div class="advisor-name">Adv. Shahidul Islam Khan</div>
+            <div class="advisor-role">Legal Advisor — Land & Property Law</div>
+            <p class="advisor-desc mb-0">Senior advocate specialising in Khatian disputes, power of attorney vetting and RAJUK appeal proceedings. Advises SAFE on complex title cases.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="advisor-card">
+          <img src="https://images.unsplash.com/photo-1551836022-4a4c4778924a?q=80&w=200&auto=format&fit=crop" class="advisor-avatar" alt="Advisor">
+          <div>
+            <div class="advisor-name">Mohammad Kabir Hossain</div>
+            <div class="advisor-role">Financial Advisor — Banking & Escrow</div>
+            <p class="advisor-desc mb-0">Former senior VP at a leading commercial bank. Structured SAFE's escrow payment system and advises on fund deployment and project financing.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="advisor-card">
+          <img src="https://images.unsplash.com/photo-1548176313-4afd2c776476?q=80&w=200&auto=format&fit=crop" class="advisor-avatar" alt="Advisor">
+          <div>
+            <div class="advisor-name">Arch. Rezwana Khan</div>
+            <div class="advisor-role">Design Advisor — Urban & Green Architecture</div>
+            <p class="advisor-desc mb-0">Award-winning architect and DAP consultant. Reviews masterplans to ensure green corridor integration, walkability and civic amenity standards.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="advisor-card">
+          <img src="https://images.unsplash.com/photo-1551836022-200b282d0566?q=80&w=200&auto=format&fit=crop" class="advisor-avatar" alt="Advisor">
+          <div>
+            <div class="advisor-name">Md. Ashraf Hossain FCMA</div>
+            <div class="advisor-role">Audit Advisor — Cost & Management Accounting</div>
+            <p class="advisor-desc mb-0">Fellow CMA with 22 years in construction cost audit. Conducts quarterly cost reviews and certifies project expenditure reports for the board.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOARD STATS -->
+<div style="background:var(--maroon-dark);color:#fff;padding:2.6rem 0;">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3">
+        <h3 style="font-family:'Fraunces',serif;font-size:2.4rem;color:var(--gold);margin-bottom:.1rem;" class="counter" data-target="7">0</h3>
+        <div style="font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;">Board Members</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h3 style="font-family:'Fraunces',serif;font-size:2.4rem;color:var(--gold);margin-bottom:.1rem;" class="counter" data-target="4">0</h3>
+        <div style="font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;">Advisory Panel</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h3 style="font-family:'Fraunces',serif;font-size:2.4rem;color:var(--gold);margin-bottom:.1rem;" class="counter" data-target="85">0</h3>
+        <div style="font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;">Combined Years of Experience</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <h3 style="font-family:'Fraunces',serif;font-size:2.4rem;color:var(--gold);margin-bottom:.1rem;" class="counter" data-target="12">0</h3>
+        <div style="font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;">Quarterly Board Meetings / Year</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">Want to Work With the SAFE Board?</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.8);">Whether you're a legal professional, financial auditor or urban planner — we're always open to strengthening our advisory circle.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#contact" class="btn btn-gold me-2">Get in Touch</a>
+          <a href="#" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">View Careers</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-tight" style="background:var(--sage);" id="contact">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow mb-3">Get In Touch</span>
+        <h2 class="display-6 fw-medium mb-4" style="font-family:'Fraunces',serif;">Contact the Board Office</h2>
+        <p class="text-muted mb-4">For governance-related queries, partnership proposals or advisory nominations — reach the board secretariat directly.</p>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone"></i></div>
+          <div><strong>Call Us</strong><div class="text-muted small">01713 167754 | 01713 878824</div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div><strong>Email Us</strong><div class="text-muted small">board@safecommunitygroup.com</div></div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-location-dot"></i></div>
+          <div><strong>Visit Our Office</strong><div class="text-muted small">Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362</div></div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Full Name</label>
+              <input type="text" class="form-control" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Organisation</label>
+              <input type="text" class="form-control" placeholder="Company / Firm">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Email</label>
+              <input type="email" class="form-control" placeholder="you@example.com">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Phone</label>
+              <input type="text" class="form-control" placeholder="+880">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Subject</label>
+              <select class="form-select">
+                <option>Partnership Proposal</option>
+                <option>Advisory Nomination</option>
+                <option>Governance Query</option>
+                <option>Media / Press</option>
+                <option>General Enquiry</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Message</label>
+              <textarea class="form-control" rows="4" placeholder="Describe your query or proposal..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-maroon w-100">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="director.html">Board of Directors</a></li> 
+          <li><a href="director2.html">Director 2</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>board@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('active');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Counter animation
+  const counters = document.querySelectorAll('.counter');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = +el.getAttribute('data-target');
+        let count = 0;
+        const step = Math.max(target / 60, 1);
+        const update = () => {
+          count += step;
+          if (count < target) {
+            el.textContent = Math.ceil(count).toLocaleString();
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = target.toLocaleString() + (target >= 10 ? '+' : '');
+          }
+        };
+        update();
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterIO.observe(c));
+</script>
+</body>
+</html>
