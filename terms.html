@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.75rem 1.6rem;border-radius:999px;font-weight:700;font-size:.85rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  /* ===================== DOC HEADER ===================== */
+  .doc-header{
+    background:linear-gradient(150deg, var(--maroon-dark) 0%, var(--maroon) 60%);
+    padding-top:6.5rem;padding-bottom:3rem;position:relative;overflow:hidden;
+  }
+  .doc-header::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:52px 52px;}
+  .doc-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:.5rem 1rem;border-radius:999px;margin-bottom:1.2rem;}
+  .doc-header h1{color:#fff;font-size:clamp(2rem,4vw,3rem);font-weight:600;position:relative;z-index:1;}
+  .doc-meta{color:rgba(255,255,255,.7);font-size:.88rem;position:relative;z-index:1;}
+  .doc-meta .mono{color:var(--gold);}
+  .doc-actions{display:flex;gap:.7rem;margin-top:1.4rem;position:relative;z-index:1;flex-wrap:wrap;}
+
+  /* ===================== STICKY TOC ===================== */
+  .toc-nav{position:sticky;top:1.5rem;}
+  .toc-title{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--maroon);margin-bottom:1rem;}
+  .toc-item{
+    display:flex;align-items:center;gap:.7rem;padding:.65rem .9rem;border-radius:10px;
+    color:var(--grey);text-decoration:none;font-size:.84rem;font-weight:600;margin-bottom:.2rem;transition:.2s ease;
+  }
+  .toc-item .toc-num{font-family:'JetBrains Mono',monospace;color:var(--gold);font-weight:700;width:22px;flex-shrink:0;}
+  .toc-item:hover, .toc-item.is-active{background:var(--sage);color:var(--maroon-dark);}
+  .toc-item.is-active .toc-num{color:var(--maroon);}
+
+  section{padding:4rem 0;}
+
+  /* ===================== CLAUSE CARD ===================== */
+  .clause-block{
+    background:#fff;border-radius:14px;padding:2.2rem 2.2rem;margin-bottom:1.6rem;
+    box-shadow:0 6px 22px rgba(0,0,0,.04);border-left:4px solid var(--gold);scroll-margin-top:100px;
+  }
+  .clause-num{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;color:var(--gold);
+    background:var(--charcoal);display:inline-block;padding:.28rem .6rem;border-radius:6px;margin-bottom:.8rem;
+  }
+  .clause-block h3{font-size:1.25rem;font-weight:600;margin-bottom:1rem;}
+  .clause-block p{color:var(--grey);line-height:1.8;font-size:.94rem;margin-bottom:.9rem;}
+  .clause-block p:last-child{margin-bottom:0;}
+  .clause-block ul{color:var(--grey);font-size:.92rem;line-height:1.8;padding-left:1.2rem;margin-bottom:.9rem;}
+  .clause-block ul:last-child{margin-bottom:0;}
+  .clause-block ul li::marker{color:var(--gold);}
+
+  .highlight-box{background:var(--sage);border-radius:10px;padding:1.1rem 1.3rem;font-size:.88rem;color:var(--charcoal);display:flex;gap:.8rem;margin-top:1rem;}
+  .highlight-box i{color:var(--maroon);margin-top:.15rem;flex-shrink:0;}
+
+  /* ===================== CONTACT BOX ===================== */
+  .legal-contact{background:var(--charcoal);color:#fff;border-radius:var(--radius);padding:2.6rem;}
+  .legal-contact h4{color:#fff;font-size:1.3rem;margin-bottom:.6rem;}
+  .legal-contact p{color:rgba(255,255,255,.7);font-size:.92rem;}
+  .legal-contact .lc-row{display:flex;align-items:center;gap:.8rem;margin-top:1rem;}
+  .legal-contact .lc-row i{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media print{
+    .navbar, .toc-nav, .doc-actions, footer, .legal-contact{display:none !important;}
+    .doc-header{background:#fff !important;padding-top:1rem;}
+    .doc-header h1, .doc-tag{color:var(--charcoal) !important;}
+    .clause-block{box-shadow:none;border:1px solid #ddd;break-inside:avoid;}
+  }
+  @media (max-width:991px){
+    section{padding:3rem 0;}
+    .toc-nav{position:static;display:flex;flex-wrap:wrap;gap:.4rem;}
+    .toc-item{flex:1 1 auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Privacy Policy</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#terms">Terms & Conditions</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- DOC HEADER -->
+<div class="doc-header">
+  <div class="container position-relative">
+    <span class="doc-tag reveal"><i class="fa-solid fa-file-contract"></i> Legal Document</span>
+    <h1 class="mb-3 reveal">Terms & Conditions</h1>
+    <div class="doc-meta reveal">
+      Last updated: <span class="mono">09 August 2026</span> &nbsp;·&nbsp; Effective from: <span class="mono">01 September 2026</span> &nbsp;·&nbsp; Version <span class="mono">3.2</span>
+    </div>
+    <div class="doc-actions reveal">
+      <button class="btn btn-outline-maroon" style="background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.4);" onclick="window.print()"><i class="fa-solid fa-print me-2"></i>Print / Save PDF</button>
+      <a href="#contact" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.4);"><i class="fa-solid fa-envelope me-2"></i>Legal Enquiries</a>
+    </div>
+  </div>
+</div>
+
+<!-- TERMS BODY -->
+<section id="terms">
+  <div class="container">
+    <div class="row g-5">
+      <!-- TOC -->
+      <div class="col-lg-3">
+        <div class="toc-nav" id="tocNav">
+          <div class="toc-title">On This Page</div>
+          <a href="#c1" class="toc-item is-active"><span class="toc-num">01</span> Acceptance of Terms</a>
+          <a href="#c2" class="toc-item"><span class="toc-num">02</span> Definitions</a>
+          <a href="#c3" class="toc-item"><span class="toc-num">03</span> Property Listings</a>
+          <a href="#c4" class="toc-item"><span class="toc-num">04</span> Booking & Payment</a>
+          <a href="#c5" class="toc-item"><span class="toc-num">05</span> Escrow & Refunds</a>
+          <a href="#c6" class="toc-item"><span class="toc-num">06</span> Cancellation Policy</a>
+          <a href="#c7" class="toc-item"><span class="toc-num">07</span> Website Use</a>
+          <a href="#c8" class="toc-item"><span class="toc-num">08</span> Intellectual Property</a>
+          <a href="#c9" class="toc-item"><span class="toc-num">09</span> Limitation of Liability</a>
+          <a href="#c10" class="toc-item"><span class="toc-num">10</span> Governing Law</a>
+          <a href="#c11" class="toc-item"><span class="toc-num">11</span> Changes to Terms</a>
+          <a href="#c12" class="toc-item"><span class="toc-num">12</span> Contact</a>
+        </div>
+      </div>
+
+      <!-- CLAUSES -->
+      <div class="col-lg-9">
+
+        <div class="clause-block reveal" id="c1">
+          <span class="clause-num">SECTION 01</span>
+          <h3>Acceptance of Terms</h3>
+          <p>These Terms & Conditions ("Terms") govern your use of the Safe Community Group website, and any booking, purchase, tenancy or land-partnership agreement entered into with Safe Community Group ("SAFE", "we", "us", "our"). By browsing this website, submitting an enquiry, or signing a booking form, you agree to be bound by these Terms.</p>
+          <p>If you do not agree with any part of these Terms, please do not proceed with a booking or submission, and contact our legal team with your concerns using the details at the end of this document.</p>
+        </div>
+
+        <div class="clause-block reveal" id="c2">
+          <span class="clause-num">SECTION 02</span>
+          <h3>Definitions</h3>
+          <ul>
+            <li><strong>"Buyer"</strong> refers to any individual or entity booking or purchasing a unit, apartment, or plot from SAFE.</li>
+            <li><strong>"Landowner"</strong> refers to any individual or entity entering a land sale or joint venture agreement with SAFE.</li>
+            <li><strong>"Venture"</strong> refers to any residential, commercial or mixed-use project developed under the SAFE name.</li>
+            <li><strong>"Resident Council"</strong> refers to the elected body representing residents of a handed-over SAFE community.</li>
+            <li><strong>"Escrow Account"</strong> refers to the bank-structured account holding buyer or landowner payments pending milestone verification.</li>
+          </ul>
+        </div>
+
+        <div class="clause-block reveal" id="c3">
+          <span class="clause-num">SECTION 03</span>
+          <h3>Property Listings & Accuracy</h3>
+          <p>All property details, images, floor plans and pricing displayed on this website are for general guidance and are subject to change without prior notice. While we make every effort to keep listings accurate and up to date, minor variations in final measurements, finishes or delivery timelines may occur due to construction or regulatory factors.</p>
+          <p>Final specifications, pricing and delivery dates are only binding once confirmed in a signed sales agreement or booking form.</p>
+          <div class="highlight-box"><i class="fa-solid fa-circle-info"></i> Title documents, RAJUK approvals and mutation records referenced on this site can be independently verified by the buyer or their legal counsel before booking.</div>
+        </div>
+
+        <div class="clause-block reveal" id="c4">
+          <span class="clause-num">SECTION 04</span>
+          <h3>Booking & Payment Terms</h3>
+          <p>A booking is confirmed only upon receipt of the booking amount specified in the applicable sales agreement, along with a signed copy of the agreement itself. Installment schedules, where applicable, are outlined in the agreement and are linked to verified construction milestones.</p>
+          <ul>
+            <li>All payments must be made through the designated escrow account or approved bank channel — cash payments outside this channel are not accepted or recognised by SAFE.</li>
+            <li>Late installment payments may attract a grace period as specified in the sales agreement, beyond which a delay charge may apply.</li>
+            <li>Prices quoted are exclusive of registration, mutation and government fees unless explicitly stated otherwise.</li>
+          </ul>
+        </div>
+
+        <div class="clause-block reveal" id="c5">
+          <span class="clause-num">SECTION 05</span>
+          <h3>Escrow & Refund Policy</h3>
+          <p>Buyer and landowner payments are held in a bank-structured escrow account and released to SAFE only against independently verified construction or agreement milestones. This structure is designed to protect payments in the event of a project delay or dispute.</p>
+          <p>Refund requests are evaluated case by case, in line with the cancellation terms of the specific sales agreement. Approved refunds are processed through the same escrow channel, minus any non-refundable administrative or registration costs already incurred.</p>
+        </div>
+
+        <div class="clause-block reveal" id="c6">
+          <span class="clause-num">SECTION 06</span>
+          <h3>Cancellation Policy</h3>
+          <ul>
+            <li>Cancellations within 15 days of booking are eligible for a refund of the booking amount, less a processing fee, as detailed in the sales agreement.</li>
+            <li>Cancellations after 15 days follow the staggered refund schedule specified in the individual sales agreement, which may include forfeiture of a portion of payments already made.</li>
+            <li>SAFE reserves the right to cancel a booking where payment obligations are not met within the agreed grace period, following written notice to the buyer.</li>
+          </ul>
+        </div>
+
+        <div class="clause-block reveal" id="c7">
+          <span class="clause-num">SECTION 07</span>
+          <h3>Website Use</h3>
+          <p>You agree to use this website only for lawful purposes. You may not attempt to gain unauthorised access to any part of the site, interfere with its normal operation, or use automated tools to scrape or reproduce its content without written permission.</p>
+          <p>SAFE reserves the right to restrict or terminate access to any user found in violation of these conditions.</p>
+        </div>
+
+        <div class="clause-block reveal" id="c8">
+          <span class="clause-num">SECTION 08</span>
+          <h3>Intellectual Property</h3>
+          <p>All content on this website — including text, logos, floor plans, photography and design elements — is the property of Safe Community Group or its licensors, and is protected under applicable copyright and trademark law. No content may be reproduced, distributed or used commercially without prior written consent.</p>
+        </div>
+
+        <div class="clause-block reveal" id="c9">
+          <span class="clause-num">SECTION 09</span>
+          <h3>Limitation of Liability</h3>
+          <p>SAFE shall not be held liable for delays, damages or losses arising from circumstances beyond reasonable control, including but not limited to government regulatory changes, natural disasters, or force majeure events. Our liability in any dispute is limited to the specific terms outlined in the applicable signed agreement, and does not extend to indirect or consequential losses.</p>
+        </div>
+
+        <div class="clause-block reveal" id="c10">
+          <span class="clause-num">SECTION 10</span>
+          <h3>Governing Law & Dispute Resolution</h3>
+          <p>These Terms are governed by the laws of the People's Republic of Bangladesh. Any dispute arising from a booking, sale or land agreement will first be addressed through good-faith negotiation, and if unresolved, referred to arbitration or the appropriate courts within Dhaka, Bangladesh.</p>
+        </div>
+
+        <div class="clause-block reveal" id="c11">
+          <span class="clause-num">SECTION 11</span>
+          <h3>Changes to These Terms</h3>
+          <p>SAFE may update these Terms periodically to reflect regulatory, operational or policy changes. The "Last updated" date at the top of this page will always reflect the most recent revision. Continued use of our website or services after an update constitutes acceptance of the revised Terms.</p>
+        </div>
+
+        <div class="clause-block reveal" id="c12">
+          <span class="clause-num">SECTION 12</span>
+          <h3>Contact Information</h3>
+          <p>For any questions regarding these Terms, or to raise a formal legal concern, please reach out using the details below. We aim to acknowledge all legal correspondence within 3 business days.</p>
+        </div>
+
+        <div class="legal-contact reveal">
+          <span class="eyebrow" style="color:var(--gold);"><span style="width:26px;height:2px;background:var(--gold);display:inline-block;"></span> Legal Enquiries</span>
+          <h4 class="mt-3">Have a Question About These Terms?</h4>
+          <p>Our legal team is available for clarifications regarding bookings, land agreements or website use.</p>
+          <div class="lc-row"><i class="fa-solid fa-envelope"></i> <span>legal@safecommunitygroup.com</span></div>
+          <div class="lc-row"><i class="fa-solid fa-phone"></i> <span>01713 167754 | 01713 878824</span></div>
+          <div class="lc-row"><i class="fa-solid fa-location-dot"></i> <span>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Ventures</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Legal</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>legal@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Active TOC tracking
+  const tocItems = document.querySelectorAll('.toc-item');
+  const targets = Array.from(tocItems).map(t => document.querySelector(t.getAttribute('href')));
+  const tocIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = targets.indexOf(entry.target);
+        tocItems.forEach(t => t.classList.remove('is-active'));
+        if (idx > -1) tocItems[idx].classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -65% 0px' });
+  targets.forEach(t => t && tocIO.observe(t));
+</script>
+</body>
+</html>
