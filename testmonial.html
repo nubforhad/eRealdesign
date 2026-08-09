@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimonials | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .eyebrow.center{justify-content:center;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.8rem 1.85rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{background:var(--gold);color:var(--maroon-dark);border:1px solid var(--gold);padding:.85rem 1.9rem;border-radius:999px;font-weight:800;font-size:.92rem;transition:.25s ease;}
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  .page-banner{position:relative;min-height:400px;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:3.5rem;}
+  .page-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(74,10,42,.93) 0%, rgba(109,15,61,.8) 45%, rgba(34,29,31,.65) 100%);}
+  .page-banner h1{color:#fff;font-size:clamp(2.2rem, 4.8vw, 3.6rem);font-weight:600;line-height:1.08;}
+  .page-banner h1 em{font-style:italic;color:var(--gold);}
+  .breadcrumb-custom{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:1.4rem;}
+  .breadcrumb-custom a{color:rgba(255,255,255,.7);text-decoration:none;}
+  .breadcrumb-custom .current{color:var(--gold);}
+
+  section{padding:5.5rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* ===================== RATING SUMMARY ===================== */
+  .rating-summary{background:#fff;border-radius:var(--radius);padding:2.6rem;box-shadow:0 20px 50px rgba(34,29,31,.08);}
+  .rating-big{font-family:'Fraunces',serif;font-size:3.6rem;font-weight:600;color:var(--maroon);line-height:1;}
+  .rating-stars{color:var(--gold);font-size:1.2rem;margin:.4rem 0;}
+  .rating-sub{font-size:.85rem;color:var(--grey);}
+  .rating-bar-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.55rem;}
+  .rating-bar-row .rb-label{width:56px;font-size:.8rem;font-weight:700;color:var(--grey);flex-shrink:0;}
+  .rating-bar-track{flex:1;height:8px;background:var(--sage);border-radius:999px;overflow:hidden;}
+  .rating-bar-fill{height:100%;background:var(--gold);border-radius:999px;}
+  .rating-bar-row .rb-pct{width:40px;text-align:right;font-size:.76rem;color:var(--grey);font-family:'JetBrains Mono',monospace;}
+
+  /* ===================== FEATURED TESTIMONIAL ===================== */
+  .featured-testi{background:var(--charcoal);color:#fff;border-radius:var(--radius);padding:3rem 3.2rem;position:relative;overflow:hidden;}
+  .featured-testi .fq-icon{font-family:'Fraunces',serif;font-size:4rem;color:var(--gold);opacity:.4;line-height:1;margin-bottom:.4rem;}
+  .featured-testi .fq-text{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;line-height:1.55;margin-bottom:1.6rem;}
+  .featured-testi .fq-person{display:flex;align-items:center;gap:1rem;}
+  .featured-testi .fq-avatar{width:58px;height:58px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);}
+  .featured-testi .fq-name{font-weight:700;}
+  .featured-testi .fq-role{font-size:.8rem;color:rgba(255,255,255,.6);}
+  .featured-testi .fq-stars{color:var(--gold);margin-top:.8rem;}
+
+  /* ===================== FILTER PILLS ===================== */
+  .filter-row{display:flex;flex-wrap:wrap;gap:.55rem;}
+  .filter-pill{border:1.5px solid rgba(109,15,61,.18);background:#fff;color:var(--charcoal);padding:.5rem 1.2rem;border-radius:999px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.2s ease;}
+  .filter-pill.active, .filter-pill:hover{background:var(--maroon);border-color:var(--maroon);color:#fff;}
+
+  /* ============ TESTIMONIAL CARD — signature "verified review" ============ */
+  .testi-card{
+    background:#fff;border-radius:14px;padding:1.8rem;height:100%;
+    box-shadow:0 8px 24px rgba(0,0,0,.05);position:relative;transition:.3s ease;
+  }
+  .testi-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(109,15,61,.1);}
+  .testi-verified{
+    position:absolute;top:1.3rem;right:1.3rem;display:flex;align-items:center;gap:.3rem;
+    font-size:.62rem;font-weight:800;color:#3E6B4F;background:rgba(62,107,79,.1);
+    padding:.28rem .6rem;border-radius:999px;letter-spacing:.03em;text-transform:uppercase;
+  }
+  .testi-stars{color:var(--gold);font-size:.85rem;margin-bottom:.9rem;}
+  .testi-text{font-size:.9rem;color:var(--charcoal);line-height:1.7;margin-bottom:1.3rem;font-style:italic;}
+  .testi-person{display:flex;align-items:center;gap:.8rem;padding-top:1rem;border-top:1px solid rgba(0,0,0,.06);}
+  .testi-avatar{width:46px;height:46px;border-radius:50%;object-fit:cover;}
+  .testi-name{font-weight:700;font-size:.9rem;}
+  .testi-role{font-size:.76rem;color:var(--grey);}
+  .testi-project{font-size:.68rem;color:var(--maroon);font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-top:.15rem;}
+
+  /* ===================== VIDEO TESTIMONIALS ===================== */
+  .video-card{position:relative;border-radius:14px;overflow:hidden;height:230px;cursor:pointer;}
+  .video-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .video-card:hover img{transform:scale(1.06);}
+  .video-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(34,29,31,0) 40%, rgba(34,29,31,.85) 100%);}
+  .video-play{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.9);
+    display:flex;align-items:center;justify-content:center;color:var(--maroon);font-size:1.2rem;z-index:2;
+  }
+  .video-info{position:absolute;left:1rem;bottom:.9rem;z-index:2;color:#fff;}
+  .video-info .vi-name{font-weight:700;font-size:.9rem;}
+  .video-info .vi-role{font-size:.72rem;color:rgba(255,255,255,.75);}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);border-radius:28px;color:#fff;padding:3.8rem 3rem;position:relative;overflow:hidden;}
+  .cta-section::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.2);}
+
+  /* Leave a review form */
+  .review-form-wrap{background:#fff;border-radius:var(--radius);padding:2.4rem;box-shadow:0 20px 50px rgba(34,29,31,.08);border-top:4px solid var(--gold);}
+  .star-picker{display:flex;gap:.4rem;font-size:1.6rem;color:var(--sage);cursor:pointer;}
+  .star-picker i.active{color:var(--gold);}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media (max-width:991px){
+    section{padding:3.6rem 0;}
+    .featured-testi{padding:2.2rem 1.8rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#testimonials">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a><span>›</span><span class="current">Testimonials</span>
+    </div>
+    <h1 class="mb-3 reveal">Don't Take Our<br>Word For <em>It</em></h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.05rem;max-width:620px;">Buyers, tenants, landowners and resident councils — here's what the people who actually dealt with SAFE Community Group have to say.</p>
+  </div>
+</section>
+
+<!-- RATING SUMMARY + FEATURED -->
+<section>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-5 reveal">
+        <div class="rating-summary h-100">
+          <div class="text-center mb-4">
+            <div class="rating-big">4.8</div>
+            <div class="rating-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <div class="rating-sub">Based on 312 verified reviews</div>
+          </div>
+          <div class="rating-bar-row"><span class="rb-label">5 stars</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:78%;"></div></div><span class="rb-pct">78%</span></div>
+          <div class="rating-bar-row"><span class="rb-label">4 stars</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:15%;"></div></div><span class="rb-pct">15%</span></div>
+          <div class="rating-bar-row"><span class="rb-label">3 stars</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:5%;"></div></div><span class="rb-pct">5%</span></div>
+          <div class="rating-bar-row"><span class="rb-label">2 stars</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:1%;"></div></div><span class="rb-pct">1%</span></div>
+          <div class="rating-bar-row"><span class="rb-label">1 star</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:1%;"></div></div><span class="rb-pct">1%</span></div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="featured-testi h-100">
+          <div class="fq-icon">"</div>
+          <p class="fq-text">We visited six developers before SAFE. They were the only ones who showed us the actual land registry before we signed anything — that single meeting changed our decision.</p>
+          <div class="fq-person">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" class="fq-avatar" alt="Resident">
+            <div>
+              <div class="fq-name">Nusrat Jahan</div>
+              <div class="fq-role">Owner, SAFE Willow Court · Bashundhara</div>
+            </div>
+          </div>
+          <div class="fq-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL GRID -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-4">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Verified Reviews</span>
+        <h2 class="display-6 fw-medium">What People Say</h2>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="filter-row justify-content-lg-end">
+          <span class="filter-pill active" data-f="all">All</span>
+          <span class="filter-pill" data-f="buyer">Buyers</span>
+          <span class="filter-pill" data-f="tenant">Tenants</span>
+          <span class="filter-pill" data-f="landowner">Landowners</span>
+          <span class="filter-pill" data-f="resident">Resident Council</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-2" id="testiGrid">
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="tenant">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testi-text">"The resident council actually resolves issues fast. It finally feels like living in a managed community, not just a building."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Resident">
+            <div><div class="testi-name">Rafiul Islam</div><div class="testi-role">Tenant</div><div class="testi-project">Baridhara Garden Flats</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="landowner">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testi-text">"Bought— sorry, sold a plot in Purbachal through them — the whole registration process was handled transparently, no hidden costs at all."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Landowner">
+            <div><div class="testi-name">Farhana Chowdhury</div><div class="testi-role">Landowner</div><div class="testi-project">Purbachal</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="buyer">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <p class="testi-text">"Escrow gave us peace of mind — our money was never just sitting in someone's personal account while construction dragged on."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a9d0d00961?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Buyer">
+            <div><div class="testi-name">Farhana Islam</div><div class="testi-role">Buyer</div><div class="testi-project">SAFE Rosewood Enclave</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="resident">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testi-text">"As council chair, I've raised three maintenance requests directly with the board this year — every one was resolved within the month."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1607747302264-9fa3e06db571?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Resident council">
+            <div><div class="testi-name">Kamal Uddin</div><div class="testi-role">Resident Council Chair</div><div class="testi-project">SAFE Willow Court</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="buyer">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testi-text">"We checked the title ourselves before booking — everything SAFE told us matched the RAJUK record exactly. That's rare in this market."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1548176313-4afd2c776476?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Buyer">
+            <div><div class="testi-name">Nasrin Akter</div><div class="testi-role">Buyer</div><div class="testi-project">SAFE Ivory Heights</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="landowner">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testi-text">"We had inherited land with three co-owners. SAFE's legal team handled the mutation cleanly — something two previous developers couldn't manage."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Landowner">
+            <div><div class="testi-name">Md. Alauddin</div><div class="testi-role">Landowner</div><div class="testi-project">Purbachal Land Sale</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="tenant">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <p class="testi-text">"Renewed our lease without a single price surprise — the terms in our first contract are exactly what we're paying two years later."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Tenant">
+            <div><div class="testi-name">Tania Ferdous</div><div class="testi-role">Tenant</div><div class="testi-project">Dhanmondi Lakeview</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="buyer">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testi-text">"Five previous flat purchases across the city, none as documented as this. We got copies of every certificate before final payment."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Buyer">
+            <div><div class="testi-name">Sabrina Yasmin</div><div class="testi-role">Buyer</div><div class="testi-project">Uttara Skyline Duplex</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 reveal testi-item" data-cat="resident">
+        <div class="testi-card">
+          <span class="testi-verified"><i class="fa-solid fa-circle-check"></i> Verified</span>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p class="testi-text">"Our council gets the annual audit summary shared with us directly — not something most developers bother doing at all."</p>
+          <div class="testi-person">
+            <img src="https://images.unsplash.com/photo-1560250097-0ffb9fb91ff8?q=80&w=200&auto=format&fit=crop" class="testi-avatar" alt="Resident council">
+            <div><div class="testi-name">Shirin Sultana</div><div class="testi-role">Resident Council Member</div><div class="testi-project">SAFE Ivory Heights</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO TESTIMONIALS -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">Hear It Directly</span>
+      <h2 class="display-6 fw-medium">Video Testimonials</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=700&auto=format&fit=crop" alt="Video testimonial">
+          <div class="video-play"><i class="fa-solid fa-play"></i></div>
+          <div class="video-info"><div class="vi-name">Nusrat Jahan</div><div class="vi-role">Owner, Willow Court</div></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?q=80&w=700&auto=format&fit=crop" alt="Video testimonial">
+          <div class="video-play"><i class="fa-solid fa-play"></i></div>
+          <div class="video-info"><div class="vi-name">Farhana Chowdhury</div><div class="vi-role">Landowner, Purbachal</div></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1607747302264-9fa3e06db571?q=80&w=700&auto=format&fit=crop" alt="Video testimonial">
+          <div class="video-play"><i class="fa-solid fa-play"></i></div>
+          <div class="video-info"><div class="vi-name">Kamal Uddin</div><div class="vi-role">Resident Council Chair</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAVE A REVIEW -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5 reveal">
+          <span class="eyebrow center mb-3 justify-content-center">Share Your Experience</span>
+          <h2 class="display-6 fw-medium">Leave a Review</h2>
+          <p class="text-muted mx-auto" style="max-width:520px;">Bought, rented or sold with SAFE? We'd like to hear how it went.</p>
+        </div>
+        <div class="review-form-wrap reveal">
+          <form onsubmit="return false;">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Full Name</label>
+                <input type="text" class="form-control" placeholder="Your name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">You Are a...</label>
+                <select class="form-select">
+                  <option>Buyer</option>
+                  <option>Tenant</option>
+                  <option>Landowner</option>
+                  <option>Resident Council Member</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Project / Venture</label>
+                <input type="text" class="form-control" placeholder="e.g. SAFE Willow Court">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Your Rating</label>
+                <div class="star-picker" id="starPicker">
+                  <i class="fa-solid fa-star" data-val="1"></i>
+                  <i class="fa-solid fa-star" data-val="2"></i>
+                  <i class="fa-solid fa-star" data-val="3"></i>
+                  <i class="fa-solid fa-star" data-val="4"></i>
+                  <i class="fa-solid fa-star" data-val="5"></i>
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold small">Your Review</label>
+                <textarea class="form-control" rows="4" placeholder="Tell us about your experience..."></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-maroon w-100">Submit Review <i class="fa-solid fa-paper-plane ms-2"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">Ready to Become Our Next Story?</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.8);">Book a site visit and see the verification standard our residents keep talking about.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#contact" class="btn btn-gold">Book a Site Visit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Ventures</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>support@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  document.querySelectorAll('.filter-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      const cat = p.getAttribute('data-f');
+      document.querySelectorAll('.testi-item').forEach(item => {
+        item.style.display = (cat === 'all' || item.getAttribute('data-cat') === cat) ? '' : 'none';
+      });
+    });
+  });
+
+  // Star picker
+  const stars = document.querySelectorAll('#starPicker i');
+  stars.forEach(star => {
+    star.addEventListener('click', () => {
+      const val = +star.getAttribute('data-val');
+      stars.forEach(s => s.classList.toggle('active', +s.getAttribute('data-val') <= val));
+    });
+  });
+</script>
+</body>
+</html>
