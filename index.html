@@ -357,6 +357,77 @@
   section{padding:6rem 0;}
   .section-tight{padding:4rem 0;}
 
+  /* CHAIRMAN'S MESSAGE */
+  .chairman-section{background:var(--ivory);}
+  .chairman-card{
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--charcoal);
+    position:relative;
+    min-height:460px;
+    display:flex;
+    align-items:stretch;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
+  }
+  .chairman-photo-side{
+    flex:0 0 42%;
+    position:relative;
+    overflow:hidden;
+  }
+  .chairman-photo-side img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .6s ease;
+  }
+  .chairman-card:hover .chairman-photo-side img{transform:scale(1.05);}
+  .chairman-photo-side::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg, rgba(34,29,31,0) 55%, rgba(34,29,31,1) 100%);
+  }
+  .chairman-content-side{
+    flex:1;
+    padding:3.2rem 3rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:#fff;
+    position:relative;
+    z-index:2;
+  }
+  .chairman-content-side .eyebrow{color:var(--gold);}
+  .chairman-content-side .eyebrow::before{background:var(--gold);}
+  .chairman-content-side h2{
+    color:#fff;
+    font-size:clamp(1.7rem, 2.8vw, 2.3rem);
+    font-weight:600;
+    line-height:1.2;
+    margin-bottom:1.2rem;
+  }
+  .chairman-signoff{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    margin-top:1.6rem;
+    padding-top:1.4rem;
+    border-top:1px solid rgba(255,255,255,.14);
+  }
+  .chairman-signoff .name{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;}
+  .chairman-signoff .role{font-size:.76rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;font-weight:700;}
+  .chairman-quote-mark{
+    position:absolute;
+    right:2rem;bottom:1rem;
+    font-size:7rem;
+    color:rgba(255,255,255,.05);
+    font-family:'Fraunces',serif;
+    line-height:1;
+    pointer-events:none;
+  }
+  @media (max-width:850px){
+    .chairman-card{flex-direction:column;min-height:auto;}
+    .chairman-photo-side{flex:0 0 auto;height:300px;}
+    .chairman-photo-side::after{background:linear-gradient(180deg, rgba(34,29,31,0) 40%, rgba(34,29,31,1) 100%);}
+    .chairman-content-side{padding:2.4rem 1.8rem;}
+  }
+
   /* Pillars (signature) */
   .pillar-card{
     border-radius:var(--radius);
@@ -560,7 +631,7 @@
         <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
         <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
       </svg>
-      <span class="fw-bold logo-text" style="font-family:'Fraunces',serif; font-size:1.25rem;">SAFE <span class="logo-text-sub" style="font-weight:600; font-size:.72rem; letter-spacing:.12em;">COMMUNITY GROUP</span></span>
+      <span class="fw-bold logo-text" style="font-family:'Fraunces',serif; font-size:1.25rem;">SAFE <span class="logo-text-sub" style="font-weight:600; font-size:.72rem; letter-spacing:.12em;">COMMUNITY </span></span>
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <i class="fa-solid fa-bars fs-4 nav-toggler-icon"></i>
@@ -579,6 +650,7 @@
                 <li><a href="team.html">Team</a></li>
                 <li><a href="certifications.html">Certifications </a></li>
                 <li><a href="mission.html">Mission & Vision</a></li>
+                <li><a href="career.html"> Careers </a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </li>
@@ -687,6 +759,33 @@
     </div>
   </div>
 </div>
+
+<!-- CHAIRMAN'S MESSAGE -->
+<section class="chairman-section">
+  <div class="container">
+    <div class="mb-5 reveal">
+      <span class="eyebrow mb-3">A Word From Leadership</span>
+      <h2 class="display-6 fw-medium">Chairman's Message</h2>
+    </div>
+    <div class="chairman-card reveal">
+      <div class="chairman-photo-side">
+        <img src="https://images.unsplash.com/photo-1560250097-0ffb9fb91ff8?q=80&w=900&auto=format&fit=crop" alt="Chairman portrait">
+      </div>
+      <div class="chairman-content-side">
+        <span class="eyebrow mb-3">Chairman, SAFE Community Group</span>
+        <h2>"A home is only as safe as the paperwork behind it."</h2>
+        <p style="color:rgba(255,255,255,.78);line-height:1.8;font-size:.98rem;">Seventeen years ago, we started with one conviction: the families of Dhaka deserve a home where the land is verified, the walls are certified, and the neighbourhood looks after its own. That conviction hasn't changed. Every project we hand over still carries my personal assurance — not because I oversee every brick, but because the system we've built ensures that no shortcut survives.</p>
+        <div class="chairman-signoff">
+          <div>
+            <div class="name">Mahmudul Hasan</div>
+            <div class="role">Chairman</div>
+          </div>
+        </div>
+        <div class="chairman-quote-mark">"</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- PILLARS -->
 <section id="pillars">

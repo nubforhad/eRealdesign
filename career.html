@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .eyebrow.center{justify-content:center;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.8rem 1.85rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{background:var(--gold);color:var(--maroon-dark);border:1px solid var(--gold);padding:.85rem 1.9rem;border-radius:999px;font-weight:800;font-size:.92rem;transition:.25s ease;}
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+  .btn-sm-pill{padding:.5rem 1.2rem;font-size:.8rem;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  .page-banner{position:relative;min-height:420px;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:3.5rem;}
+  .page-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(74,10,42,.93) 0%, rgba(109,15,61,.8) 45%, rgba(34,29,31,.65) 100%);}
+  .page-banner h1{color:#fff;font-size:clamp(2.2rem, 4.8vw, 3.7rem);font-weight:600;line-height:1.08;}
+  .page-banner h1 em{font-style:italic;color:var(--gold);}
+  .breadcrumb-custom{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:1.4rem;}
+  .breadcrumb-custom a{color:rgba(255,255,255,.7);text-decoration:none;}
+  .breadcrumb-custom .current{color:var(--gold);}
+  .banner-stats{display:flex;gap:2.2rem;flex-wrap:wrap;margin-top:1.8rem;}
+  .banner-stats .bs-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.6rem;color:var(--gold);display:block;}
+  .banner-stats .bs-label{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+
+  section{padding:5.5rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* ===================== WHY WORK WITH US ===================== */
+  .why-card{background:#fff;border-radius:var(--radius);padding:2.2rem 1.8rem;height:100%;border:1px solid rgba(0,0,0,.05);transition:.3s ease;text-align:center;}
+  .why-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(109,15,61,.1);}
+  .why-icon{width:64px;height:64px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;color:var(--maroon);font-size:1.4rem;margin:0 auto 1.2rem;}
+
+  /* ===================== FILTER PILLS ===================== */
+  .filter-row{display:flex;flex-wrap:wrap;gap:.55rem;}
+  .filter-pill{border:1.5px solid rgba(109,15,61,.18);background:#fff;color:var(--charcoal);padding:.5rem 1.2rem;border-radius:999px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.2s ease;}
+  .filter-pill.active, .filter-pill:hover{background:var(--maroon);border-color:var(--maroon);color:#fff;}
+
+  /* ============ JOB CARD — signature "vacancy notice" design ============ */
+  .job-card{
+    background:#fff;
+    border-radius:14px;
+    padding:1.8rem 1.9rem;
+    box-shadow:0 8px 26px rgba(34,29,31,.06);
+    border-left:4px solid var(--gold);
+    transition:.35s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .job-card:hover{transform:translateY(-5px);box-shadow:0 20px 46px rgba(109,15,61,.13);border-left-color:var(--maroon);}
+  .job-card.urgent{border-left-color:var(--maroon);}
+  .job-urgent-ribbon{
+    position:absolute;top:0;right:0;background:var(--maroon);color:#fff;
+    font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:.35rem 1.4rem;transform:translate(28%,-2%) rotate(0deg);
+    border-radius:0 0 0 10px;
+  }
+  .job-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.8rem;margin-bottom:.8rem;}
+  .job-dept-tag{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--maroon);background:var(--sage);padding:.28rem .7rem;border-radius:999px;margin-bottom:.5rem;}
+  .job-title{font-size:1.15rem;font-weight:600;color:var(--charcoal);margin-bottom:.2rem;}
+  .job-meta-inline{display:flex;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--grey);margin-bottom:1rem;}
+  .job-meta-inline span{display:flex;align-items:center;gap:.35rem;}
+  .job-meta-inline i{color:var(--gold);}
+
+  .job-details{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px dashed rgba(109,15,61,.25);
+    border-bottom:1px dashed rgba(109,15,61,.25);
+    padding:.8rem 0;margin-bottom:1rem;
+  }
+  .job-details .jd{text-align:center;border-right:1px solid rgba(0,0,0,.06);}
+  .job-details .jd:last-child{border-right:none;}
+  .job-details .jd-val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;color:var(--maroon-dark);display:block;}
+  .job-details .jd-label{font-size:.62rem;letter-spacing:.05em;text-transform:uppercase;color:var(--grey);font-weight:700;}
+
+  .job-footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem;}
+  .job-id{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--grey);opacity:.75;}
+
+  /* ===================== BENEFITS ===================== */
+  .benefit-item{display:flex;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(0,0,0,.07);}
+  .benefit-item:last-child{border-bottom:none;}
+  .benefit-item i{width:42px;height:42px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+  /* ===================== HIRING PROCESS ===================== */
+  .process-num{font-family:'Fraunces',serif;font-size:2.6rem;color:var(--sage);font-weight:600;line-height:1;}
+
+  /* ===================== EMPLOYEE VOICES ===================== */
+  .voice-card{background:#fff;border-radius:var(--radius);padding:2.1rem;height:100%;box-shadow:0 8px 24px rgba(0,0,0,.05);}
+  .voice-quote-icon{font-family:'Fraunces',serif;font-size:2.6rem;color:var(--gold);opacity:.3;line-height:1;margin-bottom:.3rem;}
+  .voice-text{font-size:.9rem;color:var(--charcoal);line-height:1.7;margin-bottom:1.2rem;font-style:italic;}
+  .voice-person{display:flex;align-items:center;gap:.8rem;}
+  .voice-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+  .voice-name{font-weight:700;font-size:.88rem;}
+  .voice-role{font-size:.74rem;color:var(--grey);}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);border-radius:28px;color:#fff;padding:3.8rem 3rem;position:relative;overflow:hidden;}
+  .cta-section::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.2);}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  /* Application modal */
+  .apply-modal-overlay{position:fixed;inset:0;background:rgba(34,29,31,.75);display:none;align-items:center;justify-content:center;z-index:1000;padding:1.5rem;}
+  .apply-modal-overlay.open{display:flex;}
+  .apply-modal{background:#fff;border-radius:16px;max-width:560px;width:100%;padding:2.4rem;position:relative;max-height:90vh;overflow-y:auto;}
+  .apply-modal .close-modal{position:absolute;top:1rem;right:1.2rem;background:none;border:none;font-size:1.4rem;color:var(--maroon);cursor:pointer;}
+  .apply-modal h4{font-size:1.25rem;margin-bottom:.2rem;}
+  .apply-modal .am-sub{font-size:.85rem;color:var(--grey);margin-bottom:1.4rem;}
+
+  @media (max-width:991px){section{padding:3.6rem 0;}}
+  @media (max-width:575px){
+    .job-details{grid-template-columns:1fr;gap:.5rem;}
+    .job-details .jd{border-right:none;border-bottom:1px dashed rgba(0,0,0,.08);padding-bottom:.5rem;}
+    .job-details .jd:last-child{border-bottom:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#openings">Careers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a><span>›</span><span class="current">Careers</span>
+    </div>
+    <h1 class="mb-3 reveal">Build Something<br>Worth <em>Trusting</em></h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.08rem;max-width:620px;">We're looking for people who take verification, service and follow-through as seriously as we do — across real estate, education, healthcare and commerce.</p>
+    <div class="banner-stats reveal">
+      <div><span class="bs-num">12</span><span class="bs-label">Open Roles</span></div>
+      <div><span class="bs-num">6</span><span class="bs-label">Departments</span></div>
+      <div><span class="bs-num">3</span><span class="bs-label">Cities Hiring</span></div>
+    </div>
+    <div class="d-flex gap-3 flex-wrap mt-4 reveal">
+      <a href="#openings" class="btn btn-gold">View Open Positions <i class="fa-solid fa-arrow-down ms-2"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WORK WITH US -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">Why SAFE</span>
+      <h2 class="display-6 fw-medium">Why People Stay</h2>
+      <p class="text-muted mx-auto" style="max-width:600px;">The same governance and transparency we promise homebuyers, we apply to how we treat our own people.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4 class="h5 fw-bold mb-2">Fair, Transparent Pay</h4>
+          <p class="text-muted small mb-0">Published salary bands and on-time payroll — no surprises, no delays.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h4 class="h5 fw-bold mb-2">Real Growth Paths</h4>
+          <p class="text-muted small mb-0">Cross-training across our six concerns, not just one department's ceiling.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-people-group"></i></div>
+          <h4 class="h5 fw-bold mb-2">A Team That Owns Its Work</h4>
+          <p class="text-muted small mb-0">Small, accountable teams — your name is on what you verify and deliver.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h4 class="h5 fw-bold mb-2">Health & Family Support</h4>
+          <p class="text-muted small mb-0">Medical coverage and access to SAFE Pharma and SAFE Foundation programmes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN POSITIONS -->
+<section id="openings" style="background:var(--sage);">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-4">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Current Openings</span>
+        <h2 class="display-6 fw-medium">Open Positions</h2>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="filter-row justify-content-lg-end">
+          <span class="filter-pill active" data-f="all">All</span>
+          <span class="filter-pill" data-f="operations">Operations</span>
+          <span class="filter-pill" data-f="sales">Sales & Marketing</span>
+          <span class="filter-pill" data-f="finance">Finance & Legal</span>
+          <span class="filter-pill" data-f="care">Customer Care</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column gap-3 mt-3" id="jobList">
+
+      <!-- Job 1 -->
+      <div class="reveal job-item" data-cat="operations">
+        <div class="job-card urgent" data-title="Site Engineer" data-dept="Engineering">
+          <span class="job-urgent-ribbon">Urgent</span>
+          <div class="job-top">
+            <div>
+              <span class="job-dept-tag">Operations</span>
+              <div class="job-title">Site Engineer</div>
+            </div>
+          </div>
+          <div class="job-meta-inline">
+            <span><i class="fa-solid fa-location-dot"></i> Purbachal, Dhaka</span>
+            <span><i class="fa-solid fa-briefcase"></i> Full-time</span>
+            <span><i class="fa-solid fa-layer-group"></i> Mid-Senior</span>
+          </div>
+          <div class="job-details">
+            <div class="jd"><span class="jd-val">4+ yrs</span><span class="jd-label">Experience</span></div>
+            <div class="jd"><span class="jd-val">2</span><span class="jd-label">Vacancies</span></div>
+            <div class="jd"><span class="jd-val">30 Aug</span><span class="jd-label">Deadline</span></div>
+          </div>
+          <div class="job-footer">
+            <span class="job-id">JOB: SCG-ENG-014</span>
+            <button class="btn btn-maroon btn-sm-pill" onclick="openApply('Site Engineer')">Apply Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="reveal job-item" data-cat="sales">
+        <div class="job-card">
+          <div class="job-top">
+            <div>
+              <span class="job-dept-tag">Sales</span>
+              <div class="job-title">Sales Executive</div>
+            </div>
+          </div>
+          <div class="job-meta-inline">
+            <span><i class="fa-solid fa-location-dot"></i> Bashundhara, Dhaka</span>
+            <span><i class="fa-solid fa-briefcase"></i> Full-time</span>
+            <span><i class="fa-solid fa-layer-group"></i> Entry-Mid</span>
+          </div>
+          <div class="job-details">
+            <div class="jd"><span class="jd-val">1+ yrs</span><span class="jd-label">Experience</span></div>
+            <div class="jd"><span class="jd-val">4</span><span class="jd-label">Vacancies</span></div>
+            <div class="jd"><span class="jd-val">12 Sep</span><span class="jd-label">Deadline</span></div>
+          </div>
+          <div class="job-footer">
+            <span class="job-id">JOB: SCG-SLS-021</span>
+            <button class="btn btn-maroon btn-sm-pill" onclick="openApply('Sales Executive')">Apply Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="reveal job-item" data-cat="finance">
+        <div class="job-card">
+          <div class="job-top">
+            <div>
+              <span class="job-dept-tag">Legal</span>
+              <div class="job-title">Legal Associate</div>
+            </div>
+          </div>
+          <div class="job-meta-inline">
+            <span><i class="fa-solid fa-location-dot"></i> Demra, Dhaka</span>
+            <span><i class="fa-solid fa-briefcase"></i> Full-time</span>
+            <span><i class="fa-solid fa-layer-group"></i> Mid-Senior</span>
+          </div>
+          <div class="job-details">
+            <div class="jd"><span class="jd-val">3+ yrs</span><span class="jd-label">Experience</span></div>
+            <div class="jd"><span class="jd-val">1</span><span class="jd-label">Vacancies</span></div>
+            <div class="jd"><span class="jd-val">05 Sep</span><span class="jd-label">Deadline</span></div>
+          </div>
+          <div class="job-footer">
+            <span class="job-id">JOB: SCG-LGL-006</span>
+            <button class="btn btn-maroon btn-sm-pill" onclick="openApply('Legal Associate')">Apply Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 4 -->
+      <div class="reveal job-item" data-cat="care">
+        <div class="job-card">
+          <div class="job-top">
+            <div>
+              <span class="job-dept-tag">Customer Care</span>
+              <div class="job-title">Customer Support Executive</div>
+            </div>
+          </div>
+          <div class="job-meta-inline">
+            <span><i class="fa-solid fa-location-dot"></i> Demra, Dhaka</span>
+            <span><i class="fa-solid fa-briefcase"></i> Full-time</span>
+            <span><i class="fa-solid fa-layer-group"></i> Entry</span>
+          </div>
+          <div class="job-details">
+            <div class="jd"><span class="jd-val">0–2 yrs</span><span class="jd-label">Experience</span></div>
+            <div class="jd"><span class="jd-val">3</span><span class="jd-label">Vacancies</span></div>
+            <div class="jd"><span class="jd-val">20 Aug</span><span class="jd-label">Deadline</span></div>
+          </div>
+          <div class="job-footer">
+            <span class="job-id">JOB: SCG-CRM-030</span>
+            <button class="btn btn-maroon btn-sm-pill" onclick="openApply('Customer Support Executive')">Apply Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 5 -->
+      <div class="reveal job-item" data-cat="sales">
+        <div class="job-card">
+          <div class="job-top">
+            <div>
+              <span class="job-dept-tag">Marketing</span>
+              <div class="job-title">Digital Marketing Executive</div>
+            </div>
+          </div>
+          <div class="job-meta-inline">
+            <span><i class="fa-solid fa-location-dot"></i> Demra, Dhaka</span>
+            <span><i class="fa-solid fa-briefcase"></i> Full-time</span>
+            <span><i class="fa-solid fa-layer-group"></i> Entry-Mid</span>
+          </div>
+          <div class="job-details">
+            <div class="jd"><span class="jd-val">1+ yrs</span><span class="jd-label">Experience</span></div>
+            <div class="jd"><span class="jd-val">2</span><span class="jd-label">Vacancies</span></div>
+            <div class="jd"><span class="jd-val">15 Sep</span><span class="jd-label">Deadline</span></div>
+          </div>
+          <div class="job-footer">
+            <span class="job-id">JOB: SCG-MKT-019</span>
+            <button class="btn btn-maroon btn-sm-pill" onclick="openApply('Digital Marketing Executive')">Apply Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job 6 -->
+      <div class="reveal job-item" data-cat="finance">
+        <div class="job-card">
+          <div class="job-top">
+            <div>
+              <span class="job-dept-tag">Finance</span>
+              <div class="job-title">Accounts Officer</div>
+            </div>
+          </div>
+          <div class="job-meta-inline">
+            <span><i class="fa-solid fa-location-dot"></i> Demra, Dhaka</span>
+            <span><i class="fa-solid fa-briefcase"></i> Full-time</span>
+            <span><i class="fa-solid fa-layer-group"></i> Mid</span>
+          </div>
+          <div class="job-details">
+            <div class="jd"><span class="jd-val">2+ yrs</span><span class="jd-label">Experience</span></div>
+            <div class="jd"><span class="jd-val">1</span><span class="jd-label">Vacancies</span></div>
+            <div class="jd"><span class="jd-val">28 Aug</span><span class="jd-label">Deadline</span></div>
+          </div>
+          <div class="job-footer">
+            <span class="job-id">JOB: SCG-FIN-016</span>
+            <button class="btn btn-maroon btn-sm-pill" onclick="openApply('Accounts Officer')">Apply Now</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-4 reveal">
+      <p class="text-muted small">Don't see a role that fits? <a href="#contact" style="color:var(--maroon);font-weight:700;">Send us your CV anyway</a> — we keep a standing talent pool.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">What You Get</span>
+        <h2 class="display-6 fw-medium mb-4">Benefits & Culture</h2>
+        <div class="benefit-item">
+          <i class="fa-solid fa-suitcase-medical"></i>
+          <div><strong>Medical Coverage</strong><div class="text-muted small">Health insurance for staff and immediate family, plus SAFE Pharma discounts.</div></div>
+        </div>
+        <div class="benefit-item">
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <div><strong>Paid Leave & Festival Bonus</strong><div class="text-muted small">Standard annual leave plus two festival bonuses a year.</div></div>
+        </div>
+        <div class="benefit-item">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <div><strong>Training & Certification Support</strong><div class="text-muted small">Sponsored courses for site engineers, accountants and sales staff.</div></div>
+        </div>
+        <div class="benefit-item">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <div><strong>SAFE Foundation Access</strong><div class="text-muted small">Employees and families can access scholarship and welfare programmes.</div></div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" class="rounded-4 w-100" style="height:420px;object-fit:cover;" alt="SAFE team culture">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIRING PROCESS -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">How to Join</span>
+      <h2 class="display-6 fw-medium">Our Hiring Process</h2>
+    </div>
+    <div class="row text-center g-4">
+      <div class="col-lg-3 col-6 reveal">
+        <div class="process-num mb-2">01</div>
+        <h5 class="fw-bold">Apply Online</h5>
+        <p class="text-muted small px-2">Submit your CV against an open role, or drop one for our talent pool.</p>
+      </div>
+      <div class="col-lg-3 col-6 reveal">
+        <div class="process-num mb-2">02</div>
+        <h5 class="fw-bold">Screening Call</h5>
+        <p class="text-muted small px-2">HR reviews your background and calls within 5 working days if shortlisted.</p>
+      </div>
+      <div class="col-lg-3 col-6 reveal">
+        <div class="process-num mb-2">03</div>
+        <h5 class="fw-bold">In-Person Interview</h5>
+        <p class="text-muted small px-2">Meet the hiring manager at our Demra office or relevant site.</p>
+      </div>
+      <div class="col-lg-3 col-6 reveal">
+        <div class="process-num mb-2">04</div>
+        <h5 class="fw-bold">Offer & Onboarding</h5>
+        <p class="text-muted small px-2">Get your offer letter and a structured first-week onboarding plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPLOYEE VOICES -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">From the Team</span>
+      <h2 class="display-6 fw-medium">What It's Like to Work Here</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">I joined as a junior site engineer three years ago. The training support and the fact that I actually sign off on my own verifications kept me here.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Employee">
+            <div><div class="voice-name">Nazmul Karim</div><div class="voice-role">Site Operations Manager</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">Payroll has never once been late in four years. That reliability says more about a company than any mission statement.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1607747302264-9fa3e06db571?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Employee">
+            <div><div class="voice-name">Shirin Sultana</div><div class="voice-role">Accounts Officer</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">I moved from customer care into marketing within SAFE — nobody blinked at the switch, they just asked what I needed to learn first.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1548176313-4afd2c776476?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Employee">
+            <div><div class="voice-name">Farhana Islam</div><div class="voice-role">Marketing Executive</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">Don't See Your Role Listed?</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.8);">We keep a standing talent pool — send your CV and we'll reach out when a fit opens up.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#contact" class="btn btn-gold">Submit Your CV</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / GENERAL APPLICATION -->
+<section class="section-tight" style="background:var(--sage);" id="contact">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow mb-3">Reach HR</span>
+        <h2 class="display-6 fw-medium mb-4">Careers Enquiries</h2>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone"></i></div>
+          <div class="text-muted small">01713 167754 | 01713 878824</div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div class="text-muted small">careers@safecommunitygroup.com</div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Full Name</label>
+              <input type="text" class="form-control" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Phone</label>
+              <input type="text" class="form-control" placeholder="+880">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Email</label>
+              <input type="email" class="form-control" placeholder="you@example.com">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Position Interested In</label>
+              <input type="text" class="form-control" placeholder="e.g. Site Engineer">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Upload CV</label>
+              <input type="file" class="form-control">
+            </div>
+            <div class="col-12">
+              <button class="btn btn-maroon w-100">Submit Application <i class="fa-solid fa-paper-plane ms-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Ventures</a></li>
+          <li><a href="#">Meet The Team</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>careers@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- APPLICATION MODAL -->
+<div class="apply-modal-overlay" id="applyModal">
+  <div class="apply-modal">
+    <button class="close-modal" onclick="closeApply()">&times;</button>
+    <h4 id="applyTitle">Apply for Position</h4>
+    <div class="am-sub" id="applySub">Fill in your details and attach your CV.</div>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label fw-semibold small">Full Name</label>
+        <input type="text" class="form-control" placeholder="Your name">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label fw-semibold small">Phone</label>
+        <input type="text" class="form-control" placeholder="+880">
+      </div>
+      <div class="col-12">
+        <label class="form-label fw-semibold small">Email</label>
+        <input type="email" class="form-control" placeholder="you@example.com">
+      </div>
+      <div class="col-12">
+        <label class="form-label fw-semibold small">Upload CV</label>
+        <input type="file" class="form-control">
+      </div>
+      <div class="col-12">
+        <button class="btn btn-maroon w-100">Submit Application <i class="fa-solid fa-paper-plane ms-2"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  document.querySelectorAll('.filter-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      const cat = p.getAttribute('data-f');
+      document.querySelectorAll('.job-item').forEach(item => {
+        item.style.display = (cat === 'all' || item.getAttribute('data-cat') === cat) ? '' : 'none';
+      });
+    });
+  });
+
+  function openApply(title){
+    document.getElementById('applyTitle').textContent = 'Apply for ' + title;
+    document.getElementById('applySub').textContent = 'Fill in your details and attach your CV for the ' + title + ' role.';
+    document.getElementById('applyModal').classList.add('open');
+  }
+  function closeApply(){document.getElementById('applyModal').classList.remove('open');}
+  document.getElementById('applyModal').addEventListener('click', (e) => {
+    if (e.target.id === 'applyModal') closeApply();
+  });
+</script>
+</body>
+</html>
