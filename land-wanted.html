@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Land Wanted | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .eyebrow.light{color:var(--gold);}
+  .eyebrow.center{justify-content:center;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.8rem 1.85rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{background:var(--gold);color:var(--maroon-dark);border:1px solid var(--gold);padding:.85rem 1.9rem;border-radius:999px;font-weight:800;font-size:.92rem;transition:.25s ease;}
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  /* ===================== BANNER ===================== */
+  .page-banner{position:relative;min-height:460px;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:4rem;}
+  .page-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(74,10,42,.93) 0%, rgba(109,15,61,.8) 45%, rgba(34,29,31,.65) 100%);}
+  .page-banner-overlay::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:56px 56px;}
+  .page-banner h1{color:#fff;font-size:clamp(2.2rem, 4.8vw, 3.7rem);font-weight:600;line-height:1.08;}
+  .page-banner h1 em{font-style:italic;color:var(--gold);}
+  .breadcrumb-custom{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:1.4rem;}
+  .breadcrumb-custom a{color:rgba(255,255,255,.7);text-decoration:none;}
+  .breadcrumb-custom .current{color:var(--gold);}
+  .banner-stats{display:flex;gap:2.2rem;flex-wrap:wrap;margin-top:1.8rem;}
+  .banner-stats .bs-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.6rem;color:var(--gold);display:block;}
+  .banner-stats .bs-label{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+
+  section{padding:5.5rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* ===================== WHY PARTNER ===================== */
+  .why-card{background:#fff;border-radius:var(--radius);padding:2.2rem 1.8rem;height:100%;border:1px solid rgba(0,0,0,.05);transition:.3s ease;text-align:center;}
+  .why-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(109,15,61,.1);}
+  .why-icon{width:64px;height:64px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;color:var(--maroon);font-size:1.4rem;margin:0 auto 1.2rem;}
+
+  /* ===================== PARTNERSHIP MODELS ===================== */
+  .model-card{border-radius:var(--radius);padding:2.4rem 2.2rem;height:100%;position:relative;overflow:hidden;}
+  .model-card.outright{background:var(--charcoal);color:#fff;}
+  .model-card.jv{background:var(--maroon);color:#fff;}
+  .model-icon{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--gold);margin-bottom:1.2rem;}
+  .model-card h4{font-size:1.3rem;margin-bottom:.6rem;}
+  .model-card p{font-size:.9rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:1.3rem;}
+  .model-list{list-style:none;padding:0;margin:0;}
+  .model-list li{display:flex;gap:.6rem;font-size:.86rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;}
+  .model-list li i{color:var(--gold);margin-top:.15rem;flex-shrink:0;}
+
+  /* ===================== CRITERIA CHECKLIST ===================== */
+  .criteria-card{background:#fff;border-radius:14px;padding:1.6rem 1.7rem;height:100%;border-left:4px solid var(--gold);box-shadow:0 8px 24px rgba(0,0,0,.05);display:flex;gap:1rem;align-items:flex-start;}
+  .criteria-card i{width:42px;height:42px;border-radius:50%;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .criteria-title{font-weight:700;font-size:.94rem;margin-bottom:.25rem;}
+  .criteria-desc{font-size:.83rem;color:var(--grey);line-height:1.55;}
+
+  /* ===================== PROCESS ===================== */
+  .process-track{position:relative;padding-left:2.2rem;}
+  .process-track::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:repeating-linear-gradient(to bottom, var(--gold) 0 6px, transparent 6px 12px);}
+  .process-item{position:relative;padding-bottom:2.4rem;}
+  .process-item:last-child{padding-bottom:0;}
+  .process-dot{position:absolute;left:-2.2rem;top:2px;width:20px;height:20px;border-radius:50%;background:var(--ivory);border:3px solid var(--maroon);display:flex;align-items:center;justify-content:center;}
+  .process-item.done .process-dot{background:var(--gold);border-color:var(--gold);}
+  .process-step-num{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--maroon);font-size:.85rem;margin-bottom:.2rem;}
+  .process-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin-bottom:.3rem;}
+  .process-desc{font-size:.87rem;color:var(--grey);line-height:1.6;max-width:520px;}
+
+  /* ===================== AREAS OF INTEREST ===================== */
+  .area-chip{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:999px;padding:.7rem 1.3rem;display:flex;align-items:center;gap:.55rem;font-size:.85rem;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.04);}
+  .area-chip i{color:var(--maroon);}
+
+  /* ===================== LAND OFFER FORM ===================== */
+  .offer-form-wrap{background:#fff;border-radius:var(--radius);padding:2.6rem;box-shadow:0 20px 50px rgba(34,29,31,.1);border-top:4px solid var(--gold);}
+  .form-section-label{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--maroon);margin:1.6rem 0 .8rem;}
+  .form-section-label:first-child{margin-top:0;}
+
+  /* ===================== TESTIMONIALS ===================== */
+  .voice-card{background:#fff;border-radius:var(--radius);padding:2.1rem;height:100%;box-shadow:0 8px 24px rgba(0,0,0,.05);}
+  .voice-quote-icon{font-family:'Fraunces',serif;font-size:2.6rem;color:var(--gold);opacity:.3;line-height:1;margin-bottom:.3rem;}
+  .voice-text{font-size:.9rem;color:var(--charcoal);line-height:1.7;margin-bottom:1.2rem;font-style:italic;}
+  .voice-person{display:flex;align-items:center;gap:.8rem;}
+  .voice-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+  .voice-name{font-weight:700;font-size:.88rem;}
+  .voice-role{font-size:.74rem;color:var(--grey);}
+
+  /* ===================== MINI FAQ ===================== */
+  .mini-faq-item{background:#fff;border-radius:12px;margin-bottom:.8rem;border:1px solid rgba(0,0,0,.06);overflow:hidden;}
+  .mini-faq-q{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.3rem;cursor:pointer;font-weight:700;font-size:.92rem;}
+  .mini-faq-q i{color:var(--maroon);transition:transform .3s ease;margin-left:auto;}
+  .mini-faq-item.open .mini-faq-q i{transform:rotate(180deg);}
+  .mini-faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .mini-faq-item.open .mini-faq-a{max-height:220px;}
+  .mini-faq-a-inner{padding:0 1.3rem 1.1rem;color:var(--grey);font-size:.87rem;line-height:1.65;}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);border-radius:28px;color:#fff;padding:3.8rem 3rem;position:relative;overflow:hidden;}
+  .cta-section::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.2);}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media (max-width:991px){section{padding:3.6rem 0;}}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Our Ventures</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#offer">Land Wanted</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#offer">Submit Your Land</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a><span>›</span><span class="current">Land Wanted</span>
+    </div>
+    <h1 class="mb-3 reveal">Own Land Near Dhaka?<br>Let's Build <em>Together</em></h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.08rem;max-width:640px;">SAFE Community Group is actively acquiring land for residential and mixed-use communities — through outright purchase or joint venture. If you own a plot that fits, we'd like to hear from you.</p>
+    <div class="banner-stats reveal">
+      <div><span class="bs-num">40+</span><span class="bs-label">Plots Acquired</span></div>
+      <div><span class="bs-num">17+</span><span class="bs-label">Years Verifying Land</span></div>
+      <div><span class="bs-num">0</span><span class="bs-label">Title Disputes on Record</span></div>
+    </div>
+    <div class="d-flex gap-3 flex-wrap mt-4 reveal">
+      <a href="#offer" class="btn btn-gold">Submit Your Land <i class="fa-solid fa-arrow-down ms-2"></i></a>
+      <a href="#models" class="btn btn-outline-maroon" style="background:rgba(255,255,255,.05);color:#fff;border-color:rgba(255,255,255,.5);">See Partnership Models</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PARTNER WITH SAFE -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">For Landowners</span>
+      <h2 class="display-6 fw-medium">Why Landowners Choose to Partner With Us</h2>
+      <p class="text-muted mx-auto" style="max-width:620px;">We've built our reputation on verifying other people's land — which means when it's your land on the table, the same discipline works in your favour.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h5 class="fw-bold mb-2">Fair Market Valuation</h5>
+          <p class="text-muted small mb-0">Independent land valuation before any offer, shared transparently with you.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-file-contract"></i></div>
+          <h5 class="fw-bold mb-2">Clean, Documented Deals</h5>
+          <p class="text-muted small mb-0">Every agreement — cash sale or joint venture — is drafted and reviewed by our legal team.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-vault"></i></div>
+          <h5 class="fw-bold mb-2">Escrow-Backed Payments</h5>
+          <p class="text-muted small mb-0">Payments to landowners follow the same escrow discipline we use with our buyers.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="why-card">
+          <div class="why-icon"><i class="fa-solid fa-city"></i></div>
+          <h5 class="fw-bold mb-2">A Community Bearing Your Name</h5>
+          <p class="text-muted small mb-0">Joint venture partners can have naming input and a stake in the finished community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIP MODELS -->
+<section id="models" style="background:var(--sage);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">Two Ways to Work With Us</span>
+      <h2 class="display-6 fw-medium">Partnership Models</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-6 reveal">
+        <div class="model-card outright">
+          <div class="model-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+          <h4>Outright Purchase</h4>
+          <p>Sell your land directly to SAFE Community Group for an agreed lump-sum price, paid in full at registration.</p>
+          <ul class="model-list">
+            <li><i class="fa-solid fa-check"></i> One-time payment, no ongoing involvement required</li>
+            <li><i class="fa-solid fa-check"></i> Payment released through escrow upon registration</li>
+            <li><i class="fa-solid fa-check"></i> Best for owners who want a clean, immediate exit</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="model-card jv">
+          <div class="model-icon"><i class="fa-solid fa-people-arrows"></i></div>
+          <h4>Joint Venture (Ratio Sharing)</h4>
+          <p>Retain ownership stake and receive a share of developed units or sale proceeds once the project is complete.</p>
+          <ul class="model-list">
+            <li><i class="fa-solid fa-check"></i> Typical ratio: 60:40 or 55:45, depending on plot size and location</li>
+            <li><i class="fa-solid fa-check"></i> No construction cost borne by the landowner</li>
+            <li><i class="fa-solid fa-check"></i> Best for owners seeking long-term value over lump-sum cash</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAND CRITERIA -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">What We're Looking For</span>
+      <h2 class="display-6 fw-medium">Land Criteria</h2>
+      <p class="text-muted mx-auto" style="max-width:600px;">Your land doesn't need to meet every point below — but the more that apply, the faster we can move to a site visit.</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="criteria-card">
+          <i class="fa-solid fa-vector-square"></i>
+          <div><div class="criteria-title">Minimum Size</div><div class="criteria-desc">3 Katha or larger for residential; 5+ Katha for mixed-use plots.</div></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="criteria-card">
+          <i class="fa-solid fa-road"></i>
+          <div><div class="criteria-title">Road Access</div><div class="criteria-desc">Minimum 20ft approach road; 40ft+ preferred for larger developments.</div></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="criteria-card">
+          <i class="fa-solid fa-file-shield"></i>
+          <div><div class="criteria-title">Clear Title</div><div class="criteria-desc">Registered Khatian with completed mutation and no ongoing legal dispute.</div></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="criteria-card">
+          <i class="fa-solid fa-building-shield"></i>
+          <div><div class="criteria-title">RAJUK / Authority Zone</div><div class="criteria-desc">Located within an approved planning zone (RAJUK, RAJUK-adjacent, or municipal jurisdiction).</div></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="criteria-card">
+          <i class="fa-solid fa-water"></i>
+          <div><div class="criteria-title">Flood-Free Elevation</div><div class="criteria-desc">Land above seasonal flood level, or feasible for cost-effective land-filling.</div></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="criteria-card">
+          <i class="fa-solid fa-users"></i>
+          <div><div class="criteria-title">Single or Few Owners</div><div class="criteria-desc">Fewer co-owners speeds up agreement — large heir groups are still welcome, just slower.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <span class="eyebrow mb-3">How It Works</span>
+        <h2 class="display-6 fw-medium mb-3">From Submission to Signing</h2>
+        <p class="text-muted">Every step below is documented — you'll know exactly where your land stands in the process at any point.</p>
+      </div>
+      <div class="col-lg-8 reveal">
+        <div class="process-track">
+          <div class="process-item done">
+            <div class="process-dot"></div>
+            <div class="process-step-num">STEP 01</div>
+            <div class="process-title">Submit Your Land Details</div>
+            <div class="process-desc">Fill out the form below with location, size, road width and your expected terms.</div>
+          </div>
+          <div class="process-item done">
+            <div class="process-dot"></div>
+            <div class="process-step-num">STEP 02</div>
+            <div class="process-title">Initial Review (3–5 Days)</div>
+            <div class="process-desc">Our land acquisition team checks basic fit against our criteria and current expansion zones.</div>
+          </div>
+          <div class="process-item">
+            <div class="process-dot"></div>
+            <div class="process-step-num">STEP 03</div>
+            <div class="process-title">Site Visit & Valuation</div>
+            <div class="process-desc">If it's a fit, we schedule a joint site visit and commission an independent valuation.</div>
+          </div>
+          <div class="process-item">
+            <div class="process-dot"></div>
+            <div class="process-step-num">STEP 04</div>
+            <div class="process-title">Title Verification</div>
+            <div class="process-desc">Our legal team verifies Khatian, mutation and any encumbrance before an offer is finalised.</div>
+          </div>
+          <div class="process-item">
+            <div class="process-dot"></div>
+            <div class="process-step-num">STEP 05</div>
+            <div class="process-title">Agreement & Registration</div>
+            <div class="process-desc">Outright sale or joint venture agreement is signed, registered, and payment released via escrow.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AREAS OF INTEREST -->
+<section class="section-tight">
+  <div class="container text-center">
+    <span class="eyebrow center mb-3 justify-content-center">Where We're Buying</span>
+    <h2 class="display-6 fw-medium mb-4">Areas of Interest</h2>
+    <div class="d-flex flex-wrap gap-3 justify-content-center reveal">
+      <div class="area-chip"><i class="fa-solid fa-location-dot"></i> Purbachal & Rupganj</div>
+      <div class="area-chip"><i class="fa-solid fa-location-dot"></i> Bashundhara & Bhatara</div>
+      <div class="area-chip"><i class="fa-solid fa-location-dot"></i> Demra & Matuail</div>
+      <div class="area-chip"><i class="fa-solid fa-location-dot"></i> Uttara & Turag</div>
+      <div class="area-chip"><i class="fa-solid fa-location-dot"></i> Halishahar, Chattogram</div>
+      <div class="area-chip"><i class="fa-solid fa-location-dot"></i> Narayanganj (select zones)</div>
+    </div>
+    <p class="text-muted small mt-4 mb-0">Outside these areas? Submit anyway — we periodically expand into adjacent zones.</p>
+  </div>
+</section>
+
+<!-- LANDOWNER VOICES -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">From Landowners</span>
+      <h2 class="display-6 fw-medium">Partners Who've Worked With Us</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">We had inherited land with three co-owners. SAFE's legal team handled the mutation cleanly — something two previous developers couldn't manage.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1607747302264-9fa3e06db571?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Landowner">
+            <div><div class="voice-name">Md. Alauddin</div><div class="voice-role">Landowner, Purbachal</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">We chose the joint venture route. Two years later, our family's share of the finished units is worth well beyond what a cash sale would have offered.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1551836022-de5496e1b357?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Landowner">
+            <div><div class="voice-name">Rehana Begum</div><div class="voice-role">JV Partner, SAFE Willow Court</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">Payment came through escrow exactly as scheduled — no chasing, no excuses. That reliability mattered more to us than getting the highest bid.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a9d0d00961?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Landowner">
+            <div><div class="voice-name">Kamal Uddin</div><div class="voice-role">Landowner, Bashundhara</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINI FAQ FOR LANDOWNERS -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <span class="eyebrow mb-3">Common Questions</span>
+        <h2 class="display-6 fw-medium mb-3">For Landowners</h2>
+        <p class="text-muted">A few things owners ask us before submitting their land.</p>
+      </div>
+      <div class="col-lg-8">
+        <div class="mini-faq-item reveal">
+          <div class="mini-faq-q" onclick="toggleMiniFaq(this)">How long does the review process take? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="mini-faq-a"><div class="mini-faq-a-inner">Initial review takes 3–5 business days. If your land fits our criteria, a site visit is typically arranged within two weeks.</div></div>
+        </div>
+        <div class="mini-faq-item reveal">
+          <div class="mini-faq-q" onclick="toggleMiniFaq(this)">Do I need a lawyer before I submit? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="mini-faq-a"><div class="mini-faq-a-inner">Not to submit — but we recommend having your own legal counsel review any offer or agreement before signing, just as we recommend to our buyers.</div></div>
+        </div>
+        <div class="mini-faq-item reveal">
+          <div class="mini-faq-q" onclick="toggleMiniFaq(this)">Can multiple co-owners submit one plot together? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="mini-faq-a"><div class="mini-faq-a-inner">Yes. One representative can submit on behalf of all co-owners, though all owners will need to be party to the final agreement.</div></div>
+        </div>
+        <div class="mini-faq-item reveal">
+          <div class="mini-faq-q" onclick="toggleMiniFaq(this)">Is there a fee to submit my land for review? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="mini-faq-a"><div class="mini-faq-a-inner">No. Submission and initial review are completely free — you only proceed to costs (if any, e.g. registration) once you accept a specific agreement.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAND OFFER FORM -->
+<section id="offer">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="text-center mb-5 reveal">
+          <span class="eyebrow center mb-3 justify-content-center">Submit Your Land</span>
+          <h2 class="display-6 fw-medium">Tell Us About Your Land</h2>
+          <p class="text-muted mx-auto" style="max-width:560px;">Fill in as much as you can — our acquisition team will follow up within 3–5 business days.</p>
+        </div>
+
+        <div class="offer-form-wrap reveal">
+          <form onsubmit="return false;">
+            <div class="form-section-label">Owner Information</div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Full Name</label>
+                <input type="text" class="form-control" placeholder="Your name">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Phone Number</label>
+                <input type="text" class="form-control" placeholder="+880">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Email</label>
+                <input type="email" class="form-control" placeholder="you@example.com">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Number of Co-Owners</label>
+                <input type="number" class="form-control" placeholder="e.g. 1">
+              </div>
+            </div>
+
+            <div class="form-section-label">Land Details</div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Location (Area / Mouza)</label>
+                <input type="text" class="form-control" placeholder="e.g. Purbachal, Sector 18">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Land Size</label>
+                <input type="text" class="form-control" placeholder="e.g. 5 Katha">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Road Width</label>
+                <input type="text" class="form-control" placeholder="e.g. 30ft">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Current Land Use</label>
+                <select class="form-select">
+                  <option>Vacant / Agricultural</option>
+                  <option>Residential Structure Present</option>
+                  <option>Commercial Structure Present</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-section-label">Your Preference</div>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Preferred Model</label>
+                <select class="form-select">
+                  <option>Outright Purchase</option>
+                  <option>Joint Venture</option>
+                  <option>Open to Either</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold small">Expected Price / Ratio (Optional)</label>
+                <input type="text" class="form-control" placeholder="e.g. ৳90 Lakh/Katha or 55:45">
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold small">Upload Documents (Khatian, Mutation, etc.)</label>
+                <input type="file" class="form-control" multiple>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold small">Additional Notes</label>
+                <textarea class="form-control" rows="4" placeholder="Anything else we should know about the land..."></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-maroon w-100">Submit Land Details <i class="fa-solid fa-paper-plane ms-2"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">Prefer to Talk Before Submitting?</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.8);">Our land acquisition team is happy to walk through your options over a call first.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#contact" class="btn btn-gold">Call Our Land Team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-tight" style="background:var(--sage);" id="contact">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Land Acquisition Team</span>
+        <h2 class="display-6 fw-medium mb-4">Get in Touch</h2>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone"></i></div>
+          <div class="text-muted small">01713 167754 | 01713 878824</div>
+        </div>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div class="text-muted small">land@safecommunitygroup.com</div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="text-muted small">Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362</div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" class="rounded-4 w-100" style="height:320px;object-fit:cover;" alt="Land acquisition site">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Ventures</a></li>
+          <li><a href="#">Land Wanted</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>land@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  function toggleMiniFaq(el){
+    const item = el.closest('.mini-faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.mini-faq-item.open').forEach(i => i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
