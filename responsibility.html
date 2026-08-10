@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Responsibility | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --green:#3E6B4F;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .eyebrow.light{color:var(--gold);}
+  .eyebrow.center{justify-content:center;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.8rem 1.85rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{background:var(--gold);color:var(--maroon-dark);border:1px solid var(--gold);padding:.85rem 1.9rem;border-radius:999px;font-weight:800;font-size:.92rem;transition:.25s ease;}
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  .page-banner{position:relative;min-height:420px;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:3.5rem;}
+  .page-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(44,66,50,.9) 0%, rgba(74,10,42,.82) 55%, rgba(34,29,31,.65) 100%);}
+  .page-banner h1{color:#fff;font-size:clamp(2.2rem, 4.8vw, 3.6rem);font-weight:600;line-height:1.08;}
+  .page-banner h1 em{font-style:italic;color:var(--gold);}
+  .breadcrumb-custom{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:1.4rem;}
+  .breadcrumb-custom a{color:rgba(255,255,255,.7);text-decoration:none;}
+  .breadcrumb-custom .current{color:var(--gold);}
+
+  section{padding:5.5rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* ===================== PILLARS ===================== */
+  .pillar-card{background:#fff;border-radius:var(--radius);padding:2.2rem 1.8rem;height:100%;border:1px solid rgba(0,0,0,.05);transition:.3s ease;text-align:center;position:relative;}
+  .pillar-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(62,107,79,.12);}
+  .pillar-icon{width:64px;height:64px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;color:var(--green);font-size:1.4rem;margin:0 auto 1.2rem;}
+
+  /* ===================== FOUNDATION SPOTLIGHT ===================== */
+  .foundation-card{border-radius:var(--radius);overflow:hidden;background:var(--charcoal);position:relative;min-height:400px;display:flex;align-items:stretch;box-shadow:0 20px 60px rgba(0,0,0,.18);}
+  .foundation-photo{flex:0 0 44%;position:relative;overflow:hidden;}
+  .foundation-photo img{width:100%;height:100%;object-fit:cover;}
+  .foundation-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(34,29,31,0) 55%, rgba(34,29,31,1) 100%);}
+  .foundation-content{flex:1;padding:3rem 2.6rem;color:#fff;display:flex;flex-direction:column;justify-content:center;}
+  .foundation-content .eyebrow{color:var(--gold);}
+  .foundation-content .eyebrow::before{background:var(--gold);}
+  .foundation-content h2{color:#fff;font-size:clamp(1.6rem,2.6vw,2.1rem);font-weight:600;margin-bottom:1rem;}
+  .foundation-content p{color:rgba(255,255,255,.78);line-height:1.75;font-size:.95rem;}
+  @media (max-width:850px){
+    .foundation-card{flex-direction:column;min-height:auto;}
+    .foundation-photo{flex:0 0 auto;height:280px;}
+    .foundation-photo::after{background:linear-gradient(180deg, rgba(34,29,31,0) 40%, rgba(34,29,31,1) 100%);}
+    .foundation-content{padding:2.2rem 1.8rem;}
+  }
+
+  /* ===================== IMPACT STATS ===================== */
+  .impact-strip{background:var(--green);color:#fff;}
+  .impact-strip h3{font-family:'Fraunces',serif;font-size:2.5rem;color:var(--gold);margin-bottom:.1rem;}
+  .impact-strip .lbl{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);font-weight:600;}
+
+  /* ===================== PROGRAMS ===================== */
+  .program-card{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.05);height:100%;transition:.3s ease;}
+  .program-card:hover{transform:translateY(-6px);box-shadow:0 22px 46px rgba(62,107,79,.14);}
+  .program-img-wrap{position:relative;height:200px;overflow:hidden;}
+  .program-img-wrap img{width:100%;height:100%;object-fit:cover;transition:.5s ease;}
+  .program-card:hover .program-img-wrap img{transform:scale(1.07);}
+  .program-tag{position:absolute;top:14px;left:14px;background:var(--green);color:#fff;font-size:.68rem;font-weight:800;padding:.32rem .75rem;border-radius:999px;letter-spacing:.03em;text-transform:uppercase;}
+  .program-body{padding:1.5rem 1.4rem;}
+  .program-title{font-size:1.05rem;font-weight:600;margin-bottom:.4rem;}
+  .program-desc{font-size:.85rem;color:var(--grey);line-height:1.6;margin-bottom:0;}
+
+  /* ===================== TIMELINE ===================== */
+  .csr-timeline{position:relative;padding-left:2.2rem;}
+  .csr-timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:repeating-linear-gradient(to bottom, var(--gold) 0 6px, transparent 6px 12px);}
+  .csr-item{position:relative;padding-bottom:2.2rem;}
+  .csr-item:last-child{padding-bottom:0;}
+  .csr-dot{position:absolute;left:-2.2rem;top:2px;width:18px;height:18px;border-radius:50%;background:var(--ivory);border:3px solid var(--green);}
+  .csr-year{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green);font-size:.9rem;}
+  .csr-title{font-weight:600;font-size:.98rem;margin-bottom:.15rem;}
+  .csr-desc{font-size:.85rem;color:var(--grey);}
+
+  /* ===================== GET INVOLVED ===================== */
+  .involve-card{background:#fff;border-radius:var(--radius);padding:2rem 1.7rem;text-align:center;height:100%;border:1px solid rgba(0,0,0,.05);transition:.3s ease;}
+  .involve-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(62,107,79,.12);}
+  .involve-icon{width:60px;height:60px;border-radius:50%;background:var(--sage);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 1rem;}
+
+  /* ===================== PARTNERS ===================== */
+  .partner-chip{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:999px;padding:.7rem 1.4rem;display:flex;align-items:center;gap:.6rem;font-size:.85rem;font-weight:700;color:var(--charcoal);box-shadow:0 4px 14px rgba(0,0,0,.04);}
+  .partner-chip i{color:var(--green);}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(120deg, var(--green) 0%, #2c4232 100%);border-radius:28px;color:#fff;padding:3.8rem 3rem;position:relative;overflow:hidden;}
+  .cta-section::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.2);}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media (max-width:991px){section{padding:3.6rem 0;}}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#csr">Social Responsibility</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a><span>›</span><span class="current">Social Responsibility</span>
+    </div>
+    <h1 class="mb-3 reveal">Building Homes Is<br>Only <em>Half</em> the Work</h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.05rem;max-width:620px;">Through SAFE Foundation and our own community programmes, we invest in education, healthcare and welfare for the neighbourhoods we build in — not just the buildings themselves.</p>
+    <div class="d-flex gap-3 flex-wrap mt-4 reveal">
+      <a href="#involved" class="btn btn-gold">Get Involved <i class="fa-solid fa-arrow-down ms-2"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- CSR PHILOSOPHY / PILLARS -->
+<section id="csr">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">Our Approach</span>
+      <h2 class="display-6 fw-medium">Four Focus Areas</h2>
+      <p class="text-muted mx-auto" style="max-width:620px;">We concentrate our giving where it compounds — education, health, environment and emergency welfare — rather than spreading thin across everything at once.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h5 class="fw-bold mb-2">Education</h5>
+          <p class="text-muted small mb-0">Scholarships and school support for children of resident and staff families.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          <h5 class="fw-bold mb-2">Healthcare</h5>
+          <p class="text-muted small mb-0">Free health camps and subsidised medicine through SAFE Pharma outlets.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-leaf"></i></div>
+          <h5 class="fw-bold mb-2">Environment</h5>
+          <p class="text-muted small mb-0">Tree plantation and green-corridor upkeep across every SAFE community.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="pillar-card">
+          <div class="pillar-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h5 class="fw-bold mb-2">Emergency Welfare</h5>
+          <p class="text-muted small mb-0">Disaster relief funds for flood and cyclone-affected families near our sites.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFE FOUNDATION SPOTLIGHT -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="mb-5 reveal">
+      <span class="eyebrow mb-3">Our CSR Arm</span>
+      <h2 class="display-6 fw-medium">SAFE Foundation</h2>
+    </div>
+    <div class="foundation-card reveal">
+      <div class="foundation-photo">
+        <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=900&auto=format&fit=crop" alt="SAFE Foundation community work">
+      </div>
+      <div class="foundation-content">
+        <span class="eyebrow mb-3">Charity & Community Welfare</span>
+        <h2>The group's dedicated arm for giving back.</h2>
+        <p>SAFE Foundation runs our scholarship programme, healthcare-access initiatives and disaster-relief response — funded through a fixed percentage of group profits and matched by voluntary staff contributions. It operates under the same board oversight as every other SAFE concern, with its accounts audited annually alongside the rest of the group.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STATS -->
+<div class="impact-strip section-tight">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3"><h3>420+</h3><div class="lbl">Scholarships Awarded</div></div>
+      <div class="col-6 col-md-3"><h3>18</h3><div class="lbl">Health Camps Held</div></div>
+      <div class="col-6 col-md-3"><h3>3,200+</h3><div class="lbl">Trees Planted</div></div>
+      <div class="col-6 col-md-3"><h3>৳1.2 Cr+</h3><div class="lbl">Disaster Relief Disbursed</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">In Action</span>
+      <h2 class="display-6 fw-medium">Current Programmes</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="program-card">
+          <div class="program-img-wrap">
+            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=700&auto=format&fit=crop" alt="Scholarship programme">
+            <span class="program-tag">Education</span>
+          </div>
+          <div class="program-body">
+            <div class="program-title">SAFE Scholars Programme</div>
+            <p class="program-desc">Annual scholarships for meritorious children of staff and resident families across all communities.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="program-card">
+          <div class="program-img-wrap">
+            <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=700&auto=format&fit=crop" alt="Health camp">
+            <span class="program-tag">Healthcare</span>
+          </div>
+          <div class="program-body">
+            <div class="program-title">Free Health Camps</div>
+            <p class="program-desc">Quarterly health camps run with SAFE Pharma, offering free checkups and subsidised medicine.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="program-card">
+          <div class="program-img-wrap">
+            <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=700&auto=format&fit=crop" alt="Tree plantation">
+            <span class="program-tag">Environment</span>
+          </div>
+          <div class="program-body">
+            <div class="program-title">Green Corridor Initiative</div>
+            <p class="program-desc">Ongoing tree plantation and upkeep of shared green space in every handed-over community.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="program-card">
+          <div class="program-img-wrap">
+            <img src="https://images.unsplash.com/photo-1547683905-f686c993aae5?q=80&w=700&auto=format&fit=crop" alt="Disaster relief">
+            <span class="program-tag">Emergency Welfare</span>
+          </div>
+          <div class="program-body">
+            <div class="program-title">Disaster Relief Fund</div>
+            <p class="program-desc">Rapid-response fund for flood and cyclone-affected families near SAFE project sites.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <span class="eyebrow mb-3">Our Journey</span>
+        <h2 class="display-6 fw-medium mb-3">CSR Milestones</h2>
+        <p class="text-muted">From an informal staff welfare fund to a fully audited foundation.</p>
+      </div>
+      <div class="col-lg-8 reveal">
+        <div class="csr-timeline">
+          <div class="csr-item">
+            <div class="csr-dot"></div>
+            <div class="csr-year">2015</div>
+            <div class="csr-title">Staff Welfare Fund Established</div>
+            <div class="csr-desc">An informal fund to support staff during medical emergencies.</div>
+          </div>
+          <div class="csr-item">
+            <div class="csr-dot"></div>
+            <div class="csr-year">2019</div>
+            <div class="csr-title">First Scholarship Batch</div>
+            <div class="csr-desc">32 children of resident and staff families received their first SAFE scholarships.</div>
+          </div>
+          <div class="csr-item">
+            <div class="csr-dot"></div>
+            <div class="csr-year">2022</div>
+            <div class="csr-title">SAFE Foundation Formalised</div>
+            <div class="csr-desc">The fund became a formally registered foundation with its own audited accounts.</div>
+          </div>
+          <div class="csr-item">
+            <div class="csr-dot"></div>
+            <div class="csr-year">2024</div>
+            <div class="csr-title">Green Corridor Initiative Launched</div>
+            <div class="csr-desc">Tree plantation drives began across all active and completed communities.</div>
+          </div>
+          <div class="csr-item">
+            <div class="csr-dot"></div>
+            <div class="csr-year">2026</div>
+            <div class="csr-title">৳1.2 Cr+ in Cumulative Relief</div>
+            <div class="csr-desc">Disaster relief disbursed to flood-affected families near SAFE project sites since inception.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section id="involved">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">Join Us</span>
+      <h2 class="display-6 fw-medium">Get Involved</h2>
+      <p class="text-muted mx-auto" style="max-width:600px;">You don't have to be a SAFE resident or employee to support these programmes.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 reveal">
+        <div class="involve-card">
+          <div class="involve-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <h5 class="fw-bold mb-2">Donate</h5>
+          <p class="text-muted small mb-3">Contribute directly to the scholarship fund or disaster relief fund.</p>
+          <a href="#contact" class="btn btn-outline-maroon btn-sm">Donate Now</a>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="involve-card">
+          <div class="involve-icon"><i class="fa-solid fa-people-group"></i></div>
+          <h5 class="fw-bold mb-2">Volunteer</h5>
+          <p class="text-muted small mb-3">Join a health camp, tree plantation drive, or scholarship interview panel.</p>
+          <a href="#contact" class="btn btn-outline-maroon btn-sm">Sign Up</a>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="involve-card">
+          <div class="involve-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h5 class="fw-bold mb-2">Partner With Us</h5>
+          <p class="text-muted small mb-3">NGOs and CSR teams — let's co-run a programme in a SAFE community.</p>
+          <a href="#contact" class="btn btn-outline-maroon btn-sm">Propose a Partnership</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section-tight" style="background:var(--sage);">
+  <div class="container text-center">
+    <span class="eyebrow center mb-3 justify-content-center">Working Alongside</span>
+    <h2 class="display-6 fw-medium mb-4">Our Partner Organisations</h2>
+    <div class="d-flex flex-wrap gap-3 justify-content-center reveal">
+      <div class="partner-chip"><i class="fa-solid fa-hospital"></i> Community Health Trust</div>
+      <div class="partner-chip"><i class="fa-solid fa-school"></i> Bangladesh Education Alliance</div>
+      <div class="partner-chip"><i class="fa-solid fa-seedling"></i> Green Dhaka Initiative</div>
+      <div class="partner-chip"><i class="fa-solid fa-house-chimney-medical"></i> Disaster Response Network</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">Want to Support Our Next Programme?</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.85);">Reach out to SAFE Foundation directly — every contribution is tracked and reported the same way we handle our audits.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#contact" class="btn btn-gold">Contact SAFE Foundation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-tight" style="background:var(--sage);" id="contact">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">SAFE Foundation</span>
+        <h2 class="display-6 fw-medium mb-4">Get in Touch</h2>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone"></i></div>
+          <div class="text-muted small">01713 167754 | 01713 878824</div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div class="text-muted small">foundation@safecommunitygroup.com</div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Full Name</label>
+              <input type="text" class="form-control" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Email</label>
+              <input type="email" class="form-control" placeholder="you@example.com">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">I'm Interested In</label>
+              <select class="form-select">
+                <option>Donating</option>
+                <option>Volunteering</option>
+                <option>Partnering as an Organisation</option>
+                <option>General Question</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Message</label>
+              <textarea class="form-control" rows="4" placeholder="Tell us how you'd like to help..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-maroon w-100">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Ventures</a></li>
+          <li><a href="#">Social Responsibility</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>foundation@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
