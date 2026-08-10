@@ -614,6 +614,57 @@
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.active{opacity:1;transform:translateY(0);}
 
+  /* ===================== NEW: GROUP COMPANIES TEASER ===================== */
+  .concern-mini{
+    background:#fff;border-radius:12px;padding:1.5rem 1.2rem;text-align:center;height:100%;
+    box-shadow:0 6px 20px rgba(0,0,0,.05);border-top:3px solid var(--gold);transition:.3s ease;
+  }
+  .concern-mini:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(109,15,61,.12);}
+  .concern-mini .cm-icon{width:54px;height:54px;border-radius:50%;background:var(--sage);color:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin:0 auto .9rem;}
+  .concern-mini .cm-name{font-weight:700;font-size:.92rem;margin-bottom:.15rem;}
+  .concern-mini .cm-sector{font-size:.74rem;color:var(--grey);}
+
+  /* ===================== NEW: COMPLIANCE / CERTIFICATIONS STRIP ===================== */
+  .cert-row{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:center;}
+  .cert-chip{
+    background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:999px;
+    padding:.7rem 1.4rem;display:flex;align-items:center;gap:.6rem;
+    font-size:.85rem;font-weight:700;color:var(--charcoal);box-shadow:0 4px 14px rgba(0,0,0,.04);
+  }
+  .cert-chip i{color:var(--maroon);}
+
+  /* ===================== NEW: LAND WANTED BANNER ===================== */
+  .land-banner{
+    border-radius:28px;overflow:hidden;position:relative;min-height:280px;
+    display:flex;align-items:center;background:var(--charcoal);
+  }
+  .land-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.35;}
+  .land-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg, rgba(34,29,31,.85) 0%, rgba(109,15,61,.75) 100%);}
+  .land-banner-content{position:relative;z-index:2;padding:3rem 2.8rem;color:#fff;}
+  .land-banner-content h2{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600;margin-bottom:.8rem;}
+  .land-banner-content p{color:rgba(255,255,255,.78);max-width:520px;margin-bottom:0;}
+
+  /* ===================== NEW: FAQ PREVIEW ===================== */
+  .mini-faq-item{background:#fff;border-radius:12px;margin-bottom:.8rem;border:1px solid rgba(0,0,0,.06);overflow:hidden;}
+  .mini-faq-q{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.3rem;cursor:pointer;font-weight:700;font-size:.92rem;}
+  .mini-faq-q i{color:var(--maroon);transition:transform .3s ease;margin-left:auto;}
+  .mini-faq-item.open .mini-faq-q i{transform:rotate(180deg);}
+  .mini-faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .mini-faq-item.open .mini-faq-a{max-height:220px;}
+  .mini-faq-a-inner{padding:0 1.3rem 1.1rem;color:var(--grey);font-size:.87rem;line-height:1.65;}
+
+  /* ===================== NEW: INSIGHTS / BLOG ===================== */
+  .insight-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.05);height:100%;transition:.3s ease;}
+  .insight-card:hover{transform:translateY(-6px);box-shadow:0 22px 46px rgba(109,15,61,.12);}
+  .insight-img-wrap{position:relative;height:190px;overflow:hidden;}
+  .insight-img-wrap img{width:100%;height:100%;object-fit:cover;transition:.5s ease;}
+  .insight-card:hover .insight-img-wrap img{transform:scale(1.07);}
+  .insight-tag{position:absolute;top:12px;left:12px;background:var(--maroon);color:#fff;font-size:.65rem;font-weight:800;padding:.3rem .7rem;border-radius:999px;letter-spacing:.03em;text-transform:uppercase;}
+  .insight-body{padding:1.4rem 1.3rem;}
+  .insight-date{font-size:.72rem;color:var(--grey);font-weight:600;margin-bottom:.4rem;}
+  .insight-title{font-size:1rem;font-weight:600;margin-bottom:.5rem;line-height:1.35;}
+  .insight-link{font-size:.82rem;font-weight:800;color:var(--maroon);text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;}
+
   @media (max-width:991px){
     .hero{padding-top:7.5rem;text-align:center;}
     .hero p.lead{margin-left:auto;margin-right:auto;}
@@ -649,6 +700,8 @@
                 <li><a href="#properties">Properties</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="team.html">Team</a></li>
+                <li><a href="global-wing.html">Global Wings </a></li>
+                <li><a href="responsibility.html">Social Responsibility </a></li>
                 <li><a href="certifications.html">Certifications </a></li>
                 <li><a href="mission.html">Mission & Vision</a></li>
                 <li><a href="career.html"> Careers </a></li>
@@ -662,7 +715,7 @@
         <li class="nav-item"><a class="nav-link" href="groupCompany.html">Ventures</a></li>
         <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
         <!-- <li class="nav-item"><a class="nav-link" href="#testimonials">Stories</a></li> -->
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="{{ route('login') }}">Log in</a></li>
         <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#contact">Book a Visit</a></li>
       </ul>
@@ -913,6 +966,44 @@
   </div>
 </section>
 
+<!-- NEW: GROUP COMPANIES TEASER -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow mb-3">One Family, Many Callings</span>
+        <h2 class="display-6 fw-medium">Our Group of Companies</h2>
+      </div>
+      <div class="col-lg-4 reveal">
+        <p class="text-muted mb-0">Beyond real estate, the SAFE name stands behind education, healthcare and commerce — each concern run to the same standard of trust.</p>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-lg-2 col-md-4 col-6 reveal">
+        <div class="concern-mini"><div class="cm-icon"><i class="fa-solid fa-building"></i></div><div class="cm-name">Real Estate</div><div class="cm-sector">Land & Housing</div></div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6 reveal">
+        <div class="concern-mini"><div class="cm-icon"><i class="fa-solid fa-mosque"></i></div><div class="cm-name">Nidarul Madrasha</div><div class="cm-sector">Education</div></div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6 reveal">
+        <div class="concern-mini"><div class="cm-icon"><i class="fa-solid fa-mortar-pestle"></i></div><div class="cm-name">SAFE Pharma</div><div class="cm-sector">Healthcare</div></div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6 reveal">
+        <div class="concern-mini"><div class="cm-icon"><i class="fa-solid fa-cart-shopping"></i></div><div class="cm-name">SAFE Mart</div><div class="cm-sector">Retail & Commerce</div></div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6 reveal">
+        <div class="concern-mini"><div class="cm-icon"><i class="fa-solid fa-hand-holding-heart"></i></div><div class="cm-name">SAFE Foundation</div><div class="cm-sector">Community Welfare</div></div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6 reveal">
+        <div class="concern-mini"><div class="cm-icon"><i class="fa-solid fa-earth-asia"></i></div><div class="cm-name">Global Wings</div><div class="cm-sector">Overseas Employment</div></div>
+      </div>
+    </div>
+    <div class="text-center mt-4 reveal">
+      <a href="groupCompany.html" class="btn btn-outline-maroon">View All Group Companies <i class="fa-solid fa-arrow-right ms-2"></i></a>
+    </div>
+  </div>
+</section>
+
 <!-- PROPERTIES -->
 <section class="bg-sage-section" id="properties">
   <div class="container">
@@ -1101,6 +1192,24 @@
   </div>
 </section>
 
+<!-- NEW: CERTIFICATIONS / COMPLIANCE STRIP -->
+<section class="section-tight" style="background:var(--ivory);">
+  <div class="container text-center">
+    <span class="eyebrow justify-content-center mb-3">Compliance</span>
+    <h2 class="display-6 fw-medium mb-4">Certified & Regulated By</h2>
+    <div class="cert-row reveal">
+      <div class="cert-chip"><i class="fa-solid fa-building-shield"></i> RAJUK Approved</div>
+      <div class="cert-chip"><i class="fa-solid fa-file-contract"></i> RERA Registered</div>
+      <div class="cert-chip"><i class="fa-solid fa-landmark"></i> Bangladesh Bank Escrow</div>
+      <div class="cert-chip"><i class="fa-solid fa-file-invoice-dollar"></i> ICAB Audited</div>
+      <div class="cert-chip"><i class="fa-solid fa-shield-halved"></i> ISO 9001 (Construction QA)</div>
+    </div>
+    <div class="mt-4 reveal">
+      <a href="certifications.html" class="btn btn-outline-maroon">View All Certifications <i class="fa-solid fa-arrow-right ms-2"></i></a>
+    </div>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section class="bg-sage-section">
   <div class="container">
@@ -1128,6 +1237,23 @@
         <div class="process-num mb-2">04</div>
         <h5 class="fw-bold">Move In, Safely</h5>
         <p class="text-muted small px-2">Get keys, meet your resident council, and settle in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: LAND WANTED BANNER -->
+<section class="section-tight" style="padding-top:0;">
+  <div class="container">
+    <div class="land-banner reveal">
+      <div class="land-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1600&auto=format&fit=crop');"></div>
+      <div class="land-banner-content">
+        <span class="eyebrow mb-3" style="color:var(--gold);"><span style="width:26px;height:2px;background:var(--gold);display:inline-block;"></span> For Landowners</span>
+        <h2>Own Land Near Dhaka? Let's Build Together.</h2>
+        <p>We're actively acquiring land through outright purchase or joint venture — fair valuation, escrow-backed payment, and a clean, documented deal.</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="land-wanted.html" class="btn btn-gold">Submit Your Land <i class="fa-solid fa-arrow-right ms-2"></i></a>
+        </div>
       </div>
     </div>
   </div>
@@ -1168,6 +1294,93 @@
           <div class="d-flex align-items-center gap-3">
             <img src="https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?q=80&w=200&auto=format&fit=crop" class="testimonial-avatar" alt="Resident">
             <div><strong>Farhana Chowdhury</strong><div class="text-muted small">Landowner, Purbachal</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4 reveal">
+      <a href="testmonial.html" class="btn btn-outline-maroon">Read All Testimonials <i class="fa-solid fa-arrow-right ms-2"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: FAQ PREVIEW -->
+<section class="bg-sage-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4 reveal">
+        <span class="eyebrow mb-3">Common Questions</span>
+        <h2 class="display-6 fw-medium mb-3">Quick Answers</h2>
+        <p class="text-muted mb-4">A few things buyers ask us most before booking.</p>
+        <a href="faq.html" class="btn btn-maroon">View Full FAQ <i class="fa-solid fa-arrow-right ms-2"></i></a>
+      </div>
+      <div class="col-lg-8">
+        <div class="mini-faq-item reveal">
+          <div class="mini-faq-q" onclick="toggleMiniFaq(this)">Is every SAFE plot RAJUK approved? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="mini-faq-a"><div class="mini-faq-a-inner">Yes — no plot is marketed until its RAJUK approval, Khatian and mutation are confirmed in writing.</div></div>
+        </div>
+        <div class="mini-faq-item reveal">
+          <div class="mini-faq-q" onclick="toggleMiniFaq(this)">How does the escrow payment system work? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="mini-faq-a"><div class="mini-faq-a-inner">Buyer payments are held in a bank-structured escrow account and released only against verified construction milestones.</div></div>
+        </div>
+        <div class="mini-faq-item reveal">
+          <div class="mini-faq-q" onclick="toggleMiniFaq(this)">What happens after I move in? <i class="fa-solid fa-chevron-down"></i></div>
+          <div class="mini-faq-a"><div class="mini-faq-a-inner">Residents elect a council with a standing advisory channel to the board — issues don't disappear after handover.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW: INSIGHTS / NEWS -->
+<section>
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow mb-3">From the Blog</span>
+        <h2 class="display-6 fw-medium">Latest Insights</h2>
+      </div>
+      <div class="col-lg-4 reveal">
+        <p class="text-muted mb-0">Guides and updates on buying, verifying and living in a SAFE community.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="insight-card">
+          <div class="insight-img-wrap">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=700&auto=format&fit=crop" alt="Land verification guide">
+            <span class="insight-tag">Guide</span>
+          </div>
+          <div class="insight-body">
+            <div class="insight-date">Aug 2026</div>
+            <div class="insight-title">5 Documents to Check Before Booking Any Flat in Dhaka</div>
+            <a href="#" class="insight-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="insight-card">
+          <div class="insight-img-wrap">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=700&auto=format&fit=crop" alt="Escrow explained">
+            <span class="insight-tag">Explainer</span>
+          </div>
+          <div class="insight-body">
+            <div class="insight-date">Jul 2026</div>
+            <div class="insight-title">How Escrow Protects Your Payment During Construction</div>
+            <a href="#" class="insight-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="insight-card">
+          <div class="insight-img-wrap">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=700&auto=format&fit=crop" alt="Resident council">
+            <span class="insight-tag">Community</span>
+          </div>
+          <div class="insight-body">
+            <div class="insight-date">Jun 2026</div>
+            <div class="insight-title">What a Resident Council Actually Does After Handover</div>
+            <a href="#" class="insight-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -1271,7 +1484,7 @@
           <li><a href="director.html">Director</a></li>
           <li><a href="director2.html">Director 2</a></li>
           <li><a href="#testimonials">Reviews</a></li>
-          <li><a href="#">Careers</a></li>
+          <li><a href="career.html">Careers</a></li>
         </ul>
       </div>
       <div class="col-lg-2 col-6">
@@ -1292,7 +1505,7 @@
     </div>
     <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
       <span>© 2026 Safe Community Group. All rights reserved.</span>
-      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+      <span><a href="policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></span>
     </div>
   </div>
 </footer>
@@ -1372,6 +1585,14 @@
       });
     });
   });
+
+  // Mini FAQ toggle
+  function toggleMiniFaq(el){
+    const item = el.closest('.mini-faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.mini-faq-item.open').forEach(i => i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  }
 </script>
 </body>
 </html>
