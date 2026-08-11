@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community | Safe Community Group</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --maroon:#6D0F3D;
+    --maroon-dark:#4A0A2A;
+    --gold:#C9A15A;
+    --ivory:#FBF7F2;
+    --sage:#EFE7DE;
+    --charcoal:#221D1F;
+    --grey:#6b6260;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Manrope',sans-serif;color:var(--charcoal);background:var(--ivory);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--maroon);display:flex;align-items:center;gap:.6rem;}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--gold);display:inline-block;}
+  .eyebrow.center{justify-content:center;}
+
+  .btn-maroon{background:var(--maroon);color:#fff;border:1px solid var(--maroon);padding:.85rem 1.9rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-maroon:hover{background:var(--maroon-dark);color:#fff;transform:translateY(-2px);}
+  .btn-outline-maroon{background:transparent;color:var(--maroon);border:1.5px solid var(--maroon);padding:.8rem 1.85rem;border-radius:999px;font-weight:700;font-size:.92rem;transition:.25s ease;}
+  .btn-outline-maroon:hover{background:var(--maroon);color:#fff;}
+  .btn-gold{background:var(--gold);color:var(--maroon-dark);border:1px solid var(--gold);padding:.85rem 1.9rem;border-radius:999px;font-weight:800;font-size:.92rem;transition:.25s ease;}
+  .btn-gold:hover{background:#b98f47;color:#fff;}
+
+  .navbar{padding:1rem 0;background:rgba(251,247,242,.97);box-shadow:0 6px 24px rgba(0,0,0,.06);backdrop-filter:blur(6px);}
+  .nav-link{font-weight:600;font-size:.92rem;color:var(--charcoal)!important;margin:0 .6rem;position:relative;}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--maroon);transition:.25s ease;}
+  .nav-link:hover::after{width:100%;}
+  .logo-icon path{fill:var(--maroon);}
+
+  .page-banner{position:relative;min-height:420px;display:flex;align-items:center;overflow:hidden;padding-top:6rem;padding-bottom:3.5rem;}
+  .page-banner-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+  .page-banner-overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(74,10,42,.92) 0%, rgba(109,15,61,.78) 45%, rgba(34,29,31,.6) 100%);}
+  .page-banner-overlay::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);background-size:56px 56px;}
+  .page-banner h1{color:#fff;font-size:clamp(2.2rem, 4.8vw, 3.6rem);font-weight:600;line-height:1.08;}
+  .page-banner h1 em{font-style:italic;color:var(--gold);}
+  .breadcrumb-custom{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:1.4rem;}
+  .breadcrumb-custom a{color:rgba(255,255,255,.7);text-decoration:none;}
+  .breadcrumb-custom .current{color:var(--gold);}
+
+  section{padding:5.5rem 0;}
+  .section-tight{padding:4rem 0;}
+
+  /* ===================== AMENITIES GRID ===================== */
+  .amenity-card{background:#fff;border-radius:var(--radius);padding:2.1rem 1.7rem;height:100%;border:1px solid rgba(0,0,0,.05);transition:.3s ease;text-align:center;}
+  .amenity-card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(109,15,61,.1);}
+  .amenity-icon{width:60px;height:60px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;color:var(--maroon);font-size:1.3rem;margin:0 auto 1.1rem;}
+
+  /* ===================== RESIDENT COUNCIL ===================== */
+  .council-card{border-radius:var(--radius);overflow:hidden;background:var(--charcoal);position:relative;min-height:420px;display:flex;align-items:stretch;box-shadow:0 20px 60px rgba(0,0,0,.18);}
+  .council-photo{flex:0 0 44%;position:relative;overflow:hidden;}
+  .council-photo img{width:100%;height:100%;object-fit:cover;}
+  .council-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(34,29,31,0) 55%, rgba(34,29,31,1) 100%);}
+  .council-content{flex:1;padding:3rem 2.6rem;color:#fff;display:flex;flex-direction:column;justify-content:center;}
+  .council-content .eyebrow{color:var(--gold);}
+  .council-content .eyebrow::before{background:var(--gold);}
+  .council-content h2{color:#fff;font-size:clamp(1.6rem,2.6vw,2.1rem);font-weight:600;margin-bottom:1rem;}
+  .council-content p{color:rgba(255,255,255,.78);line-height:1.75;font-size:.95rem;}
+  .council-list{list-style:none;padding:0;margin:1.2rem 0 0;}
+  .council-list li{display:flex;gap:.6rem;font-size:.87rem;color:rgba(255,255,255,.85);margin-bottom:.6rem;}
+  .council-list li i{color:var(--gold);margin-top:.15rem;flex-shrink:0;}
+  @media (max-width:850px){
+    .council-card{flex-direction:column;min-height:auto;}
+    .council-photo{flex:0 0 auto;height:280px;}
+    .council-photo::after{background:linear-gradient(180deg, rgba(34,29,31,0) 40%, rgba(34,29,31,1) 100%);}
+    .council-content{padding:2.2rem 1.8rem;}
+  }
+
+  /* ===================== GALLERY ===================== */
+  .gallery-item{position:relative;border-radius:14px;overflow:hidden;height:100%;min-height:220px;}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .gallery-item:hover img{transform:scale(1.07);}
+  .gallery-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(34,29,31,0) 55%, rgba(34,29,31,.75) 100%);}
+  .gallery-caption{position:absolute;left:1rem;bottom:.9rem;z-index:2;color:#fff;font-size:.82rem;font-weight:700;}
+
+  /* ===================== EVENTS ===================== */
+  .event-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.05);display:flex;height:100%;transition:.3s ease;}
+  .event-card:hover{transform:translateY(-5px);box-shadow:0 20px 42px rgba(109,15,61,.12);}
+  .event-date{flex:0 0 78px;background:var(--maroon);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem .4rem;}
+  .event-date .ed-day{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:700;line-height:1;}
+  .event-date .ed-month{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem;}
+  .event-body{padding:1.2rem 1.3rem;flex:1;}
+  .event-title{font-weight:700;font-size:.95rem;margin-bottom:.3rem;}
+  .event-meta{font-size:.78rem;color:var(--grey);}
+  .event-meta i{color:var(--gold);margin-right:.3rem;}
+
+  /* ===================== STATS ===================== */
+  .stats-strip{background:var(--maroon-dark);color:#fff;}
+  .stats-strip h3{font-family:'Fraunces',serif;font-size:2.5rem;color:var(--gold);margin-bottom:.1rem;}
+  .stats-strip .lbl{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;}
+
+  /* ===================== TESTIMONIALS ===================== */
+  .voice-card{background:#fff;border-radius:var(--radius);padding:2.1rem;height:100%;box-shadow:0 8px 24px rgba(0,0,0,.05);}
+  .voice-quote-icon{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--gold);opacity:.35;line-height:1;margin-bottom:.3rem;}
+  .voice-text{font-size:.9rem;color:var(--charcoal);line-height:1.7;margin-bottom:1.2rem;font-style:italic;}
+  .voice-person{display:flex;align-items:center;gap:.8rem;}
+  .voice-avatar{width:46px;height:46px;border-radius:50%;object-fit:cover;}
+  .voice-name{font-weight:700;font-size:.9rem;}
+  .voice-role{font-size:.76rem;color:var(--grey);}
+
+  /* CTA */
+  .cta-section{background:linear-gradient(120deg, var(--maroon) 0%, var(--maroon-dark) 100%);border-radius:28px;color:#fff;padding:3.8rem 3rem;position:relative;overflow:hidden;}
+  .cta-section::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.2);}
+
+  footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding-top:4.5rem;}
+  footer h5{color:#fff;font-family:'Fraunces',serif;}
+  footer a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.92rem;}
+  footer a:hover{color:var(--gold);}
+  .social-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;transition:.2s ease;}
+  .social-btn:hover{background:var(--maroon);color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:3rem;padding:1.4rem 0;font-size:.85rem;}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.active{opacity:1;transform:translateY(0);}
+
+  @media (max-width:991px){section{padding:3.6rem 0;}}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <svg class="logo-icon" width="38" height="40" viewBox="0 0 62 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M31 8C34 8 36.5 10.5 36.5 13.5C36.5 16.5 34 19 31 19C28 19 25.5 16.5 25.5 13.5C25.5 10.5 28 8 31 8Z"/>
+        <path d="M31 22C22 22 15 28 15 37V50C15 52 16.5 54 19 54C21 54 23 52 23 50V42L26 42V57C26 59.5 28 61 30 61C32 61 34 59.5 34 57V42L37 42V50C37 52 39 54 41 54C43.5 54 45 52 45 50V37C45 28 40 22 31 22Z"/>
+      </svg>
+      <span class="fw-bold" style="font-family:'Fraunces',serif;font-size:1.2rem;color:var(--maroon);">SAFE <span style="font-weight:600;font-size:.7rem;letter-spacing:.12em;color:var(--charcoal);">COMMUNITY GROUP</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <i class="fa-solid fa-bars fs-4" style="color:var(--maroon);"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Properties</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#amenities">Community</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="btn btn-maroon" href="#">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BANNER -->
+<section class="page-banner">
+  <div class="page-banner-bg" style="background-image:url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974&auto=format&fit=crop');"></div>
+  <div class="page-banner-overlay"></div>
+  <div class="container position-relative" style="z-index:2;">
+    <div class="breadcrumb-custom reveal">
+      <a href="#">Home</a><span>›</span><span class="current">Community</span>
+    </div>
+    <h1 class="mb-3 reveal">More Than Walls —<br>A <em>Neighbourhood</em> That Looks After You</h1>
+    <p class="reveal" style="color:rgba(255,255,255,.8);font-size:1.08rem;max-width:640px;">Every SAFE-branded community is planned around the people who'll actually live there: shared courtyards, guarded entry points, elected councils, and civic amenities within walking distance.</p>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities">
+  <div class="container">
+    <div class="row justify-content-between align-items-end mb-5">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow mb-3">Life Inside a SAFE Community</span>
+        <h2 class="display-6 fw-medium">Amenities Built Around You</h2>
+      </div>
+      <div class="col-lg-4 reveal">
+        <p class="text-muted mb-0">Not add-ons after the fact — these are designed into the masterplan of every SAFE community from day one.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fa-solid fa-video"></i></div>
+          <h5 class="fw-bold mb-2">24/7 CCTV & Guarded Gates</h5>
+          <p class="text-muted small mb-0">Round-the-clock trained security at every entry point.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fa-solid fa-tree"></i></div>
+          <h5 class="fw-bold mb-2">Green Courtyards & Parks</h5>
+          <p class="text-muted small mb-0">Shared open space designed into every masterplan.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fa-solid fa-school"></i></div>
+          <h5 class="fw-bold mb-2">Schools & Clinics Nearby</h5>
+          <p class="text-muted small mb-0">Essential civic services within a 10-minute walk.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h5 class="fw-bold mb-2">Backup Power & Water Reserve</h5>
+          <p class="text-muted small mb-0">Uninterrupted utilities, engineered for Dhaka's climate.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fa-solid fa-dumbbell"></i></div>
+          <h5 class="fw-bold mb-2">Fitness & Recreation Space</h5>
+          <p class="text-muted small mb-0">Shared gym and play areas in every mid-to-large community.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fa-solid fa-mosque"></i></div>
+          <h5 class="fw-bold mb-2">Prayer Space</h5>
+          <p class="text-muted small mb-0">A dedicated mosque or prayer room within the community.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fa-solid fa-car"></i></div>
+          <h5 class="fw-bold mb-2">Dedicated Parking</h5>
+          <p class="text-muted small mb-0">Allocated parking with visitor space in every block.</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="amenity-card">
+          <div class="amenity-icon"><i class="fa-solid fa-truck-medical"></i></div>
+          <h5 class="fw-bold mb-2">Waste & Facilities Management</h5>
+          <p class="text-muted small mb-0">Managed by SAFE Facilities Management from day one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESIDENT COUNCIL -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="mb-5 reveal">
+      <span class="eyebrow mb-3">Governance, Not Just Guards</span>
+      <h2 class="display-6 fw-medium">The Resident Council</h2>
+    </div>
+    <div class="council-card reveal">
+      <div class="council-photo">
+        <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=900&auto=format&fit=crop" alt="Resident council meeting">
+      </div>
+      <div class="council-content">
+        <span class="eyebrow mb-3">Elected, Not Appointed</span>
+        <h2>A standing voice on the board, not a suggestion box.</h2>
+        <p>Once a community is handed over, residents elect a council with a formal, ongoing advisory channel to the SAFE board — not a symbolic gesture, but a working relationship that outlasts the sales process.</p>
+        <ul class="council-list">
+          <li><i class="fa-solid fa-check"></i> Elections held within the first year of handover</li>
+          <li><i class="fa-solid fa-check"></i> Direct escalation path for maintenance and facility issues</li>
+          <li><i class="fa-solid fa-check"></i> Receives the annual audit summary alongside the board</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">A Look Inside</span>
+      <h2 class="display-6 fw-medium">Community Life</h2>
+    </div>
+    <div class="row g-3">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="gallery-item" style="height:280px;">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=900&auto=format&fit=crop" alt="Community park">
+          <div class="gallery-caption">Shared Courtyard, SAFE Willow Court</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="gallery-item" style="height:280px;">
+          <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=900&auto=format&fit=crop" alt="Community security">
+          <div class="gallery-caption">Guarded Entry Point</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="gallery-item" style="height:280px;">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=900&auto=format&fit=crop" alt="Resident gathering">
+          <div class="gallery-caption">Annual Resident Meet-up</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="gallery-item" style="height:220px;">
+          <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=900&auto=format&fit=crop" alt="Children playing">
+          <div class="gallery-caption">Play Area for Kids</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="gallery-item" style="height:220px;">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=900&auto=format&fit=crop" alt="Residential complex">
+          <div class="gallery-caption">SAFE Ivory Heights</div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="gallery-item" style="height:220px;">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=900&auto=format&fit=crop" alt="Green space">
+          <div class="gallery-caption">Green Corridor Initiative</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section style="background:var(--sage);">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">What's On</span>
+      <h2 class="display-6 fw-medium">Upcoming Community Events</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="event-card">
+          <div class="event-date"><div class="ed-day">14</div><div class="ed-month">Sep</div></div>
+          <div class="event-body">
+            <div class="event-title">Resident Council Elections</div>
+            <div class="event-meta"><i class="fa-solid fa-location-dot"></i>SAFE Willow Court</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="event-card">
+          <div class="event-date"><div class="ed-day">22</div><div class="ed-month">Sep</div></div>
+          <div class="event-body">
+            <div class="event-title">Free Health Camp (SAFE Pharma)</div>
+            <div class="event-meta"><i class="fa-solid fa-location-dot"></i>SAFE Ivory Heights</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 reveal">
+        <div class="event-card">
+          <div class="event-date"><div class="ed-day">05</div><div class="ed-month">Oct</div></div>
+          <div class="event-body">
+            <div class="event-title">Tree Plantation Drive</div>
+            <div class="event-meta"><i class="fa-solid fa-location-dot"></i>SAFE Meadow Residency</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip section-tight">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3"><h3>38</h3><div class="lbl">Communities Built</div></div>
+      <div class="col-6 col-md-3"><h3>4,200+</h3><div class="lbl">Happy Families</div></div>
+      <div class="col-6 col-md-3"><h3>12</h3><div class="lbl">Active Resident Councils</div></div>
+      <div class="col-6 col-md-3"><h3>24/7</h3><div class="lbl">Guarded Security</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- RESIDENT VOICES -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <span class="eyebrow center mb-3 justify-content-center">In Their Words</span>
+      <h2 class="display-6 fw-medium">What Residents Say</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">The resident council actually resolves issues fast. It finally feels like living in a managed community, not just a building.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Resident">
+            <div><div class="voice-name">Rafiul Islam</div><div class="voice-role">Tenant, Baridhara Garden Flats</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">Our kids have somewhere safe to play, and I know the guards at the gate by name. That's rare in Dhaka.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1548176313-4afd2c776476?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Resident">
+            <div><div class="voice-name">Tania Ferdous</div><div class="voice-role">Resident, SAFE Ivory Heights</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 reveal">
+        <div class="voice-card">
+          <div class="voice-quote-icon">"</div>
+          <p class="voice-text">As council chair, I've raised three maintenance requests this year — every one was resolved within the month.</p>
+          <div class="voice-person">
+            <img src="https://images.unsplash.com/photo-1607747302264-9fa3e06db571?q=80&w=200&auto=format&fit=crop" class="voice-avatar" alt="Resident">
+            <div><div class="voice-name">Kamal Uddin</div><div class="voice-role">Resident Council Chair, SAFE Willow Court</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-tight">
+  <div class="container">
+    <div class="cta-section reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h2 class="display-6 fw-medium mb-3" style="font-family:'Fraunces',serif;">Want to See a Community in Person?</h2>
+          <p class="mb-0" style="color:rgba(255,255,255,.85);">Book a site visit and meet the resident council along with the show flat.</p>
+        </div>
+        <div class="col-lg-5 mt-4 mt-lg-0 text-lg-end">
+          <a href="#contact" class="btn btn-gold">Book a Site Visit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-tight" style="background:var(--sage);" id="contact">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal">
+        <span class="eyebrow mb-3">Get In Touch</span>
+        <h2 class="display-6 fw-medium mb-4">Questions About Community Life?</h2>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone"></i></div>
+          <div class="text-muted small">01713 167754 | 01713 878824</div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:48px;height:48px;border-radius:50%;background:#fff;color:var(--maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope"></i></div>
+          <div class="text-muted small">residents@safecommunitygroup.com</div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Full Name</label>
+              <input type="text" class="form-control" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Community</label>
+              <input type="text" class="form-control" placeholder="e.g. SAFE Willow Court">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Message</label>
+              <textarea class="form-control" rows="4" placeholder="How can we help?"></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-maroon w-100">Send Message <i class="fa-solid fa-paper-plane ms-2"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h5 class="mb-3">SAFE Community Group</h5>
+        <p class="small" style="color:rgba(255,255,255,.6);">Building verified homes and trusted neighbourhoods across Bangladesh since 2008.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Company</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Ventures</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5 class="mb-3 h6">Governance</h5>
+        <ul class="list-unstyled d-flex flex-column gap-2">
+          <li><a href="#">Audit Reports</a></li>
+          <li><a href="#">Board Charter</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Whistleblower Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h5 class="mb-3 h6">Head Office</h5>
+        <p class="small mb-1"><i class="fa-solid fa-location-dot me-2"></i>Anowar Plaza (2nd Floor), Hazi Badsha Mia Road, Mintu Chattar, Matuail, Demra, Dhaka-1362, Bangladesh.</p>
+        <p class="small mb-1"><i class="fa-solid fa-phone me-2"></i>01713 167754 | 01713 878824</p>
+        <p class="small"><i class="fa-solid fa-envelope me-2"></i>residents@safecommunitygroup.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+      <span>© 2026 Safe Community Group. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Service</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
