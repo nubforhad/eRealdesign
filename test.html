@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Status Panel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f1f5f9;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .header h1 {
+            font-size: 26px;
+            color: #0f172a;
+            margin-bottom: 7px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .users {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .user-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .user-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #e0f2fe;
+            color: #0369a1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-name {
+            font-size: 17px;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .inactive {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .active {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .password-box {
+            display: flex;
+            gap: 8px;
+        }
+
+        .password-box input {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .password-box input:focus {
+            border-color: #2563eb;
+        }
+
+        .submit-btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 0 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .message {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #64748b;
+            min-height: 16px;
+        }
+
+        .message.success {
+            color: #16a34a;
+        }
+
+        .message.error {
+            color: #dc2626;
+        }
+
+        @media (max-width: 650px) {
+            .users {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .password-box {
+                flex-direction: column;
+            }
+
+            .submit-btn {
+                height: 42px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>User Status Panel</h1>
+        <p>
+            Enter the correct password and submit to change user status.
+        </p>
+    </div>
+
+    <div class="users">
+
+        <!-- User 1 -->
+        <div class="user-card">
+
+            <div class="user-top">
+
+                <div class="user-info">
+                    <div class="avatar">U1</div>
+                    <!-- <div class="user-name">User 01</div> -->
+                    <div class="user-name">Eng. Mostafiz </div>
+                </div>
+
+                <span class="status inactive" id="status1">
+                    Inactive
+                </span>
+
+            </div>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="password1"
+                    placeholder="Enter password"
+                    onkeypress="handleEnter(event, 1)"
+                >
+
+                <button
+                    class="submit-btn"
+                    onclick="submitUser(1)"
+                >
+                    Submit
+                </button>
+
+            </div>
+
+            <div class="message" id="message1"></div>
+
+        </div>
+
+
+        <!-- User 2 -->
+        <div class="user-card">
+
+            <div class="user-top">
+
+                <div class="user-info">
+                    <div class="avatar">U2</div>
+                    <!-- <div class="user-name">User 02</div> -->
+                    <div class="user-name">Eng. Minhaz</div>
+                </div>
+
+                <span class="status inactive" id="status2">
+                    Inactive
+                </span>
+
+            </div>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="password2"
+                    placeholder="Enter password"
+                    onkeypress="handleEnter(event, 2)"
+                >
+
+                <button
+                    class="submit-btn"
+                    onclick="submitUser(2)"
+                >
+                    Submit
+                </button>
+
+            </div>
+
+            <div class="message" id="message2"></div>
+
+        </div>
+
+
+        <!-- User 3 -->
+        <div class="user-card">
+
+            <div class="user-top">
+
+                <div class="user-info">
+                    <div class="avatar">U3</div>
+                    <!-- <div class="user-name">User 03</div> -->
+                    <div class="user-name">Eng. Rahib </div>
+                </div>
+
+                <span class="status inactive" id="status3">
+                    Inactive
+                </span>
+
+            </div>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="password3"
+                    placeholder="Enter password"
+                    onkeypress="handleEnter(event, 3)"
+                >
+
+                <button
+                    class="submit-btn"
+                    onclick="submitUser(3)"
+                >
+                    Submit
+                </button>
+
+            </div>
+
+            <div class="message" id="message3"></div>
+
+        </div>
+
+
+        <!-- User 4 -->
+        <div class="user-card">
+
+            <div class="user-top">
+
+                <div class="user-info">
+                    <div class="avatar">U4</div>
+                    <!-- <div class="user-name">User 04</div> -->
+                    <div class="user-name">Eng. Hasib</div>
+                </div>
+
+                <span class="status inactive" id="status4">
+                    Inactive
+                </span>
+
+            </div>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="password4"
+                    placeholder="Enter password"
+                    onkeypress="handleEnter(event, 4)"
+                >
+
+                <button
+                    class="submit-btn"
+                    onclick="submitUser(4)"
+                >
+                    Submit
+                </button>
+
+            </div>
+
+            <div class="message" id="message4"></div>
+
+        </div>
+
+
+        <!-- User 5 -->
+        <div class="user-card">
+
+            <div class="user-top">
+
+                <div class="user-info">
+                    <div class="avatar">U5</div>
+                    <div class="user-name">User 05</div>
+                </div>
+
+                <span class="status inactive" id="status5">
+                    Inactive
+                </span>
+
+            </div>
+
+            <div class="password-box">
+
+                <input
+                    type="password"
+                    id="password5"
+                    placeholder="Enter password"
+                    onkeypress="handleEnter(event, 5)"
+                >
+
+                <button
+                    class="submit-btn"
+                    onclick="submitUser(5)"
+                >
+                    Submit
+                </button>
+
+            </div>
+
+            <div class="message" id="message5"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+    |--------------------------------------------------------------------------
+    | User Passwords
+    |--------------------------------------------------------------------------
+    */
+
+    const users = {
+        1: "1234",
+        2: "2222",
+        3: "3333",
+        4: "4444",
+        5: "5555"
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Load Saved Status
+    |--------------------------------------------------------------------------
+    */
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        for (let userId = 1; userId <= 5; userId++) {
+
+            const savedStatus =
+                localStorage.getItem("user_status_" + userId);
+
+            if (savedStatus) {
+
+                updateStatus(userId, savedStatus);
+
+            } else {
+
+                updateStatus(userId, "inactive");
+
+            }
+
+        }
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Submit User
+    |--------------------------------------------------------------------------
+    */
+
+    function submitUser(userId) {
+
+        const passwordInput =
+            document.getElementById("password" + userId);
+
+        const password = passwordInput.value.trim();
+
+        const message =
+            document.getElementById("message" + userId);
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Empty Password
+        |--------------------------------------------------------------------------
+        */
+
+        if (password === "") {
+
+            message.innerText = "Please enter password.";
+            message.className = "message error";
+
+            return;
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Check Password
+        |--------------------------------------------------------------------------
+        */
+
+        if (password !== users[userId]) {
+
+            /*
+            Wrong password:
+            Status will NOT change.
+            */
+
+            message.innerText = "Incorrect password.";
+            message.className = "message error";
+
+            passwordInput.value = "";
+
+            return;
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Get Current Status
+        |--------------------------------------------------------------------------
+        */
+
+        let currentStatus =
+            localStorage.getItem("user_status_" + userId)
+            || "inactive";
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Toggle Status
+        |--------------------------------------------------------------------------
+        */
+
+        let newStatus;
+
+        if (currentStatus === "inactive") {
+
+            newStatus = "active";
+
+        } else {
+
+            newStatus = "inactive";
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Save Status
+        |--------------------------------------------------------------------------
+        */
+
+        localStorage.setItem(
+            "user_status_" + userId,
+            newStatus
+        );
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Update Screen
+        |--------------------------------------------------------------------------
+        */
+
+        updateStatus(userId, newStatus);
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Message
+        |--------------------------------------------------------------------------
+        */
+
+        if (newStatus === "active") {
+
+            message.innerText =
+                "User is now Active.";
+
+            message.className =
+                "message success";
+
+        } else {
+
+            message.innerText =
+                "User is now Inactive.";
+
+            message.className =
+                "message";
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Clear Password
+        |--------------------------------------------------------------------------
+        */
+
+        passwordInput.value = "";
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Update Status UI
+    |--------------------------------------------------------------------------
+    */
+
+    function updateStatus(userId, status) {
+
+        const statusElement =
+            document.getElementById("status" + userId);
+
+
+        if (status === "active") {
+
+            statusElement.innerText = "Active";
+
+            statusElement.className =
+                "status active";
+
+        } else {
+
+            statusElement.innerText = "Inactive";
+
+            statusElement.className =
+                "status inactive";
+
+        }
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Press Enter
+    |--------------------------------------------------------------------------
+    */
+
+    function handleEnter(event, userId) {
+
+        if (event.key === "Enter") {
+
+            submitUser(userId);
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
